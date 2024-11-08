@@ -56,16 +56,14 @@ nav .nav-links a:hover {
   text-decoration: underline;
 }
 
-/* Hero Section with Background Image */
+
 .hero {
-  background-image: url('images/your-background-image.jpg');
+  background-image: url('background.png');
   background-size: cover;
   background-position: center;
-  padding: 100px 0;
-  color: #fff;
+  color: #fff; /* Adjust text color for visibility if necessary */
   text-align: center;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-  margin-top: 60px; /* To offset fixed nav height */
+  padding: 100px 0; /* Adjust padding to fit your content */
 }
 
 /* Profile Picture Styling */
