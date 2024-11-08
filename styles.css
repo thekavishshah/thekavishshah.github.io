@@ -5,10 +5,12 @@
   box-sizing: border-box;
 }
 
-/* General Styles */
 body {
-  font-family: 'Roboto', sans-serif;
-  color: #333;
+  background-color: grey; /* Sets the background color to orange */
+  color: #333; /* Sets the text color for good contrast, adjust as needed */
+  font-family: Arial, sans-serif; /* Ensures text is readable */
+  margin: 0; /* Removes default margin */
+  padding: 0; /* Removes default padding */
 }
 
 .container {
