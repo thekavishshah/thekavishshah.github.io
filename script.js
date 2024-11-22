@@ -25,3 +25,31 @@ fetch('https://api.github.com/users/thekavishshah/repos')
             `;
         });
     });
+
+
+
+    fetch("https://api.github.com/users/thekavishshah/repos")
+    .then(response => response.json())
+    .then(repos => {
+      // Filter out unwanted repositories
+      const filteredRepos = repos.filter(repo => 
+        !["https://github.com/thekavishshah/cse360_helloworld", "https://github.com/thekavishshah/LEGO-EV3"].includes(repo.name)
+      );
+  
+      // Render filtered repositories
+      displayRepos(filteredRepos);
+    });
+  
+  function displayRepos(repos) {
+    const projectsContainer = document.getElementById("projects");
+    repos.forEach(repo => {
+      const project = document.createElement("div");
+      project.innerHTML = `
+        <h3>${repo.name}</h3>
+        <p>${repo.description}</p>
+        <a href="${repo.html_url}" target="_blank">View on GitHub</a>
+      `;
+      projectsContainer.appendChild(project);
+    });
+  }
+  
