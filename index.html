@@ -3,11 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <title>Portfolio</title>
 </head>
 <body>
-    <div id="content"></div> <!-- This will be populated by JS -->
-    <script src="script.js"></script>
+    <div class="container">
+        <!-- Home Section -->
+        <section id="home" data-aos="fade-up">
+            <h1>Welcome to My Portfolio</h1>
+            <img src="pfp.png" alt="Your Profile Picture" class="profile-pic">
+            <p>Hi, I'm Kavish Shah, a Computer Science student at Arizona State University.</p>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" data-aos="fade-up" data-aos-delay="300">
+            <h2>About Me</h2>
+            <p>A brief description about you and your background.</p>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" data-aos="fade-up" data-aos-delay="600">
+            <h2>Projects</h2>
+            <div class="project">
+                <h3>Project 1</h3>
+                <p>Project description here.</p>
+                <a href="https://github.com/thekavishshah/project-1" target="_blank">View Project</a>
+            </div>
+            <div class="project">
+                <h3>Project 2</h3>
+                <p>Project description here.</p>
+                <a href="https://github.com/thekavishshah/project-2" target="_blank">View Project</a>
+            </div>
+        </section>
+
+        <!-- Resume Section -->
+        <section id="resume" data-aos="fade-up" data-aos-delay="900">
+            <h2>Resume</h2>
+            <a href="KAVISH_SHAH_RESUME.pdf" target="_blank">Download My Resume</a>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" data-aos="fade-up" data-aos-delay="1200">
+            <h2>Contact</h2>
+            <form action="https://formspree.io/f/your-form-id" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea><br>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 </html>
