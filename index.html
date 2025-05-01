@@ -1,87 +1,138 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <title>Kavish Shah | Portfolio</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Link to CSS -->
-    <link rel="stylesheet" href="styles.css">
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts (Optional) -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kavish Shah — Portfolio</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- AOS (Animate On Scroll) -->
+  <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
 </head>
-<body>
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <h1 class="logo">KAVISH SHAH</h1>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#work">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- Navigation -->
+  <header class="fixed w-full bg-white shadow-md z-20">
+    <nav class="max-w-5xl mx-auto flex justify-between items-center p-4">
+      <a href="#hero" class="text-2xl font-bold hover:text-blue-600 transition">Kavish Shah</a>
+      <div class="space-x-6">
+        <a href="#about" class="hover:text-blue-600 transition">About</a>
+        <a href="#skills" class="hover:text-blue-600 transition">Skills</a>
+        <a href="#projects" class="hover:text-blue-600 transition">Projects</a>
+        <a href="#contact" class="hover:text-blue-600 transition">Contact</a>
+      </div>
     </nav>
+  </header>
 
-    <!-- Hero Section with Background Image and Your Picture -->
-    <section class="hero">
-        <div class="container">
-            <!-- Your Image -->
-            <img src="pfp.png" alt="Kavish Shah" class="profile-pic">
-            <!-- Social Icons -->
-            <div class="social-icons">
-                <a href="https://www.linkedin.com/in/shah-kavish" target="_blank">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://github.com/thekavishshah" target="_blank">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="KAVISH_SHAH_RESUME .pdf" target="_blank">
-                    <i class="fas fa-file-alt"></i>
-                </a>
-            </div>
-            <h2>KAVISH SHAH</h2>
-            <p>Computer Science Honors student at Arizona State University.</p>
-        </div>
-    </section>
+  <!-- Hero Section -->
+  <section id="hero" data-aos="fade-up" class="min-h-screen flex flex-col justify-center items-center text-center p-6">
+    <h1 class="text-5xl md:text-7xl font-extrabold animate-bounce">Hi, I’m Kavish Shah</h1>
+    <p class="mt-4 text-xl md:text-2xl text-gray-600 max-w-2xl">
+      Software Engineer & Peer Mentor at Arizona State University
+    </p>
+    <a href="#projects" class="mt-8 px-8 py-3 bg-blue-600 text-white rounded-2xl shadow-lg hover:scale-105 transform transition duration-300 animate-pulse">
+      View My Work
+    </a>
+  </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2>About Me</h2>
-            <p>Your detailed bio goes here.</p>
-        </div>
-    </section>
+  <!-- About Section -->
+  <section id="about" data-aos="fade-right" class="py-20 px-6 max-w-3xl mx-auto">
+    <h2 class="text-3xl font-semibold text-center mb-6">About Me</h2>
+    <p class="text-gray-700 leading-relaxed">
+      I’m a junior at Arizona State University majoring in Community Advocacy and Social Policy. Beyond academics, I mentor first-year engineering students, helping them adjust to college life and achieve their goals. I love building web applications, exploring cybersecurity challenges, and leveraging AI to solve real-world problems.
+    </p>
+  </section>
 
-    <!-- Projects Section -->
-    <section id="work" class="work">
-        <div class="container">
-            <h2>My Projects</h2>
-            <div class="projects-grid">
-                <!-- Project Item -->
-                <!-- Add more project items as needed -->
-            </div>
-        </div>
-    </section>
+  <!-- Skills Section -->
+  <section id="skills" data-aos="fade-left" class="py-20 px-6 max-w-3xl mx-auto">
+    <h2 class="text-3xl font-semibold text-center mb-6">Skills</h2>
+    <div class="flex flex-wrap justify-center gap-4 mt-4">
+      <span class="px-4 py-2 bg-blue-100 rounded-full hover:bg-blue-200 transition">JavaScript</span>
+      <span class="px-4 py-2 bg-green-100 rounded-full hover:bg-green-200 transition">Python</span>
+      <span class="px-4 py-2 bg-blue-100 rounded-full hover:bg-blue-200 transition">React.js</span>
+      <span class="px-4 py-2 bg-gray-100 rounded-full hover:bg-gray-200 transition">Node.js</span>
+      <span class="px-4 py-2 bg-purple-100 rounded-full hover:bg-purple-200 transition">Tailwind CSS</span>
+      <span class="px-4 py-2 bg-indigo-100 rounded-full hover:bg-indigo-200 transition">Flask</span>
+      <span class="px-4 py-2 bg-red-100 rounded-full hover:bg-red-200 transition">Django</span>
+      <span class="px-4 py-2 bg-yellow-100 rounded-full hover:bg-yellow-200 transition">SQL</span>
+      <span class="px-4 py-2 bg-pink-100 rounded-full hover:bg-pink-200 transition">Cybersecurity</span>
+    </div>
+  </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Contact Me</h2>
-            <p>Feel free to reach out via email at <a href="mailto:kshah77@asu.edu">kshah77@asu.edu</a>.</p>
-            <p>Or you can also email me at <a href="mailto:kavishshah2005@gmail.com">kavishshah2005@gmail.com</a>.</p>
-        </div>
-    </section>
+  <!-- Experience Section -->
+  <section id="experience" data-aos="fade-up" class="py-20 bg-white px-6">
+    <h2 class="text-3xl font-semibold text-center mb-12">Experience</h2>
+    <div class="max-w-5xl mx-auto space-y-8">
+      <!-- Peer Mentor Card -->
+      <div class="bg-gray-100 rounded-2xl shadow-lg p-6 hover:shadow-xl transition" data-aos="fade-right">
+        <h3 class="text-2xl font-semibold mb-2">Peer Mentor • ASU</h3>
+        <p class="text-gray-600 mb-4">
+          Guide first-year engineering students through academics and campus life. Support international students adapting to new environments and log progress in Salesforce.
+        </p>
+      </div>
+      <!-- Intern Card -->
+      <div class="bg-gray-100 rounded-2xl shadow-lg p-6 hover:shadow-xl transition" data-aos="fade-left">
+        <h3 class="text-2xl font-semibold mb-2">Software Engineering Intern • Dark Alpha Capital</h3>
+        <p class="text-gray-600 mb-4">
+          Developed a React/Node.js dashboard for deal sourcing, improving team efficiency by 30%. Implemented search, filtering, and real-time updates for seamless collaboration.
+        </p>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Kavish Shah. All rights reserved.</p>
-        </div>
-    </footer>
+  <!-- Projects Section -->
+  <section id="projects" data-aos="fade-up" class="py-20 px-6">
+    <h2 class="text-3xl font-semibold text-center mb-12">Projects</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      <!-- Project Cards with AOS -->
+      <div class="bg-gray-100 rounded-2xl shadow-lg p-6 hover:shadow-xl transform hover:-translate-y-2 transition" data-aos="zoom-in" data-aos-delay="100">
+        <h3 class="text-xl font-semibold mb-2">SleepSoon Tracker</h3>
+        <p class="text-gray-600 mb-4">
+          Tracks sleep patterns and offers personalized tips to optimize rest and productivity.
+        </p>
+        <a href="#" class="text-blue-600 hover:underline">View Details</a>
+      </div>
+      <div class="bg-gray-100 rounded-2xl shadow-lg p-6 hover:shadow-xl transform hover:-translate-y-2 transition" data-aos="zoom-in" data-aos-delay="200">
+        <h3 class="text-xl font-semibold mb-2">Dark Alpha Dashboard</h3>
+        <p class="text-gray-600 mb-4">
+          A deal management tool built with React and Firebase for streamlined finance workflows.
+        </p>
+        <a href="#" class="text-blue-600 hover:underline">View Details</a>
+      </div>
+      <div class="bg-gray-100 rounded-2xl shadow-lg p-6 hover:shadow-xl transform hover:-translate-y-2 transition" data-aos="zoom-in" data-aos-delay="300">
+        <h3 class="text-xl font-semibold mb-2">Honors Contract App</h3>
+        <p class="text-gray-600 mb-4">
+          Habit-tracking app for sleep, nutrition, and mindfulness data to boost well-being.
+        </p>
+        <a href="#" class="text-blue-600 hover:underline">View Details</a>
+      </div>
+    </div>
+  </section>
 
-    <!-- JavaScript (optional) -->
-    <script src="script.js"></script>
+  <!-- Contact Section -->
+  <section id="contact" data-aos="zoom-in" class="py-20 px-6 max-w-3xl mx-auto text-center">
+    <h2 class="text-3xl font-semibold mb-6">Get In Touch</h2>
+    <div class="flex justify-center gap-8 mt-6">
+      <a href="https://www.linkedin.com/in/shah-kavish/" target="_blank" aria-label="LinkedIn" class="transform hover:scale-110 transition">
+        <!-- LinkedIn SVG Icon -->
+        <svg class="w-10 h-10 text-blue-700" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6S0 4.88 0 3.5 1.11 1 2.49 1s2.49 1.12 2.49 2.5zM.22 8.1h4.54v15.4H.22V8.1zM8.41 8.1h4.35v2.1h.06c.61-1.15 2.11-2.35 4.35-2.35 4.66 0 5.52 3.07 5.52 7.07v8.55h-4.54v-7.58c0-1.8-.03-4.12-2.51-4.12-2.51 0-2.89 1.96-2.89 3.99v7.71H8.41V8.1z"/></svg>
+      </a>
+      <a href="https://github.com/thekavishshah" target="_blank" aria-label="GitHub" class="transform hover:scale-110 transition">
+        <!-- GitHub SVG Icon -->
+        <svg class="w-10 h-10 text-gray-800" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.263.82-.583 0-.287-.01-1.04-.015-2.04-3.338.725-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.754-1.333-1.754-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.835 2.805 1.305 3.49.998.108-.775.418-1.305.76-1.605-2.665-.3-5.467-1.332-5.467-5.93 0-1.31.47-2.38 1.236-3.22-.124-.303-.536-1.523.117-3.176 0 0 1.008-.323 3.301 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.29-1.553 3.297-1.23 3.297-1.23.655 1.653.243 2.873.12 3.176.77.84 1.236 1.91 1.236 3.22 0 4.61-2.807 5.625-5.48 5.92.43.37.815 1.1.815 2.22 0 1.605-.015 2.896-.015 3.286 0 .322.216.698.825.58C20.565 21.796 24 17.296 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-6 text-center text-gray-500">
+    © 2025 Kavish Shah. All rights reserved.
+  </footer>
+
+  <!-- AOS Script -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+  </script>
 </body>
 </html>
