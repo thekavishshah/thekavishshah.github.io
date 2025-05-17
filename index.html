@@ -4,9 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kavish Shah — Portfolio</title>
-  <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- AOS (Animate On Scroll) -->
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
@@ -19,132 +17,231 @@
         <a href="KAVISH_SHAH_RESUME_MAY.pdf" target="_blank" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition">Resume</a>
         <a href="#about" class="hover:text-blue-600 transition">About</a>
         <a href="#skills" class="hover:text-blue-600 transition">Skills</a>
+        <a href="#work" class="hover:text-blue-600 transition">Work</a>
+        <a href="#campus" class="hover:text-blue-600 transition">Campus</a>
         <a href="#projects" class="hover:text-blue-600 transition">Projects</a>
         <a href="#contact" class="hover:text-blue-600 transition">Contact</a>
       </div>
     </nav>
   </header>
 
-  <!-- Hero Section -->
-  <section id="hero" data-aos="fade-up" class="min-h-screen flex flex-col justify-center items-center text-center p-6">
+  <!-- Hero -->
+  <section id="hero" class="min-h-screen flex flex-col justify-center items-center text-center p-6">
     <h1 class="text-5xl md:text-7xl font-extrabold animate-bounce">Hi, I’m Kavish Shah</h1>
-    <p class="mt-4 text-xl md:text-2xl text-gray-600 max-w-2xl">
-      Software Engineer & Peer Mentor at Arizona State University
-    </p>
+    <p class="mt-4 text-xl md:text-2xl text-gray-600 max-w-2xl">Software Engineer & Peer Mentor at Arizona State University</p>
     <div class="flex space-x-4 mt-8">
-      <a href="#projects" class="px-8 py-3 bg-blue-600 text-white rounded-2xl shadow-lg hover:scale-105 transform transition duration-300 animate-pulse">
-        View My Work
-      </a>
-      <a href="resume.pdf" target="_blank" class="px-8 py-3 bg-green-600 text-white rounded-2xl shadow-lg hover:scale-105 transform transition duration-300">
-        Download Resume
-      </a>
+      <a href="#projects" class="px-8 py-3 bg-blue-600 text-white rounded-2xl shadow-lg hover:scale-105 transform transition animate-pulse">View My Work</a>
+      <a href="KAVISH_SHAH_RESUME_MAY.pdf" target="_blank" class="px-8 py-3 bg-green-600 text-white rounded-2xl shadow-lg hover:scale-105 transform transition">Download Resume</a>
     </div>
   </section>
 
-  <!-- About Section -->
-  <section id="about" data-aos="fade-right" class="py-20 px-6 max-w-3xl mx-auto">
+  <!-- About -->
+  <section id="about" class="py-20 px-6 max-w-3xl mx-auto">
     <h2 class="text-3xl font-semibold text-center mb-6">About Me</h2>
     <div class="flex justify-center mb-6">
-      <img src="images/profile.jpg" alt="Kavish Shah" class="w-48 h-48 rounded-full shadow-lg border-4 border-blue-500">
+      <img src="images/profile.jpg" alt="Kavish Shah" class="w-96 h-96 rounded-lg shadow-lg border-4 border-blue-500 object-cover">
     </div>
-    <p class="text-gray-700 leading-relaxed">
-      I’m a junior at Arizona State University pursuing a Bachelor of Science (Honors) in Computer Science. Beyond academics, I mentor first-year engineering students, helping them adjust to college life and achieve their goals, I also served as a Treasurer to The Software Developer Association (SoDA). I love building web applications, exploring cybersecurity challenges, and leveraging AI to solve real-world problems.
-    </p>
+    <p class="text-gray-700 leading-relaxed">I’m a junior at Arizona State University pursuing a BS (Honors) in Computer Science. I mentor first-year engineers, served as Treasurer of SoDA, and love building web apps, exploring cybersecurity, and leveraging AI for real-world solutions.</p>
   </section>
 
-  <!-- Skills Section -->
-  <section id="skills" data-aos="fade-left" class="py-20 px-6 max-w-3xl mx-auto">
+  <!-- Skills -->
+  <section id="skills" class="py-20 px-6 max-w-3xl mx-auto">
     <h2 class="text-3xl font-semibold text-center mb-6">Skills</h2>
     <div class="flex flex-wrap justify-center gap-4 mt-4">
-      <span class="px-4 py-2 bg-blue-100 rounded-full hover:bg-blue-200 transition">JavaScript</span>
-      <span class="px-4 py-2 bg-green-100 rounded-full hover:bg-green-200 transition">Python</span>
-      <span class="px-4 py-2 bg-blue-100 rounded-full hover:bg-blue-200 transition">React.js</span>
-      <span class="px-4 py-2 bg-gray-100 rounded-full hover:bg-gray-200 transition">Node.js</span>
-      <span class="px-4 py-2 bg-purple-100 rounded-full hover:bg-purple-200 transition">Tailwind CSS</span>
-      <span class="px-4 py-2 bg-indigo-100 rounded-full hover:bg-indigo-200 transition">Flask</span>
-      <span class="px-4 py-2 bg-red-100 rounded-full hover:bg-red-200 transition">Django</span>
-      <span class="px-4 py-2 bg-yellow-100 rounded-full hover:bg-yellow-200 transition">SQL</span>
-      <span class="px-4 py-2 bg-pink-100 rounded-full hover:bg-pink-200 transition">Cybersecurity</span>
+      <span class="px-4 py-2 bg-blue-100 rounded-full">JavaScript</span>
+      <span class="px-4 py-2 bg-green-100 rounded-full">Python</span>
+      <span class="px-4 py-2 bg-blue-100 rounded-full">React.js</span>
+      <span class="px-4 py-2 bg-gray-100 rounded-full">Node.js</span>
+      <span class="px-4 py-2 bg-purple-100 rounded-full">Tailwind CSS</span>
+      <span class="px-4 py-2 bg-indigo-100 rounded-full">Flask</span>
+      <span class="px-4 py-2 bg-red-100 rounded-full">Django</span>
+      <span class="px-4 py-2 bg-yellow-100 rounded-full">SQL</span>
+      <span class="px-4 py-2 bg-pink-100 rounded-full">Cybersecurity</span>
     </div>
   </section>
 
-  <!-- Experience Section -->
-  <section id="experience" data-aos="fade-up" class="py-20 bg-white px-6">
-    <h2 class="text-3xl font-semibold text-center mb-12">Experience</h2>
-    <div class="max-w-5xl mx-auto space-y-8">
-      <!-- Peer Mentor Card -->
-      <div class="bg-gray-100 rounded-2xl shadow-lg p-6 hover:shadow-xl transition" data-aos="fade-right">
-        <h3 class="text-2xl font-semibold mb-2">Peer Mentor • ASU</h3>
-        <p class="text-gray-600 mb-4">
-          Guide first-year engineering students through academics and campus life. Support international students adapting to new environments and log progress in Salesforce.
-        </p>
+  <!-- Work Experience -->
+  <section id="work" class="py-20 bg-white px-6">
+    <h2 class="text-3xl font-semibold text-center mb-12">Work Experience</h2>
+    <div class="relative max-w-4xl mx-auto">
+      <div class="absolute left-1/2 transform -translate-x-1/2 h-full border-l-4 border-gray-300"></div>
+      <!-- Intern -->
+      <div class="grid grid-cols-9 items-center mb-12">
+        <div class="col-span-4 text-right pr-6">
+          <h3 class="text-xl font-semibold">Software Engineering Intern</h3>
+          <p class="text-sm text-gray-500">Dark Alpha Capital LLC (Mar 2025 – Present · Remote)</p>
+          <p class="mt-2 text-gray-600">Built a React/Node.js dashboard, boosting efficiency by 30% with search, filtering, and real‑time updates.</p>
+        </div>
+        <div class="col-span-1 flex justify-center">
+          <div class="w-6 h-6 bg-blue-600 rounded-full"></div>
+        </div>
+        <div class="col-span-4"></div>
       </div>
-      <!-- Intern Card -->
-      <div class="bg-gray-100 rounded-2xl shadow-lg p-6 hover:shadow-xl transition" data-aos="fade-left">
-        <h3 class="text-2xl font-semibold mb-2">Software Engineering Intern • Dark Alpha Capital</h3>
-        <p class="text-gray-600 mb-4">
-          Developed a React/Node.js dashboard for deal sourcing, improving team efficiency by 30%. Implemented search, filtering, and real-time updates for seamless collaboration.
-        </p>
+      <!-- NASA -->
+      <div class="grid grid-cols-9 items-center mb-12">
+        <div class="col-span-4"></div>
+        <div class="col-span-1 flex justify-center">
+          <div class="w-6 h-6 bg-blue-600 rounded-full"></div>
+        </div>
+        <div class="col-span-4 pl-6">
+          <h3 class="text-xl font-semibold">Researcher</h3>
+          <p class="text-sm text-gray-500">NASA L'SPACE Program (May 2024 – Aug 2024 · Remote)</p>
+          <p class="mt-2 text-gray-600">Co‑authored a 17‑page proposal on in‑space manufacturing, led planning, and developed a quantum sensor prototype.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Projects Section -->
-  <section id="projects" data-aos="fade-up" class="py-20 px-6">
+  <!-- Campus Involvement -->
+  <section id="campus" class="py-20 bg-gray-50 px-6">
+    <h2 class="text-3xl font-semibold text-center mb-12">Campus & Leadership</h2>
+    <div class="relative max-w-4xl mx-auto">
+      <div class="absolute left-1/2 transform -translate-x-1/2 h-full border-l-4 border-gray-300"></div>
+      <!-- Barrett Mentor -->
+      <div class="grid grid-cols-9 items-center mb-12">
+        <div class="col-span-4 text-right pr-6">
+          <h3 class="text-xl font-semibold">Barrett Mentor</h3>
+          <p class="text-sm text-gray-500">Barrett, The Honors College (Nov 2024 – Present · On-site)</p>
+          <p class="mt-2 text-gray-600">Provide one-on-one support, workshops on study skills & planning, and lead community-building events.</p>
+        </div>
+        <div class="col-span-1 flex justify-center"><div class="w-6 h-6 bg-green-600 rounded-full"></div></div>
+        <div class="col-span-4"></div>
+      </div>
+      <!-- Fulton Ambassador -->
+      <div class="grid grid-cols-9 items-center mb-12">
+        <div class="col-span-4"></div>
+        <div class="col-span-1 flex justify-center"><div class="w-6 h-6 bg-green-600 rounded-full"></div></div>
+        <div class="col-span-4 pl-6">
+          <h3 class="text-xl font-semibold">Fulton Ambassador</h3>
+          <p class="text-sm text-gray-500">Ira A. Fulton Schools of Engineering (Oct 2024 – Present · On-site)</p>
+          <p class="mt-2 text-gray-600">Represent ASU Engineering to prospective students & partners during outreach events.</p>
+        </div>
+      </div>
+      <!-- Residential Peer Mentor -->
+      <div class="grid grid-cols-9 items-center mb-12">
+        <div class="col-span-4 text-right pr-6">
+          <h3 class="text-xl font-semibold">Residential Peer Mentor</h3>
+          <p class="text-sm text-gray-500">ASU Engineering Student Hub (Aug 2024 – Present · On-site)</p>
+          <p class="mt-2 text-gray-600">Led workshops & events for 2000+ students, organized development series, and supported academic & social success.</p>
+        </div>
+        <div class="col-span-1 flex justify-center"><div class="w-6 h-6 bg-green-600 rounded-full"></div></div>
+        <div class="col-span-4"></div>
+      </div>
+      <!-- E2 Camp Counselor -->
+      <div class="grid grid-cols-9 items-center mb-12">
+        <div class="col-span-4"></div>
+        <div class="col-span-1 flex justify-center"><div class="w-6 h-6 bg-green-600 rounded-full"></div></div>
+        <div class="col-span-4 pl-6">
+          <h3 class="text-xl font-semibold">E2 Camp Counselor</h3>
+          <p class="text-sm text-gray-500">E2 Camp (Jul 2024 – Aug 2024 · On-site)</p>
+          <p class="mt-2 text-gray-600">Designed & led educational activities in nature exploration, arts, and interactive learning.</p>
+        </div>
+      </div>
+      <!-- Treasurer -->
+      <div class="grid grid-cols-9 items-center mb-12">
+        <div class="col-span-4 text-right pr-6">
+          <h3 class="text-xl font-semibold">Treasurer</h3>
+          <p class="text-sm text-gray-500">SoDA at ASU (Dec 2023 – Jan 2025 · Hybrid)</p>
+          <p class="mt-2 text-gray-600">Managed $3.5K budget, secured $2K sponsorships, and improved reporting, reducing errors by 25%.</p>
+        </div>
+        <div class="col-span-1 flex justify-center"><div class="w-6 h-6 bg-green-600 rounded-full"></div></div>
+        <div class="col-span-4"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="py-20 px-6">
     <h2 class="text-3xl font-semibold text-center mb-12">Projects</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-      <!-- Project Cards with AOS -->
-      <div class="bg-gray-100 rounded-2xl shadow-lg p-6 hover:shadow-xl transform hover:-translate-y-2 transition" data-aos="zoom-in" data-aos-delay="100">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div class="bg-gray-100 rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
         <h3 class="text-xl font-semibold mb-2">SleepSoon Tracker</h3>
-        <p class="text-gray-600 mb-4">
-          Tracks sleep patterns and offers personalized tips to optimize rest and productivity.
-        </p>
-        <a href="#" class="text-blue-600 hover:underline">View Details</a>
+        <p class="text-gray-600 mb-4">Tracks sleep patterns and offers personalized tips to optimize rest and productivity.</p>
+        <a href="https://github.com/thekavishshah/SleepSoon" target="_blank" class="text-blue-600 hover:underline">View on GitHub</a>
       </div>
-      <div class="bg-gray-100 rounded-2xl shadow-lg p-6 hover:shadow-xl transform hover:-translate-y-2 transition" data-aos="zoom-in" data-aos-delay="200">
-        <h3 class="text-xl font-semibold mb-2">Dark Alpha Dashboard</h3>
-        <p class="text-gray-600 mb-4">
-          A deal management tool built with React and Firebase for streamlined finance workflows.
-        </p>
-        <a href="#" class="text-blue-600 hover:underline">View Details</a>
+      <div class="bg-gray-100 rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
+        <h3 class="text-xl font-semibold mb-2">TeachPortal</h3>
+        <p class="text-gray-600 mb-4">An online teaching platform connecting students and educators.</p>
+        <a href="https://github.com/thekavishshah/TeachPortal" target="_blank" class="text-blue-600 hover:underline">View on GitHub</a>
       </div>
-      <div class="bg-gray-100 rounded-2xl shadow-lg p-6 hover:shadow-xl transform hover:-translate-y-2 transition" data-aos="zoom-in" data-aos-delay="300">
-        <h3 class="text-xl font-semibold mb-2">Honors Contract App</h3>
-        <p class="text-gray-600 mb-4">
-          Habit-tracking app for sleep, nutrition, and mindfulness data to boost well-being.
-        </p>
-        <a href="#" class="text-blue-600 hover:underline">View Details</a>
+      <div class="bg-gray-100 rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
+        <h3 class="text-xl font-semibold mb-2">ClearCue</h3>
+        <p class="text-gray-600 mb-4">AI-driven study aid generating cues and flashcards from lecture notes.</p>
+        <a href="https://github.com/thekavishshah/ClearCue" target="_blank" class="text-blue-600 hover:underline">View on GitHub</a>
+      </div>
+      <div class="bg-gray-100 rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
+        <h3 class="text-xl font-semibold mb-2">Portfolio Website</h3>
+        <p class="text-gray-600 mb-4">This personal portfolio including projects, experience tree, and contact.</p>
+        <a href="https://github.com/thekavishshah/thekavishshah.github.io" target="_blank" class="text-blue-600 hover:underline">View on GitHub</a>
+      </div>
+      <div class="bg-gray-100 rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
+        <h3 class="text-xl font-semibold mb-2">Bitrix24</h3>
+        <p class="text-gray-600 mb-4">Forked deal-sourcing app built with Next.js, Prisma & PostgreSQL.</p>
+        <a href="https://github.com/thekavishshah/Bitrix24" target="_blank" class="text-blue-600 hover:underline">View on GitHub</a>
+      </div>
+      <div class="bg-gray-100 rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
+        <h3 class="text-xl font-semibold mb-2">CodePath Prework</h3>
+        <p class="text-gray-600 mb-4">Swift app projects from CodePath web development prework.</p>
+        <a href="https://github.com/thekavishshah/codepath-prework" target="_blank" class="text-blue-600 hover:underline">View on GitHub</a>
+      </div>
+      <div class="bg-gray-100 rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
+        <h3 class="text-xl font-semibold mb-2">TicTacToe</h3>
+        <p class="text-gray-600 mb-4">Graphical TicTacToe game built with Python & Tkinter.</p>
+        <a href="https://github.com/thekavishshah/TicTacToe" target="_blank" class="text-blue-600 hover:underline">View on GitHub</a>
+      </div>
+      <div class="bg-gray-100 rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
+        <h3 class="text-xl font-semibold mb-2">LeetCode Solutions</h3>
+        <p class="text-gray-600 mb-4">Collection of algorithm & data structure solutions in Python.</p>
+        <a href="https://github.com/thekavishshah/LeetCode-solutions" target="_blank" class="text-blue-600 hover:underline">View on GitHub</a>
+      </div>
+      <div class="bg-gray-100 rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
+        <h3 class="text-xl font-semibold mb-2">JobApplier</h3>
+        <p class="text-gray-600 mb-4">Automation tool for managing job applications and follow-ups.</p>
+        <a href="https://github.com/thekavishshah/JobApplier" target="_blank" class="text-blue-600 hover:underline">View on GitHub</a>
+      </div>
+      <div class="bg-gray-100 rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
+        <h3 class="text-xl font-semibold mb-2">CWE-798 Project</h3>
+        <p class="text-gray-600 mb-4">Honors project demonstrating blocking hard-coded credentials vulnerabilities.</p>
+        <a href="https://github.com/thekavishshah/HardCodedCredentials" target="_blank" class="text-blue-600 hover:underline">View on GitHub</a>
+      </div>
+      <div class="bg-gray-100 rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
+        <h3 class="text-xl font-semibold mb-2">Expense Tracker</h3>
+        <p class="text-gray-600 mb-4">Personal app for tracking expenses, built with JavaScript & localStorage.</p>
+        <a href="https://github.com/thekavishshah/Expense-Tracker" target="_blank" class="text-blue-600 hover:underline">View on GitHub</a>
+      </div>
+      <div class="bg-gray-100 rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
+        <h3 class="text-xl font-semibold mb-2">CSE360 HelloWorld</h3>
+        <p class="text-gray-600 mb-4">Tutorial repository for CSE360 GitHub workflow exercises.</p>
+        <a href="https://github.com/thekavishshah/cse360_helloworld" target="_blank" class="text-blue-600 hover:underline">View on GitHub</a>
+      </div>
+      <div class="bg-gray-100 rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
+        <h3 class="text-xl font-semibold mb-2">SnakeGame</h3>
+        <p class="text-gray-600 mb-4">Python Snake game from high-school hackathon (2nd prize).</p>
+        <a href="https://github.com/thekavishshah/SnakeGame" target="_blank" class="text-blue-600 hover:underline">View on GitHub</a>
+      </div>
+      <div class="bg-gray-100 rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
+        <h3 class="text-xl font-semibold mb-2">LEGO EV3</h3>
+        <p class="text-gray-600 mb-4">EV3 robot projects with LEGO Mindstorms.</p>
+        <a href="https://github.com/thekavishshah/LEGO-EV3" target="_blank" class="text-blue-600 hover:underline">View on GitHub</a>
       </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact" data-aos="zoom-in" class="py-20 px-6 max-w-3xl mx-auto text-center">
+  <!-- Contact -->
+  <section id="contact" class="py-20 px-6 max-w-3xl mx-auto text-center">
     <h2 class="text-3xl font-semibold mb-6">Get In Touch</h2>
-    <p class="text-lg mb-4">Feel free to reach out to me via email:</p>
-    <a href="mailto:kshah77@asu.edu" class="text-blue-600 hover:underline text-xl">kshah77@asu.edu</a>
-    <div class="flex justify-center gap-8 mt-6">
-      <a href="https://www.linkedin.com/in/shah-kavish/" target="_blank" aria-label="LinkedIn" class="transform hover:scale-110 transition">
-        <!-- LinkedIn SVG Icon -->
-        <svg class="w-10 h-10 text-blue-700" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6S0 4.88 0 3.5 1.11 1 2.49 1s2.49 1.12 2.49 2.5zM.22 8.1h4.54v15.4H.22V8.1zM8.41 8.1h4.35v2.1h.06c.61-1.15 2.11-2.35 4.35-2.35 4.66 0 5.52 3.07 5.52 7.07v8.55h-4.54v-7.58c0-1.8-.03-4.12-2.51-4.12-2.51 0-2.89 1.96-2.89 3.99v7.71H8.41V8.1z"/></svg>
-      </a>
-      <a href="https://github.com/thekavishshah" target="_blank" aria-label="GitHub" class="transform hover:scale-110 transition">
-        <!-- GitHub SVG Icon -->
-        <svg class="w-10 h-10 text-gray-800" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.263.82-.583 0-.287-.01-1.04-.015-2.04-3.338.725-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.754-1.333-1.754-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.835 2.805 1.305 3.49.998.108-.775.418-1.305.76-1.605-2.665-.3-5.467-1.332-5.467-5.93 0-1.31.47-2.38 1.236-3.22-.124-.303-.536-1.523.117-3.176 0 0 1.008-.323 3.301 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.29-1.553 3.297-1.23 3.297-1.23.655 1.653.243 2.873.12 3.176.77.84 1.236 1.91 1.236 3.22 0 4.61-2.807 5.625-5.48 5.92.43.37.815 1.1.815 2.22 0 1.605-.015 2.896-.015 3.286 0 .322.216.698.825.58C20.565 21.796 24 17.296 24 12c0-6.63-5.37-12-12-12z"/></svg>
-      </a>
+    <p class="text-lg mb-4">Email me at <a href="mailto:kshah77@asu.edu" class="text-blue-600 hover:underline">kshah77@asu.edu</a></p>
+    <div class="flex justify-center gap-8 mt-4">
+      <a href="https://github.com/thekavishshah" class="text-gray-800 hover:text-gray-600"><svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.263.82-.583 0-.287-.01-1.04-.015-2.04-3.338.725-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.754-1.333-1.754-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.835 2.805 1.305 3.49.998.108-.775.418-1.305.76-۱.605-2.665-.3-5.467-1.332-5.467-5.93 ۰-۱.31.47-۲.۳۸ 1.236-۳.۲۲-.124-.303-.536-۱.۵۲۳.117-۳.۱۷۶ ۰ ۰ ۱.۰۰۸-.۳۲۳ ۳.۳۰۱ ۱.۲۳.۹۶-.۲۶٧ ۱.۹۸-.۴ ٣-.۴۰۵ ۱.۰۲.۰۰۵ ۲.۰۴.۱۳۸ ۳ .۴۰۵ ۲.۲۹-١.۵۵۳ ٣.۲۹٧-١.۲۳ ٣.۲۹٧-١.۲۳.۶۵۵ ۱.۶۵۳.۲۴۳ ٢.۸۷۳.۱۲۰ .۱۷۶.۷۷ .۸۴ ۱.۲۳۶ .۹١ ۱.۲۳۶.۲۲ ۰ .٦١-٢٫٨٠۷ .٦٢٥-٥.۴۸ ٫۹٢.٤٣.۳٧.۸۱۵ ۱.١٠.815 ٢.٢۲ ۰ ۱.۶۰۵-۰٫٠١۵ ٢٫٨٩۶-۰٫٠١۵ .٢٨٦ ۰.۳۲۲.٢١۶.٦٩٨.٨۲٥.٥۸C۲۰.۵٦۵ ٢١.۷٩٦ ٢٤ ١٧.۲٩٦ ٢٤ ١٢c۰-٦.٦٣-٥.٣٧-١٢-١٢-١٢z"/></svg></a>
+      <a href="https://www.linkedin.com/in/shah-kavish/" class="text-blue-700 hover:text-blue-500"><svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6S0 4.88 0 3.5 1.11 1 2.49 1s2.49 1.12 2.49 2.5zM.22 8.1h4.54v۱۵.۴H.۲۲V۸.١zM۸.۴۱ ۸.١h٤.٣۵v٢.١h.٠٦c.٦١-١.١٥ ٢.١١-٢.٣٥ ٤.٣۵-٢.٣۵ ٤.٦٦ ۰ ٥.۵٢ ٣.٠٧ ٥.۵٢ ٧.٠٧v٨.۵۵h-٤.٥٤v-٧.۵٨c۰-۱.۸-۰.٠٣-٤.١٢-٢.٥١-٤.١٢-٢.۵١ ۰-٢.٨٩ ۱.۹۶-٢.٨٩ ۳.٩٩v٧.٧١H۸.۴١V۸.١z"/></svg></a>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="py-6 text-center text-gray-500">
-    <p>Contact me at <a href="mailto:kshah77@asu.edu" class="text-blue-600 hover:underline">kshah77@asu.edu</a></p>
-    <p class="mt-2">© 2025 Kavish Shah. All rights reserved.</p>
+  <footer class="py-۶ text-center text-gray-۵۰۰">
+    <p>© ۲۰۲۵ Kavish Shah. All rights reserved.</p>
   </footer>
 
-  <!-- AOS Script -->
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script>
-    AOS.init({ duration: 800, once: true });
-  </script>
+  <script>AOS.init({ duration: 800, once: true });</script>
 </body>
 </html>
