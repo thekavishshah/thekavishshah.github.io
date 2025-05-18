@@ -6,11 +6,32 @@
   <title>Kavish Shah — Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
+  <style>
+    .typed-text::after {
+      content: '|';
+      animation: blink 0.7s infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    /* Scroll Progress Bar */
+    #progressBar {
+      height: 4px;
+      background: linear-gradient(to right, #3b82f6, #0ea5e9);
+      width: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 50;
+    }
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body class="bg-gradient-to-b from-gray-50 to-white text-gray-800 font-sans relative">
+  <div id="progressBar"></div>
 
   <!-- Navigation -->
-  <header class="fixed w-full bg-white shadow-md z-20">
+  <header class="fixed w-full bg-white/70 backdrop-blur-md shadow-md z-20 transition-colors duration-300">
     <nav class="max-w-5xl mx-auto flex justify-between items-center p-4">
       <a href="#hero" class="text-2xl font-bold hover:text-blue-600 transition">Kavish Shah</a>
       <div class="space-x-6 flex items-center">
@@ -26,39 +47,83 @@
   </header>
 
   <!-- Hero -->
-  <section id="hero" class="min-h-screen flex flex-col justify-center items-center text-center p-6">
-    <h1 class="text-5xl md:text-7xl font-extrabold animate-bounce">Hi, I’m Kavish Shah</h1>
-    <p class="mt-4 text-xl md:text-2xl text-gray-600 max-w-2xl">Software Engineer & Peer Mentor at Arizona State University</p>
+  <section id="hero" class="min-h-screen flex flex-col justify-center items-center text-center p-6" data-aos="fade-up">
+    <h1 class="text-5xl md:text-7xl font-extrabold animate-pulse">Hi, I’m Kavish Shah</h1>
+    <p class="mt-4 text-xl md:text-2xl text-gray-600 max-w-2xl">
+      <span class="typed-text text-blue-600 font-semibold"></span>
+    </p>
     <div class="flex space-x-4 mt-8">
-      <a href="#projects" class="px-8 py-3 bg-blue-600 text-white rounded-2xl shadow-lg hover:scale-105 transform transition animate-pulse">View My Work</a>
+      <a href="#projects" class="px-8 py-3 bg-blue-600 text-white rounded-2xl shadow-lg hover:scale-105 transform transition animate-bounce">View My Work</a>
       <a href="KAVISH_SHAH_RESUME_MAY.pdf" target="_blank" class="px-8 py-3 bg-green-600 text-white rounded-2xl shadow-lg hover:scale-105 transform transition">Download Resume</a>
     </div>
   </section>
 
   <!-- About -->
-  <section id="about" class="py-20 px-6 max-w-3xl mx-auto">
+  <section id="about" class="py-20 px-6 max-w-3xl mx-auto" data-aos="fade-right">
     <h2 class="text-3xl font-semibold text-center mb-6">About Me</h2>
     <div class="flex justify-center mb-6">
-      <img src="images/profile.jpg" alt="Kavish Shah" class="w-96 h-96 rounded-lg shadow-lg border-4 border-blue-500 object-cover">
+      <img src="images/profile.jpg" alt="Kavish Shah" class="w-72 h-72 md:w-96 md:h-96 rounded-lg shadow-xl border-4 border-blue-500 object-cover hover:scale-105 transform transition" />
     </div>
-    <p class="text-gray-700 leading-relaxed">I’m a junior at Arizona State University pursuing a BS (Honors) in Computer Science. I mentor first-year engineers, served as Treasurer of SoDA, and love building web apps, exploring cybersecurity, and leveraging AI for real-world solutions.</p>
+    <p class="text-gray-700 leading-relaxed">
+      I’m a junior at Arizona State University pursuing a BS (Honors) in Computer Science. I mentor first-year engineers, served as Treasurer of SoDA, and love building web apps, exploring cybersecurity, and leveraging AI for real-world solutions.
+    </p>
   </section>
 
   <!-- Skills -->
-  <section id="skills" class="py-20 px-6 max-w-3xl mx-auto">
+  <section id="skills" class="py-20 px-6 max-w-3xl mx-auto bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl" data-aos="zoom-in">
     <h2 class="text-3xl font-semibold text-center mb-6">Skills</h2>
     <div class="flex flex-wrap justify-center gap-4 mt-4">
-      <span class="px-4 py-2 bg-blue-100 rounded-full">JavaScript</span>
-      <span class="px-4 py-2 bg-green-100 rounded-full">Python</span>
-      <span class="px-4 py-2 bg-blue-100 rounded-full">React.js</span>
-      <span class="px-4 py-2 bg-gray-100 rounded-full">Node.js</span>
-      <span class="px-4 py-2 bg-purple-100 rounded-full">Tailwind CSS</span>
-      <span class="px-4 py-2 bg-indigo-100 rounded-full">Flask</span>
-      <span class="px-4 py-2 bg-red-100 rounded-full">Django</span>
-      <span class="px-4 py-2 bg-yellow-100 rounded-full">SQL</span>
-      <span class="px-4 py-2 bg-pink-100 rounded-full">Cybersecurity</span>
+      <span class="px-4 py-2 bg-blue-100 rounded-full hover:shadow-lg hover:-translate-y-1 transition" data-aos="flip-left">JavaScript</span>
+      <span class="px-4 py-2 bg-green-100 rounded-full hover:shadow-lg hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="100">Python</span>
+      <span class="px-4 py-2 bg-blue-100 rounded-full hover:shadow-lg hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="200">React.js</span>
+      <span class="px-4 py-2 bg-gray-100 rounded-full hover:shadow-lg hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="300">Node.js</span>
+      <span class="px-4 py-2 bg-purple-100 rounded-full hover:shadow-lg hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="400">Tailwind CSS</span>
+      <span class="px-4 py-2 bg-indigo-100 rounded-full hover:shadow-lg hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="500">Flask</span>
+      <span class="px-4 py-2 bg-red-100 rounded-full hover:shadow-lg hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="600">Django</span>
+      <span class="px-4 py-2 bg-yellow-100 rounded-full hover:shadow-lg hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="700">SQL</span>
+      <span class="px-4 py-2 bg-pink-100 rounded-full hover:shadow-lg hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="800">Cybersecurity</span>
     </div>
   </section>
+
+  <!-- Other sections retain AOS attributes and enhanced hover effects, etc. -->
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+
+    // Typewriter Effect
+    const typedTextSpan = document.querySelector('.typed-text');
+    const textArray = ['Software Engineer', 'Peer Mentor', 'AI Enthusiast'];
+    const typingDelay = 100, erasingDelay = 50, newTextDelay = 2000;
+    let textArrayIndex = 0, charIndex = 0;
+    function type() {
+      if (charIndex < textArray[textArrayIndex].length) {
+        typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex++);
+        setTimeout(type, typingDelay);
+      } else setTimeout(erase, newTextDelay);
+    }
+    function erase() {
+      if (charIndex > 0) {
+        typedTextSpan.textContent = textArray[textArrayIndex].substring(0, --charIndex);
+        setTimeout(erase, erasingDelay);
+      } else {
+        textArrayIndex = (textArrayIndex + 1) % textArray.length;
+        setTimeout(type, typingDelay + 500);
+      }
+    }
+    document.addEventListener('DOMContentLoaded', () => setTimeout(type, newTextDelay + 250));
+
+    // Scroll Progress Bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progressBar').style.width = scrolled + '%';
+    });
+  </script>
+</body>
+</html>
+
 
   <!-- Work Experience -->
   <section id="work" class="py-20 bg-white px-6">
