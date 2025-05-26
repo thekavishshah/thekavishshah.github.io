@@ -31,7 +31,7 @@
   <div id="progressBar"></div>
 
   <!-- Navigation -->
-  <header class="fixed w-full bg-white/70 backdrop-blur-md shadow-md z-20 transition-colors duration-300">
+  <header class="fixed w-full bg-white/70 backdrop-blur-md shadow-md z-20 transition-colors duration-300" data-aos="fade-down">
     <nav class="max-w-5xl mx-auto flex justify-between items-center p-4">
       <a href="#hero" class="text-2xl font-bold hover:text-blue-600 transition">Kavish Shah</a>
       <div class="space-x-6 flex items-center">
@@ -46,13 +46,15 @@
     </nav>
   </header>
 
+  </header>
+
   <!-- Hero -->
   <section id="hero" class="min-h-screen flex flex-col justify-center items-center text-center p-6" data-aos="fade-up">
     <h1 class="text-5xl md:text-7xl font-extrabold animate-pulse">Hi, I’m Kavish Shah</h1>
-    <p class="mt-4 text-xl md:text-2xl text-gray-600 max-w-2xl">
+    <p class="mt-4 text-xl md:text-2xl text-gray-600 max-w-2xl" data-aos="fade-up" data-aos-delay="200">
       <span class="typed-text text-blue-600 font-semibold"></span>
     </p>
-    <div class="flex space-x-4 mt-8">
+    <div class="flex space-x-4 mt-8" data-aos="zoom-in" data-aos-delay="400">
       <a href="#projects" class="px-8 py-3 bg-blue-600 text-white rounded-2xl shadow-lg hover:scale-105 transform transition animate-bounce">View My Work</a>
       <a href="KAVISH_SHAH_RESUME_MAY.pdf" target="_blank" class="px-8 py-3 bg-green-600 text-white rounded-2xl shadow-lg hover:scale-105 transform transition">Download Resume</a>
     </div>
@@ -73,41 +75,37 @@
   <section id="skills" class="py-20 px-6 max-w-3xl mx-auto bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl" data-aos="zoom-in">
     <h2 class="text-3xl font-semibold text-center mb-6">Technical Skills</h2>
     <div class="flex flex-wrap justify-center gap-4 mt-4">
-      <!-- Languages -->
-      <span class="px-4 py-2 bg-blue-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">JavaScript</span>
-      <span class="px-4 py-2 bg-blue-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">Java</span>
-      <span class="px-4 py-2 bg-blue-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">JavaFX</span>
-      <span class="px-4 py-2 bg-blue-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">Python</span>
-      <span class="px-4 py-2 bg-blue-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">C</span>
-      <span class="px-4 py-2 bg-blue-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">C++</span>
-      <span class="px-4 py-2 bg-blue-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">CSS</span>
-      <span class="px-4 py-2 bg-blue-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">HTML</span>
-      <span class="px-4 py-2 bg-blue-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">MATLAB</span>
-      <!-- Frameworks -->
-      <span class="px-4 py-2 bg-green-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">ReactJS</span>
-      <span class="px-4 py-2 bg-green-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">Next.js</span>
-      <span class="px-4 py-2 bg-green-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">Prisma</span>
-      <span class="px-4 py-2 bg-green-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">NodeJS</span>
-      <span class="px-4 py-2 bg-green-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">Express</span>
-      <span class="px-4 py-2 bg-green-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">Flask</span>
-      <span class="px-4 py-2 bg-green-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">Django REST Framework</span>
-      <!-- Databases -->
-      <span class="px-4 py-2 bg-yellow-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">PostgreSQL</span>
-      <span class="px-4 py-2 bg-yellow-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">MySQL</span>
-      <span class="px-4 py-2 bg-yellow-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">MongoDB</span>
-      <!-- Tools -->
-      <span class="px-4 py-2 bg-indigo-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">Git</span>
-      <span class="px-4 py-2 bg-indigo-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">JIRA</span>
-      <span class="px-4 py-2 bg-indigo-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">Docker</span>
-      <span class="px-4 py-2 bg-indigo-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">CI/CD Pipeline</span>
-      <span class="px-4 py-2 bg-indigo-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">Agile/Scrum</span>
-      <span class="px-4 py-2 bg-indigo-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">Salesforce</span>
-      <!-- Others -->
-      <span class="px-4 py-2 bg-pink-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">Ubuntu</span>
-      <span class="px-4 py-2 bg-pink-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">Verilog</span>
-      <span class="px-4 py-2 bg-pink-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">Scheme</span>
-      <span class="px-4 py-2 bg-pink-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">Prolog</span>
-      <span class="px-4 py-2 bg-pink-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition">Microsoft Office Suite</span>
+      <!-- individual badges animated -->
+      <span class="px-4 py-2 bg-blue-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left">JavaScript</span>
+      <span class="px-4 py-2 bg-blue-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="100">Java</span>
+      <span class="px-4 py-2 bg-blue-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="200">JavaFX</span>
+      <span class="px-4 py-2 bg-blue-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="300">Python</span>
+      <span class="px-4 py-2 bg-blue-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="400">C</span>
+      <span class="px-4 py-2 bg-blue-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="500">C++</span>
+      <span class="px-4 py-2 bg-blue-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="600">CSS</span>
+      <span class="px-4 py-2 bg-blue-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="700">HTML</span>
+      <span class="px-4 py-2 bg-blue-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="800">MATLAB</span>
+      <span class="px-4 py-2 bg-green-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="900">ReactJS</span>
+      <span class="px-4 py-2 bg-green-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="1000">Next.js</span>
+      <span class="px-4 py-2 bg-green-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="1100">Prisma</span>
+      <span class="px-4 py-2 bg-green-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="1200">NodeJS</span>
+      <span class="px-4 py-2 bg-green-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="1300">Express</span>
+      <span class="px-4 py-2 bg-green-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="1400">Flask</span>
+      <span class="px-4 py-2 bg-green-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="1500">Django REST Framework</span>
+      <span class="px-4 py-2 bg-yellow-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="1600">PostgreSQL</span>
+      <span class="px-4 py-2 bg-yellow-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="1700">MySQL</span>
+      <span class="px-4 py-2 bg-yellow-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="1800">MongoDB</span>
+      <span class="px-4 py-2 bg-indigo-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="1900">Git</span>
+      <span class="px-4 py-2 bg-indigo-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="2000">JIRA</span>
+      <span class="px-4 py-2 bg-indigo-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="2100">Docker</span>
+      <span class="px-4 py-2 bg-indigo-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="2200">CI/CD Pipeline</span>
+      <span class="px-4 py-2 bg-indigo-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="2300">Agile/Scrum</span>
+      <span class="px-4 py-2 bg-indigo-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="2400">Salesforce</span>
+      <span class="px-4 py-2 bg-pink-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="2500">Ubuntu</span>
+      <span class="px-4 py-2 bg-pink-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="2600">Verilog</span>
+      <span class="px-4 py-2 bg-pink-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="2700">Scheme</span>
+      <span class="px-4 py-2 bg-pink-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="2800">Prolog</span>
+      <span class="px-4 py-2 bg-pink-100 rounded-full hover:shadow-lg transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="2900">Microsoft Office Suite</span>
     </div>
   </section>
 
