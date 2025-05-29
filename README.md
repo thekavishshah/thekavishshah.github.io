@@ -27,15 +27,12 @@ Welcome to my personal portfolio! 🎯 This website showcases my journey as a So
 
 ---
 
-## 📂 Folder Structure
-
 thekavishshah.github.io/
-├── index.html                # Main HTML file
-├── images/                   # Profile and asset images
-├── styles/                   # Optional custom CSS (not always used)
+├── index.html                 # Main HTML file
+├── images/                    # Profile and asset images
+├── styles/                    # Optional custom CSS
 ├── KAVISH_SHAH_RESUME_MAY.pdf
-└── README.md                 # You're reading it!
-
+└── README.md                  # You're reading it!
 
 ---
 
