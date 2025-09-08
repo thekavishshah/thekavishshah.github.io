@@ -8,41 +8,45 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 33 50% 98%;
-    --foreground: 240 10% 15%;
+    --background: 220 15% 8%;
+    --foreground: 33 50% 95%;
 
-    --card: 33 50% 96%;
-    --card-foreground: 240 10% 15%;
+    --card: 220 15% 12%;
+    --card-foreground: 33 50% 95%;
 
-    --popover: 33 50% 98%;
-    --popover-foreground: 240 10% 15%;
+    --popover: 220 15% 12%;
+    --popover-foreground: 33 50% 95%;
 
     --primary: 268 47% 75%;
-    --primary-foreground: 33 50% 98%;
+    --primary-foreground: 220 15% 8%;
 
     --secondary: 340 44% 85%;
-    --secondary-foreground: 240 10% 15%;
+    --secondary-foreground: 220 15% 8%;
 
-    --muted: 100 30% 90%;
-    --muted-foreground: 240 10% 45%;
+    --muted: 220 15% 15%;
+    --muted-foreground: 240 10% 65%;
 
     --accent: 120 35% 80%;
-    --accent-foreground: 240 10% 15%;
+    --accent-foreground: 220 15% 8%;
     
-    /* Custom kawaii portfolio colors */
+    /* Custom magical portfolio colors */
     --lavender: 268 47% 75%;
     --pink: 340 44% 85%;
     --mint: 120 35% 80%;
     --cream: 33 50% 96%;
     --wood: 35 45% 65%;
+    --magic-blue: 220 50% 40%;
+    --dark-forest: 140 20% 15%;
     
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(var(--lavender)), hsl(var(--pink)));
-    --gradient-soft: linear-gradient(180deg, hsl(var(--cream)), hsl(var(--background)));
+    --gradient-hero: radial-gradient(circle at center, hsl(220 30% 20%), hsl(220 50% 8%));
+    --gradient-orb: linear-gradient(135deg, hsl(var(--lavender)), hsl(var(--pink)));
+    --gradient-magic: linear-gradient(135deg, hsl(var(--magic-blue)), hsl(var(--lavender)));
     
     /* Shadows */
-    --shadow-soft: 0 10px 40px -10px hsl(var(--lavender) / 0.3);
-    --shadow-card: 0 4px 20px -4px hsl(var(--primary) / 0.15);
+    --shadow-orb: 0 0 30px hsl(var(--lavender) / 0.5);
+    --shadow-glow: 0 0 60px hsl(var(--primary) / 0.3);
+    --shadow-icon: 0 4px 20px hsl(0 0% 0% / 0.4);
     
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

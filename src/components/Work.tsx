@@ -82,7 +82,7 @@ const Work = () => {
     : projects.filter(project => project.category === filter);
 
   return (
-    <section id="work" className="py-20 bg-muted/30">
+    <section id="work" className="py-20 bg-background/50">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section header */}

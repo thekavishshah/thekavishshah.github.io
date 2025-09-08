@@ -99,6 +99,26 @@ export default {
           "0%": { opacity: "0", transform: "translateY(30px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        orbit: {
+          "0%": { transform: "rotate(0deg) translateX(180px) rotate(0deg)" },
+          "100%": { transform: "rotate(360deg) translateX(180px) rotate(-360deg)" },
+        },
+        "orbit-reverse": {
+          "0%": { transform: "rotate(0deg) translateX(200px) rotate(0deg)" },
+          "100%": { transform: "rotate(-360deg) translateX(200px) rotate(360deg)" },
+        },
+        "orbit-slow": {
+          "0%": { transform: "rotate(0deg) translateX(220px) rotate(0deg)" },
+          "100%": { transform: "rotate(360deg) translateX(220px) rotate(-360deg)" },
+        },
+        pulse: {
+          "0%, 100%": { opacity: "1", transform: "scale(1)" },
+          "50%": { opacity: "0.8", transform: "scale(1.1)" },
+        },
+        glow: {
+          "0%, 100%": { boxShadow: "0 0 20px hsl(var(--primary) / 0.3)" },
+          "50%": { boxShadow: "0 0 40px hsl(var(--primary) / 0.6)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -106,14 +126,21 @@ export default {
         float: "float 3s ease-in-out infinite",
         "bounce-soft": "bounce-soft 2s ease-in-out infinite",
         "fade-up": "fade-up 0.6s ease-out",
+        orbit: "orbit 20s linear infinite",
+        "orbit-reverse": "orbit-reverse 25s linear infinite",
+        "orbit-slow": "orbit-slow 30s linear infinite",
+        pulse: "pulse 3s ease-in-out infinite",
+        glow: "glow 2s ease-in-out infinite",
       },
       backgroundImage: {
         "gradient-hero": "var(--gradient-hero)",
-        "gradient-soft": "var(--gradient-soft)",
+        "gradient-orb": "var(--gradient-orb)",
+        "gradient-magic": "var(--gradient-magic)",
       },
       boxShadow: {
-        soft: "var(--shadow-soft)",
-        card: "var(--shadow-card)",
+        orb: "var(--shadow-orb)",
+        glow: "var(--shadow-glow)",
+        icon: "var(--shadow-icon)",
       },
     },
   },
