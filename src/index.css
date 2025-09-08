@@ -8,26 +8,45 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 33 50% 98%;
+    --foreground: 240 10% 15%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 33 50% 96%;
+    --card-foreground: 240 10% 15%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 33 50% 98%;
+    --popover-foreground: 240 10% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 268 47% 75%;
+    --primary-foreground: 33 50% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 340 44% 85%;
+    --secondary-foreground: 240 10% 15%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 100 30% 90%;
+    --muted-foreground: 240 10% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 120 35% 80%;
+    --accent-foreground: 240 10% 15%;
+    
+    /* Custom kawaii portfolio colors */
+    --lavender: 268 47% 75%;
+    --pink: 340 44% 85%;
+    --mint: 120 35% 80%;
+    --cream: 33 50% 96%;
+    --wood: 35 45% 65%;
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--lavender)), hsl(var(--pink)));
+    --gradient-soft: linear-gradient(180deg, hsl(var(--cream)), hsl(var(--background)));
+    
+    /* Shadows */
+    --shadow-soft: 0 10px 40px -10px hsl(var(--lavender) / 0.3);
+    --shadow-card: 0 4px 20px -4px hsl(var(--primary) / 0.15);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
@@ -56,26 +75,33 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 240 15% 8%;
+    --foreground: 33 50% 95%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 240 15% 10%;
+    --card-foreground: 33 50% 95%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 240 15% 8%;
+    --popover-foreground: 33 50% 95%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 268 47% 65%;
+    --primary-foreground: 240 15% 8%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 340 44% 25%;
+    --secondary-foreground: 33 50% 95%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 240 15% 15%;
+    --muted-foreground: 240 10% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 120 35% 40%;
+    --accent-foreground: 33 50% 95%;
+    
+    /* Dark mode kawaii colors */
+    --lavender: 268 47% 65%;
+    --pink: 340 44% 55%;
+    --mint: 120 35% 50%;
+    --cream: 240 15% 12%;
+    --wood: 35 45% 45%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
