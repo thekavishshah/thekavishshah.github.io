@@ -1,8 +1,21 @@
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Github, Linkedin, Mail, Twitter, FileText, User, Briefcase, Phone } from "lucide-react";
+import CodingIllustration from "@/components/CodingIllustration";
+import { Github, Linkedin, FileText, User, Home, FolderGit2 } from "lucide-react";
 
 const Hero = () => {
   const scrollToSection = (sectionId: string) => {
+    const routes: Record<string, string> = {
+      home: "/",
+      about: "/about",
+      work: "/projects",
+      contact: "/contact",
+    };
+    const route = routes[sectionId];
+    if (route) {
+      window.location.href = route;
+      return;
+    }
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -10,15 +23,60 @@ const Hero = () => {
   };
 
   const orbitingIcons = [
-    { icon: Github, label: "GitHub", section: "work", delay: "0s" },
-    { icon: Linkedin, label: "LinkedIn", section: "contact", delay: "2.5s" },
-    { icon: Mail, label: "Email", section: "contact", delay: "5s" },
-    { icon: Twitter, label: "Twitter", section: "contact", delay: "7.5s" },
-    { icon: FileText, label: "Resume", section: "about", delay: "10s" },
-    { icon: User, label: "About", section: "about", delay: "12.5s" },
-    { icon: Briefcase, label: "Work", section: "work", delay: "15s" },
-    { icon: Phone, label: "Contact", section: "contact", delay: "17.5s" },
+    { icon: Home, label: "Home", section: "home" },
+    { icon: User, label: "About", section: "about" },
+    { icon: FolderGit2, label: "Projects", section: "work" },
+    { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/" },
+    { icon: Github, label: "GitHub", href: "https://github.com/" },
+    { icon: FileText, label: "Resume", href: "/resume.pdf" },
   ];
+
+  // 3D tilt for the central card
+  const cardRef = useRef<HTMLDivElement | null>(null);
+  const imgRef = useRef<HTMLDivElement | null>(null);
+  const [orbitRadius, setOrbitRadius] = useState<number>(240);
+
+  useEffect(() => {
+    const cardEl = cardRef.current;
+    if (!cardEl) return;
+
+    const handleMove = (e: MouseEvent) => {
+      const rect = cardEl.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const midX = rect.width / 2;
+      const midY = rect.height / 2;
+      const rotateY = ((x - midX) / midX) * 10; // max 10deg
+      const rotateX = -((y - midY) / midY) * 10;
+      cardEl.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    };
+
+    const reset = () => {
+      cardEl.style.transform = "rotateX(0deg) rotateY(0deg)";
+    };
+
+    cardEl.addEventListener("mousemove", handleMove);
+    cardEl.addEventListener("mouseleave", reset);
+    return () => {
+      cardEl.removeEventListener("mousemove", handleMove);
+      cardEl.removeEventListener("mouseleave", reset);
+    };
+  }, []);
+
+  // Measure image to keep orbit ring tight to the subject box
+  useEffect(() => {
+    const updateRadius = () => {
+      const img = imgRef.current;
+      if (!img) return;
+      const rect = img.getBoundingClientRect();
+      const computed = Math.max(rect.width, rect.height) / 2 + 72; // 72px padding outside image
+      setOrbitRadius(computed);
+    };
+
+    updateRadius();
+    window.addEventListener("resize", updateRadius);
+    return () => window.removeEventListener("resize", updateRadius);
+  }, []);
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
@@ -34,53 +92,62 @@ const Hero = () => {
 
       {/* Central content */}
       <div className="relative z-10 flex items-center justify-center">
-        {/* Orbiting icons container */}
         <div className="relative">
-          {/* Central workspace image */}
-          <div className="relative z-20">
-            <div className="w-80 h-80 md:w-96 md:h-96 rounded-full p-4 bg-gradient-orb shadow-glow animate-glow">
-              <img
-                src="/lovable-uploads/b7fb0b9c-2994-4c18-b85b-e5bc833473d3.png"
-                alt="3D Kawaii Workspace"
-                className="w-full h-full object-contain animate-float"
-              />
+          {/* Central workspace image with 3D tilt */}
+          <div className="relative z-20" style={{ perspective: "1000px" }}>
+            <div
+              ref={cardRef}
+              className="transform-gpu transition-transform duration-150 will-change-transform"
+            >
+              <div ref={imgRef} className="select-none pointer-events-none">
+                <CodingIllustration width={540} />
+              </div>
             </div>
           </div>
 
-          {/* Orbiting icons */}
-          {orbitingIcons.map((item, index) => {
-            const IconComponent = item.icon;
-            const animationClass = index % 3 === 0 ? 'animate-orbit' : index % 3 === 1 ? 'animate-orbit-reverse' : 'animate-orbit-slow';
-            
-            return (
-              <div
-                key={item.label}
-                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ${animationClass}`}
-                style={{ animationDelay: item.delay }}
-              >
-                <Button
-                  onClick={() => scrollToSection(item.section)}
-                  className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-card/80 backdrop-blur-sm border border-primary/20 hover:border-primary/50 shadow-icon hover:shadow-glow transition-all duration-300 hover:scale-110 group"
-                  variant="ghost"
-                >
-                  <IconComponent className="w-5 h-5 md:w-6 md:h-6 text-primary group-hover:text-primary/80 transition-colors duration-300" />
-                </Button>
-              </div>
-            );
-          })}
+          {/* Orbiting icons as a smooth spinning ring */}
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center z-30">
+            <div className="relative animate-ring" style={{ width: orbitRadius * 2 + "px", height: orbitRadius * 2 + "px" }}>
+              {orbitingIcons.map((item, index) => {
+                const IconComponent = item.icon;
+                const angle = (360 / orbitingIcons.length) * index;
+                const radius = orbitRadius;
+                const itemStyle = {
+                  transform: `translate(-50%, -50%) rotate(${angle}deg) translate(${radius}px) rotate(${-angle}deg)`,
+                } as React.CSSProperties;
+                const onClick = () => {
+                  if ((item as any).href) {
+                    window.open((item as any).href as string, "_blank", "noopener,noreferrer");
+                    return;
+                  }
+                  if ((item as any).section) scrollToSection((item as any).section as string);
+                };
+                return (
+                  <div
+                    key={item.label}
+                    className="absolute left-1/2 top-1/2"
+                    style={itemStyle}
+                  >
+                    <div className="animate-counter-rotate">
+                      <Button
+                        onClick={onClick}
+                        className="pointer-events-auto w-14 h-14 md:w-16 md:h-16 rounded-full bg-card/80 backdrop-blur-sm border border-primary/20 hover:border-primary/50 shadow-icon hover:shadow-glow transition-all duration-300 hover:scale-110 group"
+                        variant="ghost"
+                      >
+                        <IconComponent className="w-6 h-6 md:w-7 md:h-7 text-primary group-hover:text-primary/80 transition-colors duration-300" />
+                      </Button>
+                    </div>
+                  </div>
+                );
+              })}
 
-          {/* Additional decorative orbiting elements */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-orbit-slow">
-            <div 
-              className="w-3 h-3 bg-kawaii-lavender rounded-full opacity-60 animate-pulse"
-              style={{ animationDelay: "3s" }}
-            ></div>
-          </div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-orbit-reverse">
-            <div 
-              className="w-2 h-2 bg-kawaii-pink rounded-full opacity-40 animate-pulse"
-              style={{ animationDelay: "8s" }}
-            ></div>
+              {/* Decorative dots tied to ring motion */}
+              {[0, 90, 180, 270].map((deg, i) => (
+                <div key={i} className="absolute left-1/2 top-1/2" style={{ transform: `translate(-50%, -50%) rotate(${deg}deg) translate(175px)` }}>
+                  <div className={`rounded-full ${i % 2 === 0 ? "w-2 h-2 bg-kawaii-pink" : "w-3 h-3 bg-kawaii-mint"} opacity-60 animate-pulse`} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -119,6 +119,16 @@ export default {
           "0%, 100%": { boxShadow: "0 0 20px hsl(var(--primary) / 0.3)" },
           "50%": { boxShadow: "0 0 40px hsl(var(--primary) / 0.6)" },
         },
+        // Smooth rotating ring for evenly spaced orbiting items
+        ring: {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+        // Counter rotation to keep children upright while parent ring spins
+        "counter-rotate": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(-360deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -131,6 +141,8 @@ export default {
         "orbit-slow": "orbit-slow 30s linear infinite",
         pulse: "pulse 3s ease-in-out infinite",
         glow: "glow 2s ease-in-out infinite",
+        ring: "ring 30s linear infinite",
+        "counter-rotate": "counter-rotate 30s linear infinite",
       },
       backgroundImage: {
         "gradient-hero": "var(--gradient-hero)",
