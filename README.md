@@ -51,9 +51,3 @@ Feel free to reach out via:
 - 💻 [GitHub](https://github.com/thekavishshah)
 
 ---
-
-## ⭐️ Star the Repo
-
-If you like the design or find this portfolio helpful, please consider giving it a ⭐️ on [GitHub](https://github.com/thekavishshah/thekavishshah.github.io)!
-
-
