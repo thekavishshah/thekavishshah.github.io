@@ -25,6 +25,136 @@
       left: 0;
       z-index: 50;
     }
+
+    /* Orbiting Icons Animation */
+    .orbit-container {
+      position: relative;
+      width: 500px;
+      height: 500px;
+      margin: 0 auto;
+    }
+
+    .orbit-icon {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .orbit-icon:hover {
+      transform: scale(1.2);
+      box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+    }
+
+    .orbit-icon svg {
+      width: 35px;
+      height: 35px;
+      margin-bottom: 4px;
+    }
+
+    .orbit-icon span {
+      font-size: 10px;
+      font-weight: 600;
+      color: #1f2937;
+    }
+
+    @keyframes orbit1 {
+      from { transform: rotate(0deg) translateX(220px) rotate(0deg); }
+      to { transform: rotate(360deg) translateX(220px) rotate(-360deg); }
+    }
+
+    @keyframes orbit2 {
+      from { transform: rotate(60deg) translateX(220px) rotate(-60deg); }
+      to { transform: rotate(420deg) translateX(220px) rotate(-420deg); }
+    }
+
+    @keyframes orbit3 {
+      from { transform: rotate(120deg) translateX(220px) rotate(-120deg); }
+      to { transform: rotate(480deg) translateX(220px) rotate(-480deg); }
+    }
+
+    @keyframes orbit4 {
+      from { transform: rotate(180deg) translateX(220px) rotate(-180deg); }
+      to { transform: rotate(540deg) translateX(220px) rotate(-540deg); }
+    }
+
+    @keyframes orbit5 {
+      from { transform: rotate(240deg) translateX(220px) rotate(-240deg); }
+      to { transform: rotate(600deg) translateX(220px) rotate(-600deg); }
+    }
+
+    @keyframes orbit6 {
+      from { transform: rotate(300deg) translateX(220px) rotate(-300deg); }
+      to { transform: rotate(660deg) translateX(220px) rotate(-660deg); }
+    }
+
+    .orbit-icon:nth-child(1) { animation: orbit1 20s linear infinite; }
+    .orbit-icon:nth-child(2) { animation: orbit2 20s linear infinite; }
+    .orbit-icon:nth-child(3) { animation: orbit3 20s linear infinite; }
+    .orbit-icon:nth-child(4) { animation: orbit4 20s linear infinite; }
+    .orbit-icon:nth-child(5) { animation: orbit5 20s linear infinite; }
+    .orbit-icon:nth-child(6) { animation: orbit6 20s linear infinite; }
+
+    .coding-illustration {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px;
+      height: 200px;
+      z-index: 5;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
+      50% { transform: translate(-50%, -50%) translateY(-10px); }
+    }
+
+    .coding-illustration {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @media (max-width: 768px) {
+      .orbit-container {
+        width: 350px;
+        height: 350px;
+      }
+
+      @keyframes orbit1 { from { transform: rotate(0deg) translateX(150px) rotate(0deg); } to { transform: rotate(360deg) translateX(150px) rotate(-360deg); } }
+      @keyframes orbit2 { from { transform: rotate(60deg) translateX(150px) rotate(-60deg); } to { transform: rotate(420deg) translateX(150px) rotate(-420deg); } }
+      @keyframes orbit3 { from { transform: rotate(120deg) translateX(150px) rotate(-120deg); } to { transform: rotate(480deg) translateX(150px) rotate(-480deg); } }
+      @keyframes orbit4 { from { transform: rotate(180deg) translateX(150px) rotate(-180deg); } to { transform: rotate(540deg) translateX(150px) rotate(-540deg); } }
+      @keyframes orbit5 { from { transform: rotate(240deg) translateX(150px) rotate(-240deg); } to { transform: rotate(600deg) translateX(150px) rotate(-600deg); } }
+      @keyframes orbit6 { from { transform: rotate(300deg) translateX(150px) rotate(-300deg); } to { transform: rotate(660deg) translateX(150px) rotate(-660deg); } }
+
+      .orbit-icon {
+        width: 60px;
+        height: 60px;
+      }
+
+      .orbit-icon svg {
+        width: 25px;
+        height: 25px;
+      }
+
+      .orbit-icon span {
+        font-size: 8px;
+      }
+
+      .coding-illustration {
+        width: 140px;
+        height: 140px;
+      }
+    }
   </style>
 </head>
 <body class="bg-gradient-to-b from-gray-50 to-white text-gray-800 font-sans relative">
@@ -49,15 +179,122 @@
   </header>
 
   <!-- Hero -->
-  <section id="hero" class="min-h-screen flex flex-col justify-center items-center text-center p-6" data-aos="fade-up">
-    <h1 class="text-5xl md:text-7xl font-extrabold animate-pulse">Hi, I’m Kavish Shah</h1>
-    <p class="mt-4 text-xl md:text-2xl text-gray-600 max-w-2xl" data-aos="fade-up" data-aos-delay="200">
+  <section id="hero" class="min-h-screen flex flex-col justify-center items-center text-center p-6 pt-24" data-aos="fade-up">
+    <h1 class="text-4xl md:text-6xl font-extrabold mb-2">Hi, I'm Kavish Shah</h1>
+    <p class="text-lg md:text-xl text-gray-600 mb-12">
       <span class="typed-text text-blue-600 font-semibold"></span>
     </p>
-    <div class="flex space-x-4 mt-8" data-aos="zoom-in" data-aos-delay="400">
-      <a href="#projects" class="px-8 py-3 bg-blue-600 text-white rounded-2xl shadow-lg hover:scale-105 transform transition animate-bounce">View My Work</a>
-      <a href="KAVISH_SHAH_RESUME-MAY.pdf" target="_blank" class="px-8 py-3 bg-green-600 text-white rounded-2xl shadow-lg hover:scale-105 transform transition">Download Resume</a>
+
+    <!-- Interactive Orbit Container -->
+    <div class="orbit-container">
+      <!-- Central Coding Illustration -->
+      <div class="coding-illustration">
+        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Desk -->
+          <rect x="20" y="140" width="160" height="8" fill="#8B4513" rx="2"/>
+
+          <!-- Chair -->
+          <rect x="80" y="148" width="40" height="6" fill="#4A5568" rx="2"/>
+          <rect x="90" y="154" width="20" height="30" fill="#4A5568" rx="2"/>
+
+          <!-- Monitor -->
+          <rect x="55" y="85" width="90" height="55" fill="#1F2937" rx="4"/>
+          <rect x="60" y="90" width="80" height="45" fill="#3B82F6" rx="2"/>
+          <!-- Monitor stand -->
+          <rect x="95" y="140" width="10" height="8" fill="#4A5568"/>
+
+          <!-- Code lines on monitor -->
+          <line x1="65" y1="95" x2="95" y2="95" stroke="#60A5FA" stroke-width="2"/>
+          <line x1="65" y1="102" x2="85" y2="102" stroke="#34D399" stroke-width="2"/>
+          <line x1="70" y1="109" x2="100" y2="109" stroke="#60A5FA" stroke-width="2"/>
+          <line x1="70" y1="116" x2="90" y2="116" stroke="#FBBF24" stroke-width="2"/>
+          <line x1="65" y1="123" x2="110" y2="123" stroke="#60A5FA" stroke-width="2"/>
+
+          <!-- Laptop -->
+          <rect x="95" y="132" width="45" height="2" fill="#1F2937"/>
+          <rect x="98" y="118" width="39" height="14" fill="#3B82F6" rx="1"/>
+          <line x1="102" y1="122" x2="118" y2="122" stroke="#60A5FA" stroke-width="1"/>
+          <line x1="102" y1="126" x2="115" y2="126" stroke="#34D399" stroke-width="1"/>
+
+          <!-- Keyboard -->
+          <rect x="50" y="134" width="35" height="6" fill="#4A5568" rx="1"/>
+
+          <!-- Mouse -->
+          <ellipse cx="145" cy="137" rx="4" ry="5" fill="#4A5568"/>
+
+          <!-- Coffee Cup -->
+          <rect x="155" y="132" width="12" height="8" fill="#8B4513" rx="1"/>
+          <ellipse cx="161" cy="132" rx="6" ry="2" fill="#6B4423"/>
+          <!-- Steam -->
+          <path d="M159 128 Q157 124 159 120" stroke="#9CA3AF" stroke-width="1" fill="none"/>
+          <path d="M163 128 Q165 124 163 120" stroke="#9CA3AF" stroke-width="1" fill="none"/>
+
+          <!-- Person -->
+          <!-- Head -->
+          <circle cx="100" cy="100" r="15" fill="#FBBF24"/>
+          <!-- Body -->
+          <rect x="88" y="115" width="24" height="20" fill="#3B82F6" rx="4"/>
+          <!-- Arms -->
+          <rect x="78" y="118" width="16" height="5" fill="#3B82F6" rx="2"/>
+          <rect x="106" y="118" width="16" height="5" fill="#3B82F6" rx="2"/>
+          <!-- Hand on keyboard -->
+          <circle cx="76" cy="132" r="3" fill="#FBBF24"/>
+          <!-- Hand on mouse -->
+          <circle cx="145" cy="132" r="3" fill="#FBBF24"/>
+
+          <!-- Plant decoration -->
+          <rect x="25" y="128" width="8" height="12" fill="#8B4513"/>
+          <circle cx="29" cy="124" r="6" fill="#34D399"/>
+          <circle cx="26" cy="120" r="4" fill="#34D399"/>
+          <circle cx="32" cy="120" r="4" fill="#34D399"/>
+        </svg>
+      </div>
+
+      <!-- Orbiting Navigation Icons -->
+      <a href="#about" class="orbit-icon" title="About Me">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="text-blue-600">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+        </svg>
+        <span>About</span>
+      </a>
+
+      <a href="KAVISH_SHAH_RESUME-MAY.pdf" target="_blank" class="orbit-icon" title="Resume">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="text-green-600">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+        </svg>
+        <span>Resume</span>
+      </a>
+
+      <a href="#skills" class="orbit-icon" title="Skills">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="text-purple-600">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+        </svg>
+        <span>Skills</span>
+      </a>
+
+      <a href="#work" class="orbit-icon" title="Experience">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="text-indigo-600">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        </svg>
+        <span>Work</span>
+      </a>
+
+      <a href="#projects" class="orbit-icon" title="Projects">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="text-orange-600">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+        </svg>
+        <span>Projects</span>
+      </a>
+
+      <a href="#contact" class="orbit-icon" title="Contact">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="text-pink-600">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        </svg>
+        <span>Contact</span>
+      </a>
     </div>
+
+    <p class="mt-12 text-sm text-gray-500 max-w-md">Click on the orbiting icons to navigate through my portfolio</p>
   </section>
 
   <!-- About -->
