@@ -6,6 +6,8 @@
   <title>Kavish Shah — Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
   <style>
     .typed-text::after {
       content: '|';
@@ -183,7 +185,7 @@
     .orbit-icon:nth-child(6) { animation: orbit5 25s linear infinite; }
     .orbit-icon:nth-child(7) { animation: orbit6 25s linear infinite; }
 
-    /* Central 3D Workspace - No Background Container */
+    /* Central 3D Workspace - Canvas Container */
     .coding-illustration {
       position: absolute;
       top: 50%;
@@ -192,49 +194,18 @@
       width: 600px;
       height: 600px;
       z-index: 5;
-      perspective: 1200px;
-      transform-style: preserve-3d;
     }
 
-    .workspace-3d {
+    #workspace3d {
       width: 100%;
       height: 100%;
-      transform-style: preserve-3d;
-      transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
       cursor: grab;
-      filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.4));
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
     }
 
-    .workspace-3d:active {
+    #workspace3d:active {
       cursor: grabbing;
-    }
-
-    /* 3D Depth Layers */
-    .layer-back {
-      transform: translateZ(-50px);
-    }
-
-    .layer-middle {
-      transform: translateZ(0px);
-    }
-
-    .layer-front {
-      transform: translateZ(50px);
-    }
-
-    .monitor-3d {
-      filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
-    }
-
-    @keyframes float-glow {
-      0%, 100% {
-        transform: translate(-50%, -50%) translateY(0px);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 0 80px rgba(102, 126, 234, 0.3);
-      }
-      50% {
-        transform: translate(-50%, -50%) translateY(-15px);
-        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15), 0 0 120px rgba(240, 147, 251, 0.4);
-      }
     }
 
     /* Responsive */
@@ -305,12 +276,6 @@
 
   <!-- Hero -->
   <section id="hero" class="min-h-screen flex flex-col justify-center items-center text-center p-6 pt-24" data-aos="fade-up">
-    <!-- Floating Particles -->
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-
     <h1 class="text-4xl md:text-6xl font-extrabold mb-2 gradient-text drop-shadow-lg">Hi, I'm Kavish Shah</h1>
     <p class="text-lg md:text-xl mb-12 text-white drop-shadow-md">
       <span class="typed-text font-semibold"></span>
@@ -318,383 +283,15 @@
 
     <!-- Interactive Glass Container -->
     <div class="glass-container">
-      <!-- Pulsing Orbit Ring -->
-      <div class="orbit-ring"></div>
       <!-- Central Coding Illustration -->
       <div class="coding-illustration">
-        <div class="workspace-3d" id="workspace3d">
-        <svg viewBox="0 0 600 450" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="vscodeScreen" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" style="stop-color:#1e1e1e;stop-opacity:1" />
-              <stop offset="100%" style="stop-color:#252526;stop-opacity:1" />
-            </linearGradient>
-            <linearGradient id="projectScreen" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
-              <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
-            </linearGradient>
-            <linearGradient id="personGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
-              <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:1" />
-            </linearGradient>
-            <filter id="glow">
-              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-              <feMerge>
-                <feMergeNode in="coloredBlur"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
-            </filter>
-            <filter id="strongGlow">
-              <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
-              <feMerge>
-                <feMergeNode in="coloredBlur"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
-            </filter>
-          </defs>
-
-          <!-- 3D LAYERS FOR DEPTH -->
-          <g class="layer-back">
-            <!-- Wall & Room Background -->
-            <rect x="0" y="0" width="600" height="300" fill="#0f172a" opacity="0.2"/>
-          </g>
-
-          <!-- Large Professional Desk (viewed from behind) -->
-          <g class="layer-middle">
-          <rect x="30" y="340" width="540" height="25" fill="#6B4423" rx="5"/>
-          <rect x="30" y="365" width="540" height="15" fill="#8B4513" rx="4"/>
-          <!-- Desk legs -->
-          <rect x="45" y="380" width="15" height="70" fill="#5a3317" rx="4"/>
-          <rect x="540" y="380" width="15" height="70" fill="#5a3317" rx="4"/>
-          </g>
-
-          <!-- LEFT MONITOR - COMPLETE VS CODE INTERFACE -->
-          <g class="layer-front monitor-3d">
-            <!-- Monitor Frame with 3D effect -->
-            <rect x="50" y="60" width="250" height="180" fill="#000" rx="8"/>
-            <rect x="55" y="65" width="240" height="165" fill="url(#vscodeScreen)" rx="6"/>
-
-            <!-- VS Code Title Bar -->
-            <rect x="55" y="65" width="240" height="15" fill="#323233" rx="6"/>
-            <circle cx="63" cy="72.5" r="3" fill="#ff5f56"/>
-            <circle cx="73" cy="72.5" r="3" fill="#ffbd2e"/>
-            <circle cx="83" cy="72.5" r="3" fill="#27c93f"/>
-            <text x="175" y="75" font-size="7" fill="#cccccc" text-anchor="middle" font-family="sans-serif">portfolio.tsx - Visual Studio Code</text>
-
-            <!-- VS Code Activity Bar (Left Icons) -->
-            <rect x="55" y="80" width="15" height="150" fill="#333333"/>
-            <rect x="58" y="85" width="9" height="9" fill="#007acc" rx="1"/>
-            <rect x="58" y="98" width="9" height="9" fill="#666" rx="1"/>
-            <rect x="58" y="111" width="9" height="9" fill="#666" rx="1"/>
-            <rect x="58" y="124" width="9" height="9" fill="#666" rx="1"/>
-
-            <!-- VS Code File Explorer Sidebar -->
-            <rect x="70" y="80" width="55" height="150" fill="#252526"/>
-            <text x="73" y="90" font-size="6" fill="#cccccc" font-weight="bold" font-family="sans-serif">EXPLORER</text>
-            <text x="73" y="100" font-size="5.5" fill="#8b949e" font-family="monospace">▼ PORTFOLIO</text>
-            <text x="76" y="108" font-size="5" fill="#8b949e" font-family="monospace">▸ node_modules</text>
-            <text x="76" y="115" font-size="5" fill="#8b949e" font-family="monospace">▸ public</text>
-            <text x="76" y="122" font-size="5" fill="#8b949e" font-family="monospace">▼ src</text>
-            <text x="79" y="129" font-size="5" fill="#8b949e" font-family="monospace">▸ components</text>
-            <text x="79" y="136" font-size="5" fill="#ffffff" font-family="monospace">► portfolio.tsx</text>
-            <text x="79" y="143" font-size="5" fill="#8b949e" font-family="monospace">  App.tsx</text>
-            <text x="76" y="150" font-size="5" fill="#8b949e" font-family="monospace">  package.json</text>
-
-            <!-- Main Editor Area -->
-            <rect x="125" y="80" width="130" height="105" fill="#1e1e1e"/>
-            <!-- Tab -->
-            <rect x="125" y="80" width="60" height="12" fill="#1e1e1e"/>
-            <text x="130" y="89" font-size="5.5" fill="#ffffff" font-family="monospace">portfolio.tsx</text>
-            <!-- Line numbers and code -->
-            <g font-family="monospace" font-size="5">
-              <text x="130" y="98" fill="#858585">1</text>
-              <text x="140" y="98" fill="#c586c0">import</text>
-              <text x="160" y="98" fill="#9cdcfe">React</text>
-              <text x="177" y="98" fill="#c586c0">from</text>
-              <text x="195" y="98" fill="#ce9178">'react'</text>
-
-              <text x="130" y="105" fill="#858585">2</text>
-
-              <text x="130" y="112" fill="#858585">3</text>
-              <text x="140" y="112" fill="#c586c0">const</text>
-              <text x="160" y="112" fill="#dcdcaa">Portfolio</text>
-              <text x="190" y="112" fill="#d4d4d4">= () => {</text>
-
-              <text x="130" y="119" fill="#858585">4</text>
-              <text x="145" y="119" fill="#c586c0">return</text>
-              <text x="169" y="119" fill="#d4d4d4">(</text>
-
-              <text x="130" y="126" fill="#858585">5</text>
-              <text x="150" y="126" fill="#808080">&lt;</text>
-              <text x="155" y="126" fill="#4ec9b0">div</text>
-              <text x="170" y="126" fill="#9cdcfe">className</text>
-              <text x="205" y="126" fill="#d4d4d4">=</text>
-              <text x="210" y="126" fill="#ce9178">"hero"</text>
-              <text x="235" y="126" fill="#808080">&gt;</text>
-
-              <text x="130" y="133" fill="#858585">6</text>
-              <text x="155" y="133" fill="#808080">&lt;</text>
-              <text x="160" y="133" fill="#4ec9b0">h1</text>
-              <text x="170" y="133" fill="#808080">&gt;</text>
-              <text x="175" y="133" fill="#d4d4d4">Kavish</text>
-
-              <text x="130" y="140" fill="#858585">7</text>
-              <text x="155" y="140" fill="#808080">&lt;/div&gt;</text>
-
-              <text x="130" y="147" fill="#858585">8</text>
-              <text x="145" y="147" fill="#d4d4d4">)</text>
-
-              <text x="130" y="154" fill="#858585">9</text>
-              <text x="140" y="154" fill="#d4d4d4">}</text>
-            </g>
-
-            <!-- GitHub Copilot Panel (Right Side) -->
-            <rect x="255" y="80" width="38" height="105" fill="#181818"/>
-            <rect x="255" y="80" width="38" height="12" fill="#252526"/>
-            <text x="258" y="89" font-size="5" fill="#cccccc" font-weight="bold" font-family="sans-serif">COPILOT</text>
-            <text x="258" y="98" font-size="4.5" fill="#888" font-family="monospace">Suggestions:</text>
-            <rect x="258" y="102" width="32" height="8" fill="#2d2d2d" rx="2"/>
-            <text x="260" y="108" font-size="4" fill="#4ec9b0" font-family="monospace">+ Add hero</text>
-            <rect x="258" y="112" width="32" height="8" fill="#2d2d2d" rx="2"/>
-            <text x="260" y="118" font-size="4" fill="#4ec9b0" font-family="monospace">+ Style comp</text>
-
-            <!-- Terminal at Bottom -->
-            <rect x="125" y="185" width="170" height="45" fill="#1e1e1e"/>
-            <rect x="125" y="185" width="170" height="10" fill="#252526"/>
-            <text x="130" y="192" font-size="5.5" fill="#cccccc" font-family="sans-serif">TERMINAL</text>
-            <text x="200" y="192" font-size="5" fill="#007acc" font-family="sans-serif">+</text>
-            <g font-family="monospace" font-size="5">
-              <text x="130" y="202" fill="#22c55e">kavish@laptop</text>
-              <text x="175" y="202" fill="#3b82f6">~/portfolio</text>
-              <text x="215" y="202" fill="#d4d4d4">$</text>
-              <text x="130" y="210" fill="#d4d4d4">npm run dev</text>
-              <text x="130" y="218" fill="#8b949e">  VITE v5.0.8  ready in 234 ms</text>
-              <text x="130" y="226" fill="#3b82f6">  ➜  Local: http://localhost:3000/</text>
-            </g>
-
-            <!-- Monitor Stand -->
-            <rect x="162" y="230" width="26" height="60" fill="#2d3748" rx="4"/>
-            <rect x="150" y="290" width="50" height="8" fill="#374151" rx="3"/>
-            <!-- 3D Shadow -->
-            <ellipse cx="175" cy="298" rx="50" ry="8" fill="#000" opacity="0.3"/>
-          </g>
-
-          <!-- RIGHT MONITOR - GITHUB PROFILE -->
-          <g class="layer-front monitor-3d">
-            <!-- Monitor Frame -->
-            <rect x="320" y="60" width="250" height="180" fill="#000" rx="8"/>
-            <rect x="325" y="65" width="240" height="165" fill="#0d1117" rx="6"/>
-
-            <!-- Browser Chrome -->
-            <rect x="325" y="65" width="240" height="15" fill="#161b22" rx="6"/>
-            <circle cx="333" cy="72.5" r="3" fill="#ff5f56"/>
-            <circle cx="343" cy="72.5" r="3" fill="#ffbd2e"/>
-            <circle cx="353" cy="72.5" r="3" fill="#27c93f"/>
-            <!-- Address Bar -->
-            <rect x="363" y="69" width="185" height="8" fill="#0d1117" rx="3"/>
-            <text x="368" y="75" font-size="5.5" fill="#58a6ff" font-family="monospace">github.com/thekavishshah</text>
-
-            <!-- GitHub Header -->
-            <rect x="325" y="80" width="240" height="18" fill="#010409"/>
-            <text x="330" y="92" font-size="8" fill="#ffffff" font-weight="bold" font-family="sans-serif">GitHub</text>
-            <rect x="500" y="85" width="55" height="9" fill="#238636" rx="3"/>
-            <text x="527" y="92" font-size="5.5" fill="#ffffff" text-anchor="middle" font-family="sans-serif">Follow</text>
-
-            <!-- Profile Section -->
-            <rect x="325" y="98" width="240" height="132" fill="#0d1117"/>
-
-            <!-- Profile Picture -->
-            <circle cx="345" cy="115" r="18" fill="#30363d" stroke="#58a6ff" stroke-width="2"/>
-            <text x="345" y="120" font-size="16" fill="#58a6ff" text-anchor="middle">K</text>
-
-            <!-- Profile Info -->
-            <text x="370" y="112" font-size="9" fill="#ffffff" font-weight="bold" font-family="sans-serif">Kavish Shah</text>
-            <text x="370" y="122" font-size="6" fill="#8b949e" font-family="sans-serif">thekavishshah</text>
-            <text x="370" y="132" font-size="5.5" fill="#c9d1d9" font-family="sans-serif">🎓 CS @ Arizona State University</text>
-
-            <!-- Stats Bar -->
-            <g font-family="sans-serif" font-size="6">
-              <rect x="330" y="142" width="65" height="18" fill="#161b22" rx="4"/>
-              <text x="338" y="151" fill="#8b949e">Repositories</text>
-              <text x="358" y="157" fill="#58a6ff" font-weight="bold">24</text>
-
-              <rect x="400" y="142" width="65" height="18" fill="#161b22" rx="4"/>
-              <text x="415" y="151" fill="#8b949e">Followers</text>
-              <text x="428" y="157" fill="#58a6ff" font-weight="bold">127</text>
-
-              <rect x="470" y="142" width="65" height="18" fill="#161b22" rx="4"/>
-              <text x="480" y="151" fill="#8b949e">Following</text>
-              <text x="495" y="157" fill="#58a6ff" font-weight="bold">89</text>
-            </g>
-
-            <!-- Pinned Repositories -->
-            <text x="330" y="172" font-size="6" fill="#c9d1d9" font-weight="bold" font-family="sans-serif">Pinned Repositories</text>
-
-            <!-- Repo Card 1 -->
-            <rect x="330" y="177" width="105" height="26" fill="#161b22" rx="4" stroke="#30363d" stroke-width="1"/>
-            <text x="335" y="185" font-size="6" fill="#58a6ff" font-weight="bold" font-family="sans-serif">portfolio-website</text>
-            <text x="335" y="192" font-size="4.5" fill="#8b949e" font-family="sans-serif">Personal portfolio with React</text>
-            <circle cx="335" cy="199" r="3" fill="#f1e05a"/>
-            <text x="342" y="201" font-size="4.5" fill="#8b949e" font-family="sans-serif">JavaScript</text>
-            <text x="390" y="201" font-size="4.5" fill="#8b949e" font-family="monospace">⭐ 12</text>
-
-            <!-- Repo Card 2 -->
-            <rect x="440" y="177" width="105" height="26" fill="#161b22" rx="4" stroke="#30363d" stroke-width="1"/>
-            <text x="445" y="185" font-size="6" fill="#58a6ff" font-weight="bold" font-family="sans-serif">ClearCue</text>
-            <text x="445" y="192" font-size="4.5" fill="#8b949e" font-family="sans-serif">AI study flashcard generator</text>
-            <circle cx="445" cy="199" r="3" fill="#3572A5"/>
-            <text x="452" y="201" font-size="4.5" fill="#8b949e" font-family="sans-serif">Python</text>
-            <text x="500" y="201" font-size="4.5" fill="#8b949e" font-family="monospace">⭐ 8</text>
-
-            <!-- Contribution Graph -->
-            <text x="330" y="215" font-size="5.5" fill="#8b949e" font-family="sans-serif">247 contributions in the last year</text>
-            <!-- Simple contribution squares -->
-            <rect x="330" y="218" width="3" height="3" fill="#0e4429" rx="0.5"/>
-            <rect x="335" y="218" width="3" height="3" fill="#006d32" rx="0.5"/>
-            <rect x="340" y="218" width="3" height="3" fill="#26a641" rx="0.5"/>
-            <rect x="345" y="218" width="3" height="3" fill="#39d353" rx="0.5"/>
-            <rect x="350" y="218" width="3" height="3" fill="#0e4429" rx="0.5"/>
-            <rect x="355" y="218" width="3" height="3" fill="#006d32" rx="0.5"/>
-            <rect x="360" y="218" width="3" height="3" fill="#26a641" rx="0.5"/>
-            <rect x="365" y="218" width="3" height="3" fill="#0e4429" rx="0.5"/>
-
-            <!-- Monitor Stand -->
-            <rect x="432" y="230" width="26" height="60" fill="#2d3748" rx="4"/>
-            <rect x="420" y="290" width="50" height="8" fill="#374151" rx="3"/>
-            <!-- 3D Shadow -->
-            <ellipse cx="445" cy="298" rx="50" ry="8" fill="#000" opacity="0.3"/>
-          </g>
-
-          <!-- PERSON FROM BEHIND - Typing -->
-          <g class="layer-front">
-          <!-- Chair Back -->
-          <rect x="265" y="280" width="70" height="70" fill="#2d3748" rx="8"/>
-          <rect x="270" y="285" width="60" height="60" fill="#374151" rx="6"/>
-
-          <!-- Person's Back and Shoulders -->
-          <ellipse cx="300" cy="300" rx="40" ry="50" fill="#4f46e5"/>
-          <!-- Hoodie/Shirt details -->
-          <rect x="288" y="295" width="24" height="10" fill="#4338ca" opacity="0.5" rx="3"/>
-
-          <!-- Head from behind -->
-          <ellipse cx="300" cy="270" rx="22" ry="24" fill="url(#personGradient)"/>
-          <!-- Hair -->
-          <ellipse cx="300" cy="265" rx="24" ry="20" fill="#0f172a"/>
-
-          <!-- Arms reaching forward to keyboard -->
-          <!-- Left arm -->
-          <path d="M 265 310 Q 240 320 220 330" stroke="#4f46e5" stroke-width="20" fill="none"/>
-          <!-- Right arm -->
-          <path d="M 335 310 Q 360 320 380 330" stroke="#4f46e5" stroke-width="20" fill="none"/>
-
-          <!-- Hands on keyboard -->
-          <ellipse cx="220" cy="330" rx="14" ry="12" fill="#fbbf24"/>
-          <ellipse cx="380" cy="330" rx="14" ry="12" fill="#fbbf24"/>
-
-          <!-- Mechanical Keyboard (Large) -->
-          <rect x="200" y="320" width="200" height="35" fill="#1f2937" rx="5"/>
-          <rect x="205" y="325" width="190" height="25" fill="#374151" rx="4"/>
-          <!-- Key rows -->
-          <rect x="210" y="329" width="6" height="5" fill="#4b5563" rx="0.5"/>
-          <rect x="218" y="329" width="6" height="5" fill="#4b5563" rx="0.5"/>
-          <rect x="226" y="329" width="6" height="5" fill="#4b5563" rx="0.5"/>
-          <rect x="234" y="329" width="6" height="5" fill="#4b5563" rx="0.5"/>
-          <rect x="242" y="329" width="6" height="5" fill="#4b5563" rx="0.5"/>
-          <rect x="250" y="329" width="6" height="5" fill="#4b5563" rx="0.5"/>
-          <rect x="258" y="329" width="6" height="5" fill="#4b5563" rx="0.5"/>
-          <rect x="266" y="329" width="6" height="5" fill="#4b5563" rx="0.5"/>
-          <!-- Second row -->
-          <rect x="214" y="336" width="6" height="5" fill="#4b5563" rx="0.5"/>
-          <rect x="222" y="336" width="6" height="5" fill="#4b5563" rx="0.5"/>
-          <rect x="230" y="336" width="6" height="5" fill="#4b5563" rx="0.5"/>
-          <rect x="238" y="336" width="6" height="5" fill="#4b5563" rx="0.5"/>
-          <rect x="246" y="336" width="6" height="5" fill="#4b5563" rx="0.5"/>
-          <rect x="254" y="336" width="6" height="5" fill="#4b5563" rx="0.5"/>
-          <rect x="262" y="336" width="6" height="5" fill="#4b5563" rx="0.5"/>
-          <!-- Spacebar -->
-          <rect x="235" y="343" width="50" height="5" fill="#6366f1" rx="1"/>
-          <!-- RGB underglow -->
-          <rect x="205" y="349" width="190" height="3" fill="#a78bfa" opacity="0.6" rx="1.5"/>
-
-          <!-- Mouse (Gaming) -->
-          <ellipse cx="425" cy="330" rx="12" ry="16" fill="#1f2937"/>
-          <ellipse cx="425" cy="326" rx="10" ry="12" fill="#374151"/>
-          <line x1="425" y1="317" x2="425" y2="334" stroke="#4b5563" stroke-width="1.5"/>
-          <circle cx="425" cy="323" r="1.5" fill="#3b82f6" filter="url(#strongGlow)"/>
-          </g>
-
-          <!-- Desk Accessories with 3D depth -->
-          <g class="layer-middle">
-          <!-- Coffee Cup with steam -->
-          <ellipse cx="520" cy="335" rx="14" ry="4" fill="#8B4513"/>
-          <rect x="506" y="315" width="28" height="20" fill="#D2691E" rx="4"/>
-          <ellipse cx="520" cy="315" rx="14" ry="5" fill="#A0522D"/>
-          <path d="M514 307 Q512 301 514 295" stroke="#9CA3AF" stroke-width="2" fill="none" opacity="0.5"/>
-          <path d="M526 307 Q528 301 526 295" stroke="#9CA3AF" stroke-width="2" fill="none" opacity="0.5"/>
-
-          <!-- Desk Plant -->
-          <rect x="50" y="310" width="22" height="25" fill="#7C2D12" rx="4"/>
-          <ellipse cx="61" cy="310" rx="11" ry="4" fill="#92400E"/>
-          <circle cx="61" cy="298" r="17" fill="#10B981"/>
-          <circle cx="54" cy="290" r="11" fill="#059669"/>
-          <circle cx="68" cy="290" r="11" fill="#059669"/>
-          <circle cx="61" cy="286" r="10" fill="#34D399"/>
-
-          <!-- Book Stack -->
-          <rect x="530" y="325" width="40" height="8" fill="#DC2626" rx="2"/>
-          <rect x="532" y="317" width="38" height="8" fill="#2563EB" rx="2"/>
-          <rect x="534" y="309" width="36" height="8" fill="#059669" rx="2"/>
-          </g>
-
-        </svg>
-        </div>
+        <canvas id="workspace3d"></canvas>
       </div>
-
-      <!-- Orbiting Glassmorphism Icons -->
-      <a href="#about" class="orbit-icon" title="About Me">
-        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="text-white">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-        </svg>
-        <span>About</span>
-      </a>
-
-      <a href="KAVISH_SHAH_RESUME-MAY.pdf" target="_blank" class="orbit-icon" title="Resume">
-        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="text-white">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-        </svg>
-        <span>Resume</span>
-      </a>
-
-      <a href="#skills" class="orbit-icon" title="Skills">
-        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="text-white">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
-        </svg>
-        <span>Skills</span>
-      </a>
-
-      <a href="#work" class="orbit-icon" title="Experience">
-        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="text-white">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-        </svg>
-        <span>Work</span>
-      </a>
-
-      <a href="#projects" class="orbit-icon" title="Projects">
-        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="text-white">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-        </svg>
-        <span>Projects</span>
-      </a>
-
-      <a href="#contact" class="orbit-icon" title="Contact">
-        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="text-white">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-        </svg>
-        <span>Contact</span>
-      </a>
     </div>
 
-    <p class="mt-12 text-sm text-white drop-shadow-md max-w-md font-medium">Hover over the glassmorphism icons to explore my portfolio</p>
+    <p class="mt-12 text-sm text-white drop-shadow-md max-w-2xl font-medium text-center">
+      Drag to rotate • Scroll to zoom • Watch the AI developer at work
+    </p>
   </section>
 
   <!-- About -->
@@ -752,71 +349,2344 @@
   <script>
     AOS.init({ duration: 800, once: true });
 
-    // 3D Interactive Workspace - Mouse Tracking
-    const workspace3d = document.getElementById('workspace3d');
-    const codingIllustration = document.querySelector('.coding-illustration');
-    let isDragging = false;
-    let currentRotationX = 0;
-    let currentRotationY = 0;
+    // ==========================================
+    // THREE.JS 3D WORKSPACE SCENE
+    // ==========================================
 
-    // Mouse movement for 3D tilt effect
-    codingIllustration.addEventListener('mousemove', (e) => {
-      if (isDragging) return;
+    let scene, camera, renderer, controls;
+    let workspace3dGroup;
 
-      const rect = codingIllustration.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+    function init3DWorkspace() {
+      const canvas = document.getElementById('workspace3d');
+      const container = canvas.parentElement;
 
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
+      // Scene Setup
+      scene = new THREE.Scene();
+      // Transparent background to blend with hero gradient
+      scene.background = null;
 
-      const rotateY = ((x - centerX) / centerX) * 15;
-      const rotateX = ((centerY - y) / centerY) * 15;
+      // Camera - right side view for diorama effect
+      camera = new THREE.PerspectiveCamera(
+        40,
+        container.clientWidth / container.clientHeight,
+        0.1,
+        1000
+      );
+      camera.position.set(15, 10, 5);
+      camera.lookAt(0, 2.5, 0);
 
-      workspace3d.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
-    });
+      // Renderer
+      renderer = new THREE.WebGLRenderer({
+        canvas: canvas,
+        antialias: true,
+        alpha: true
+      });
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-    // Reset on mouse leave
-    codingIllustration.addEventListener('mouseleave', () => {
-      if (!isDragging) {
-        workspace3d.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+      // OrbitControls for 360-degree rotation
+      controls = new THREE.OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.08;
+      controls.minDistance = 8;
+      controls.maxDistance = 35;
+      controls.maxPolarAngle = Math.PI / 2.1;
+      controls.minPolarAngle = Math.PI / 6;
+      controls.autoRotate = true;
+      controls.autoRotateSpeed = 0.8;
+      controls.enablePan = false;
+      controls.target.set(0, 2, 0);
+
+      // Soft pastel lighting for diorama aesthetic
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+      scene.add(ambientLight);
+
+      // Main soft directional light
+      const mainLight = new THREE.DirectionalLight(0xffffff, 0.6);
+      mainLight.position.set(15, 20, 15);
+      mainLight.castShadow = true;
+      mainLight.shadow.mapSize.width = 2048;
+      mainLight.shadow.mapSize.height = 2048;
+      mainLight.shadow.camera.left = -15;
+      mainLight.shadow.camera.right = 15;
+      mainLight.shadow.camera.top = 15;
+      mainLight.shadow.camera.bottom = -15;
+      scene.add(mainLight);
+
+      // Soft fill light from side
+      const fillLight = new THREE.DirectionalLight(0xb8d4f1, 0.4);
+      fillLight.position.set(-10, 10, 5);
+      scene.add(fillLight);
+
+      // Gentle rim light
+      const rimLight = new THREE.DirectionalLight(0xa8c8e6, 0.3);
+      rimLight.position.set(5, 5, -10);
+      scene.add(rimLight);
+
+      // Group for entire workspace
+      workspace3dGroup = new THREE.Group();
+      scene.add(workspace3dGroup);
+
+      // Build Isometric Diorama Scene
+      createPlatformBase();
+      createRoomBox();
+      createMiniDesk();
+      createMiniChair();
+      createMiniMonitor();
+      createMiniKeyboard();
+      createCPUTower();
+      createSideTable();
+      createShelves();
+      createWallDecorations();
+      createFloorItems();
+      createPlants();
+
+      // Handle resize
+      window.addEventListener('resize', onWindowResize, false);
+
+      // Animation loop
+      animate();
+    }
+
+    // ===== DIORAMA CREATION FUNCTIONS =====
+
+    function createPlatformBase() {
+      // Circular platform base - soft pastel blue
+      const platformGeometry = new THREE.CylinderGeometry(5.5, 5.5, 0.3, 64);
+      const platformMaterial = new THREE.MeshStandardMaterial({
+        color: 0xd4e8f7,
+        roughness: 0.7
+      });
+      const platform = new THREE.Mesh(platformGeometry, platformMaterial);
+      platform.position.y = 0;
+      platform.receiveShadow = true;
+      workspace3dGroup.add(platform);
+
+      // Platform rim (decorative edge) - light blue
+      const rimGeometry = new THREE.TorusGeometry(5.5, 0.08, 16, 64);
+      const rimMaterial = new THREE.MeshStandardMaterial({
+        color: 0xc4d8e7,
+        roughness: 0.5
+      });
+      const rim = new THREE.Mesh(rimGeometry, rimMaterial);
+      rim.rotation.x = Math.PI / 2;
+      rim.position.y = 0.15;
+      workspace3dGroup.add(rim);
+    }
+
+    function createRoomBox() {
+      // Back wall - very light pastel lavender/white
+      const backWallGeometry = new THREE.BoxGeometry(6, 5, 0.2);
+      const wallMaterial = new THREE.MeshStandardMaterial({
+        color: 0xf5f5ff,
+        roughness: 0.85
+      });
+      const backWall = new THREE.Mesh(backWallGeometry, wallMaterial);
+      backWall.position.set(0, 2.8, -3);
+      backWall.receiveShadow = true;
+      workspace3dGroup.add(backWall);
+
+      // Left wall only (removed right wall for open view)
+      const leftWall = new THREE.Mesh(new THREE.BoxGeometry(0.2, 5, 6), wallMaterial);
+      leftWall.position.set(-3, 2.8, 0);
+      leftWall.receiveShadow = true;
+      workspace3dGroup.add(leftWall);
+
+      // Roof overhang (light warm wood)
+      const roofGeometry = new THREE.BoxGeometry(6.5, 0.3, 6.5);
+      const roofMaterial = new THREE.MeshStandardMaterial({
+        color: 0xe8c8a4,
+        roughness: 0.8
+      });
+      const roof = new THREE.Mesh(roofGeometry, roofMaterial);
+      roof.position.set(0, 5.3, 0);
+      roof.castShadow = true;
+      workspace3dGroup.add(roof);
+
+      // Floor (light wooden planks)
+      const floorGeometry = new THREE.BoxGeometry(5.8, 0.15, 5.8);
+      const floorMaterial = new THREE.MeshStandardMaterial({
+        color: 0xf0dcc0,
+        roughness: 0.85
+      });
+      const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+      floor.position.set(0, 0.3, 0);
+      floor.receiveShadow = true;
+      workspace3dGroup.add(floor);
+
+      // Add floor planks detail - lighter
+      for (let i = 0; i < 10; i++) {
+        const plankLine = new THREE.Mesh(
+          new THREE.BoxGeometry(5.8, 0.02, 0.05),
+          new THREE.MeshStandardMaterial({ color: 0xe8d4b8 })
+        );
+        plankLine.position.set(0, 0.38, -2.5 + i * 0.6);
+        workspace3dGroup.add(plankLine);
       }
-    });
+    }
 
-    // Drag to rotate 360
-    let startX, startY;
+    function createMiniDesk() {
+      // Larger desk surface (light wood) - increased size for more workspace
+      const deskGeometry = new THREE.BoxGeometry(4.5, 0.18, 2.5);
+      const deskMaterial = new THREE.MeshStandardMaterial({
+        color: 0xf5e6d3,
+        roughness: 0.6
+      });
+      const desk = new THREE.Mesh(deskGeometry, deskMaterial);
+      desk.position.set(0, 1.2, 0.3);
+      desk.castShadow = true;
+      desk.receiveShadow = true;
+      workspace3dGroup.add(desk);
 
-    workspace3d.addEventListener('mousedown', (e) => {
-      isDragging = true;
-      startX = e.clientX;
-      startY = e.clientY;
-      workspace3d.style.transition = 'none';
-    });
+      // Desk drawer unit (pastel lavender)
+      const drawerGeometry = new THREE.BoxGeometry(0.9, 0.95, 0.7);
+      const drawerMaterial = new THREE.MeshStandardMaterial({
+        color: 0xe8dff5,
+        roughness: 0.6
+      });
+      const drawer = new THREE.Mesh(drawerGeometry, drawerMaterial);
+      drawer.position.set(-1.5, 0.65, 0.3);
+      drawer.castShadow = true;
+      workspace3dGroup.add(drawer);
 
-    document.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
-
-      const deltaX = e.clientX - startX;
-      const deltaY = e.clientY - startY;
-
-      currentRotationY += deltaX * 0.5;
-      currentRotationX -= deltaY * 0.5;
-
-      // Clamp X rotation
-      currentRotationX = Math.max(-60, Math.min(60, currentRotationX));
-
-      workspace3d.style.transform = `rotateX(${currentRotationX}deg) rotateY(${currentRotationY}deg) scale(1.05)`;
-
-      startX = e.clientX;
-      startY = e.clientY;
-    });
-
-    document.addEventListener('mouseup', () => {
-      if (isDragging) {
-        isDragging = false;
-        workspace3d.style.transition = 'transform 0.3s cubic-bezier(0.23, 1, 0.32, 1)';
+      // Drawer handles (3 drawers) - soft gold/brass
+      for (let i = 0; i < 3; i++) {
+        const handle = new THREE.Mesh(
+          new THREE.BoxGeometry(0.18, 0.05, 0.05),
+          new THREE.MeshStandardMaterial({
+            color: 0xd4b896,
+            roughness: 0.4,
+            metalness: 0.5
+          })
+        );
+        handle.position.set(-1.5, 0.35 + i * 0.32, 0.65);
+        workspace3dGroup.add(handle);
       }
-    });
+
+      // Desk legs (simple blue/white) - adjusted for larger desk
+      const legPositions = [[1.8, -0.6], [-1.8, -0.6], [1.8, 1.2], [-1.8, 1.2]];
+      legPositions.forEach(([x, z]) => {
+        const leg = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.08, 0.08, 1.2, 16),
+          new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.4 })
+        );
+        leg.position.set(x, 0.6, z);
+        leg.castShadow = true;
+        workspace3dGroup.add(leg);
+      });
+
+      // Desk organizers and items
+      // Small organizer box
+      const organizer = new THREE.Mesh(
+        new THREE.BoxGeometry(0.4, 0.15, 0.3),
+        new THREE.MeshStandardMaterial({ color: 0xb8d4f1, roughness: 0.7 })
+      );
+      organizer.position.set(-0.8, 1.37, -0.8);
+      workspace3dGroup.add(organizer);
+
+      // Pen holder
+      const penHolder = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.12, 0.12, 0.25, 16),
+        new THREE.MeshStandardMaterial({ color: 0xd4e8f7, roughness: 0.6 })
+      );
+      penHolder.position.set(1.2, 1.42, -0.7);
+      workspace3dGroup.add(penHolder);
+
+      // Pens in holder
+      for (let i = 0; i < 3; i++) {
+        const pen = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.02, 0.02, 0.35, 8),
+          new THREE.MeshStandardMaterial({ color: [0x4a8bb7, 0x7eb3d9, 0x5a9bc7][i] })
+        );
+        pen.position.set(1.2 + (i - 1) * 0.04, 1.55, -0.7);
+        workspace3dGroup.add(pen);
+      }
+
+      // Small books stack on desk
+      const bookColors = [0x7eb3d9, 0x5a9bc7, 0xb8d4f1];
+      bookColors.forEach((color, i) => {
+        const book = new THREE.Mesh(
+          new THREE.BoxGeometry(0.3, 0.04, 0.22),
+          new THREE.MeshStandardMaterial({ color: color, roughness: 0.8 })
+        );
+        book.position.set(0.8, 1.32 + i * 0.045, -0.8);
+        book.rotation.y = 0.1;
+        workspace3dGroup.add(book);
+      });
+
+      // Coffee mug
+      const mug = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.1, 0.08, 0.15, 16),
+        new THREE.MeshStandardMaterial({ color: 0xb8d4f1, roughness: 0.5 })
+      );
+      mug.position.set(1.3, 1.37, 0.8);
+      workspace3dGroup.add(mug);
+
+      // Notepad
+      const notepad = new THREE.Mesh(
+        new THREE.BoxGeometry(0.35, 0.02, 0.45),
+        new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.9 })
+      );
+      notepad.position.set(0.2, 1.31, 0.6);
+      notepad.rotation.y = -0.3;
+      workspace3dGroup.add(notepad);
+
+      // Desk lamp
+      const lampBase = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.15, 0.15, 0.05, 32),
+        new THREE.MeshStandardMaterial({ color: 0x4a8bb7, roughness: 0.5 })
+      );
+      lampBase.position.set(-1.5, 1.32, -0.9);
+      workspace3dGroup.add(lampBase);
+
+      const lampArm = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.03, 0.03, 0.6, 16),
+        new THREE.MeshStandardMaterial({ color: 0x5a9bc7, roughness: 0.4 })
+      );
+      lampArm.position.set(-1.5, 1.65, -0.9);
+      lampArm.rotation.z = 0.3;
+      workspace3dGroup.add(lampArm);
+
+      const lampHead = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.12, 0.18, 0.15, 32),
+        new THREE.MeshStandardMaterial({ color: 0xb8d4f1, roughness: 0.5 })
+      );
+      lampHead.position.set(-1.35, 1.9, -0.9);
+      workspace3dGroup.add(lampHead);
+
+      // Lamp light
+      const lampLight = new THREE.PointLight(0xffe6a8, 0.6, 3);
+      lampLight.position.set(-1.35, 1.85, -0.9);
+      scene.add(lampLight);
+
+      // Water bottle
+      const bottle = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.08, 0.08, 0.35, 16),
+        new THREE.MeshStandardMaterial({
+          color: 0x7eb3d9,
+          transparent: true,
+          opacity: 0.7,
+          roughness: 0.2
+        })
+      );
+      bottle.position.set(-1.0, 1.47, 0.9);
+      workspace3dGroup.add(bottle);
+
+      const bottleCap = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.09, 0.09, 0.06, 16),
+        new THREE.MeshStandardMaterial({ color: 0x4a8bb7 })
+      );
+      bottleCap.position.set(-1.0, 1.67, 0.9);
+      workspace3dGroup.add(bottleCap);
+
+      // Phone
+      const phone = new THREE.Mesh(
+        new THREE.BoxGeometry(0.15, 0.02, 0.28),
+        new THREE.MeshStandardMaterial({
+          color: 0x2a3a4a,
+          roughness: 0.2,
+          metalness: 0.7
+        })
+      );
+      phone.position.set(-0.5, 1.31, 0.9);
+      phone.rotation.y = 0.4;
+      workspace3dGroup.add(phone);
+
+      // Headphones
+      const headphoneStand = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.08, 0.12, 0.45, 16),
+        new THREE.MeshStandardMaterial({ color: 0x2a3a4a, metalness: 0.6 })
+      );
+      headphoneStand.position.set(1.6, 1.52, -0.9);
+      workspace3dGroup.add(headphoneStand);
+
+      const headphoneBand = new THREE.Mesh(
+        new THREE.TorusGeometry(0.15, 0.03, 16, 32, Math.PI),
+        new THREE.MeshStandardMaterial({ color: 0x4a8bb7, roughness: 0.4 })
+      );
+      headphoneBand.position.set(1.6, 1.75, -0.9);
+      headphoneBand.rotation.x = Math.PI / 2;
+      workspace3dGroup.add(headphoneBand);
+
+      // Extra notebooks stack
+      const notebookColors = [0xff8585, 0xffd485, 0x85e0ff];
+      notebookColors.forEach((color, i) => {
+        const notebook = new THREE.Mesh(
+          new THREE.BoxGeometry(0.25, 0.03, 0.32),
+          new THREE.MeshStandardMaterial({ color: color, roughness: 0.8 })
+        );
+        notebook.position.set(-0.2, 1.31 + i * 0.035, -0.9);
+        notebook.rotation.y = -0.2;
+        workspace3dGroup.add(notebook);
+      });
+
+      // Charging cable (simplified)
+      const cable = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.015, 0.015, 0.4, 8),
+        new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.5 })
+      );
+      cable.position.set(0.5, 1.31, 0.95);
+      cable.rotation.z = Math.PI / 2;
+      workspace3dGroup.add(cable);
+
+      // Mouse pad
+      const mousePad = new THREE.Mesh(
+        new THREE.BoxGeometry(0.9, 0.01, 0.7),
+        new THREE.MeshStandardMaterial({ color: 0x6a8db8, roughness: 0.9 })
+      );
+      mousePad.position.set(0.7, 1.295, 0.85);
+      workspace3dGroup.add(mousePad);
+
+      // Sticky notes stack (pastel colors)
+      const stickyColors = [0xffd4e5, 0xd4f1f4, 0xfff4c4, 0xe4d4f4];
+      stickyColors.forEach((color, i) => {
+        const sticky = new THREE.Mesh(
+          new THREE.BoxGeometry(0.18, 0.008, 0.18),
+          new THREE.MeshStandardMaterial({ color: color, roughness: 0.9 })
+        );
+        sticky.position.set(-1.8, 1.3 + i * 0.01, 0.5);
+        sticky.rotation.y = Math.random() * 0.4 - 0.2;
+        workspace3dGroup.add(sticky);
+      });
+
+      // Pencil on desk
+      const pencil = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.015, 0.015, 0.4, 8),
+        new THREE.MeshStandardMaterial({ color: 0xf4d03f, roughness: 0.7 })
+      );
+      pencil.position.set(0.4, 1.3, -0.6);
+      pencil.rotation.z = Math.PI / 2;
+      workspace3dGroup.add(pencil);
+
+      // Eraser
+      const eraser = new THREE.Mesh(
+        new THREE.BoxGeometry(0.08, 0.04, 0.15),
+        new THREE.MeshStandardMaterial({ color: 0xffb3ba, roughness: 0.8 })
+      );
+      eraser.position.set(0.6, 1.31, -0.6);
+      workspace3dGroup.add(eraser);
+
+      // Wireless earbuds case
+      const earbudsCase = new THREE.Mesh(
+        new THREE.BoxGeometry(0.12, 0.05, 0.15),
+        new THREE.MeshStandardMaterial({
+          color: 0xf5f5f5,
+          roughness: 0.3,
+          metalness: 0.2
+        })
+      );
+      earbudsCase.position.set(-1.3, 1.315, 0.5);
+      earbudsCase.rotation.y = 0.5;
+      workspace3dGroup.add(earbudsCase);
+
+      // Small succulent plant on desk
+      const smallPot = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.08, 0.06, 0.12, 16),
+        new THREE.MeshStandardMaterial({ color: 0xe8d4c8, roughness: 0.8 })
+      );
+      smallPot.position.set(-1.8, 1.35, -0.8);
+      workspace3dGroup.add(smallPot);
+
+      // Succulent leaves
+      for (let i = 0; i < 5; i++) {
+        const angle = (i / 5) * Math.PI * 2;
+        const leaf = new THREE.Mesh(
+          new THREE.SphereGeometry(0.05, 8, 8),
+          new THREE.MeshStandardMaterial({ color: 0x7eb881, roughness: 0.7 })
+        );
+        leaf.position.set(
+          -1.8 + Math.cos(angle) * 0.06,
+          1.42,
+          -0.8 + Math.sin(angle) * 0.06
+        );
+        leaf.scale.set(1, 0.6, 1);
+        workspace3dGroup.add(leaf);
+      }
+
+      // Coaster under mug
+      const coaster = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.12, 0.12, 0.01, 32),
+        new THREE.MeshStandardMaterial({ color: 0xd4a574, roughness: 0.9 })
+      );
+      coaster.position.set(1.3, 1.30, 0.8);
+      workspace3dGroup.add(coaster);
+
+      // USB drive
+      const usbDrive = new THREE.Mesh(
+        new THREE.BoxGeometry(0.06, 0.015, 0.12),
+        new THREE.MeshStandardMaterial({
+          color: 0x4a8bb7,
+          roughness: 0.4,
+          metalness: 0.6
+        })
+      );
+      usbDrive.position.set(-0.9, 1.3, 0.4);
+      workspace3dGroup.add(usbDrive);
+
+      // Paper clips scattered
+      for (let i = 0; i < 3; i++) {
+        const clip = new THREE.Mesh(
+          new THREE.TorusGeometry(0.03, 0.008, 8, 16),
+          new THREE.MeshStandardMaterial({
+            color: 0xc0c0c0,
+            metalness: 0.8,
+            roughness: 0.2
+          })
+        );
+        clip.position.set(-0.5 + i * 0.15, 1.3, -0.7);
+        clip.rotation.x = Math.PI / 2;
+        workspace3dGroup.add(clip);
+      }
+
+      // Highlighter
+      const highlighter = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.02, 0.02, 0.3, 8),
+        new THREE.MeshStandardMaterial({ color: 0xffeb3b, roughness: 0.5 })
+      );
+      highlighter.position.set(0.15, 1.3, -0.5);
+      highlighter.rotation.z = Math.PI / 2.5;
+      workspace3dGroup.add(highlighter);
+
+      // Tape dispenser
+      const tapeBase = new THREE.Mesh(
+        new THREE.BoxGeometry(0.18, 0.08, 0.22),
+        new THREE.MeshStandardMaterial({ color: 0xb8d4f1, roughness: 0.6 })
+      );
+      tapeBase.position.set(1.5, 1.33, -0.5);
+      workspace3dGroup.add(tapeBase);
+
+      const tapeRoll = new THREE.Mesh(
+        new THREE.TorusGeometry(0.08, 0.03, 16, 32),
+        new THREE.MeshStandardMaterial({
+          color: 0xf5f5f5,
+          transparent: true,
+          opacity: 0.8,
+          roughness: 0.2
+        })
+      );
+      tapeRoll.position.set(1.5, 1.37, -0.5);
+      tapeRoll.rotation.x = Math.PI / 2;
+      workspace3dGroup.add(tapeRoll);
+    }
+
+    function createMiniChair() {
+      // Chair seat (pastel purple/lavender to match reference)
+      const seatGeometry = new THREE.CylinderGeometry(0.5, 0.45, 0.12, 32);
+      const seatMaterial = new THREE.MeshStandardMaterial({
+        color: 0xd4c4e8,
+        roughness: 0.6
+      });
+      const seat = new THREE.Mesh(seatGeometry, seatMaterial);
+      seat.position.set(0.1, 0.9, 2.2);
+      seat.castShadow = true;
+      workspace3dGroup.add(seat);
+
+      // Chair back (curved) - positioned BEHIND the seat so chair faces desk
+      const backGeometry = new THREE.BoxGeometry(0.9, 0.65, 0.1);
+      const back = new THREE.Mesh(backGeometry, seatMaterial);
+      back.position.set(0.1, 1.35, 2.45);
+      back.rotation.x = 0.15;
+      back.castShadow = true;
+      workspace3dGroup.add(back);
+
+      // Chair base (white)
+      const baseGeometry = new THREE.CylinderGeometry(0.06, 0.06, 0.75, 16);
+      const baseMaterial = new THREE.MeshStandardMaterial({
+        color: 0xf5f5f5,
+        roughness: 0.3,
+        metalness: 0.3
+      });
+      const base = new THREE.Mesh(baseGeometry, baseMaterial);
+      base.position.set(0.1, 0.5, 2.2);
+      workspace3dGroup.add(base);
+
+      // Chair wheels (5 spokes)
+      for (let i = 0; i < 5; i++) {
+        const angle = (i / 5) * Math.PI * 2;
+        const wheel = new THREE.Mesh(
+          new THREE.SphereGeometry(0.08, 16, 16),
+          baseMaterial
+        );
+        wheel.position.set(
+          0.1 + Math.cos(angle) * 0.38,
+          0.15,
+          2.2 + Math.sin(angle) * 0.38
+        );
+        workspace3dGroup.add(wheel);
+      }
+    }
+
+    function createMiniMonitor() {
+      // Create canvas textures for monitors
+      const vscodeCanvas = createVSCodeCanvas();
+      const terminalCanvas = createTerminalCanvas();
+
+      const vscodeTexture = new THREE.CanvasTexture(vscodeCanvas);
+      const terminalTexture = new THREE.CanvasTexture(terminalCanvas);
+
+      // LEFT MONITOR - VSCode
+      // Monitor stand
+      const standMaterial = new THREE.MeshStandardMaterial({
+        color: 0xffffff,
+        roughness: 0.3,
+        metalness: 0.6
+      });
+
+      const leftStand = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.1, 0.12, 0.5, 32),
+        standMaterial
+      );
+      leftStand.position.set(-1.0, 1.6, -0.3);
+      workspace3dGroup.add(leftStand);
+
+      // Monitor frame (white/light blue)
+      const frameMaterial = new THREE.MeshStandardMaterial({
+        color: 0xf0f8ff,
+        roughness: 0.4
+      });
+
+      const leftFrame = new THREE.Mesh(
+        new THREE.BoxGeometry(1.2, 0.85, 0.08),
+        frameMaterial
+      );
+      leftFrame.position.set(-1.0, 2.15, -0.3);
+      leftFrame.castShadow = true;
+      workspace3dGroup.add(leftFrame);
+
+      // Screen with VSCode texture
+      const leftScreenMaterial = new THREE.MeshStandardMaterial({
+        map: vscodeTexture,
+        emissive: 0x1a1a1a,
+        emissiveIntensity: 0.3,
+        roughness: 0.2
+      });
+
+      const leftScreen = new THREE.Mesh(
+        new THREE.BoxGeometry(1.1, 0.75, 0.03),
+        leftScreenMaterial
+      );
+      leftScreen.position.set(-1.0, 2.15, -0.26);
+      workspace3dGroup.add(leftScreen);
+
+      // Screen glow
+      const leftGlow = new THREE.PointLight(0x4a9eff, 0.4, 2);
+      leftGlow.position.set(-1.0, 2.15, -0.2);
+      scene.add(leftGlow);
+
+      // RIGHT MONITOR - Terminal
+      const rightStand = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.1, 0.12, 0.5, 32),
+        standMaterial
+      );
+      rightStand.position.set(1.0, 1.6, -0.3);
+      workspace3dGroup.add(rightStand);
+
+      const rightFrame = new THREE.Mesh(
+        new THREE.BoxGeometry(1.2, 0.85, 0.08),
+        frameMaterial
+      );
+      rightFrame.position.set(1.0, 2.15, -0.3);
+      rightFrame.castShadow = true;
+      workspace3dGroup.add(rightFrame);
+
+      // Screen with Terminal texture
+      const rightScreenMaterial = new THREE.MeshStandardMaterial({
+        map: terminalTexture,
+        emissive: 0x0a0a0a,
+        emissiveIntensity: 0.3,
+        roughness: 0.2
+      });
+
+      const rightScreen = new THREE.Mesh(
+        new THREE.BoxGeometry(1.1, 0.75, 0.03),
+        rightScreenMaterial
+      );
+      rightScreen.position.set(1.0, 2.15, -0.26);
+      workspace3dGroup.add(rightScreen);
+
+      const rightGlow = new THREE.PointLight(0x33ff33, 0.3, 2);
+      rightGlow.position.set(1.0, 2.15, -0.2);
+      scene.add(rightGlow);
+    }
+
+    function createVSCodeCanvas() {
+      const canvas = document.createElement('canvas');
+      canvas.width = 512;
+      canvas.height = 384;
+      const ctx = canvas.getContext('2d');
+
+      // Background - dark theme
+      ctx.fillStyle = '#1e1e1e';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Top bar
+      ctx.fillStyle = '#323233';
+      ctx.fillRect(0, 0, canvas.width, 35);
+
+      // VSCode logo area
+      ctx.fillStyle = '#007acc';
+      ctx.fillRect(5, 8, 20, 20);
+
+      // Menu items
+      ctx.fillStyle = '#cccccc';
+      ctx.font = '12px monospace';
+      ctx.fillText('File  Edit  View  Terminal', 35, 23);
+
+      // Sidebar (file explorer)
+      ctx.fillStyle = '#252526';
+      ctx.fillRect(0, 35, 120, canvas.height - 35);
+
+      // Sidebar header
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 11px sans-serif';
+      ctx.fillText('EXPLORER', 10, 55);
+
+      // Folder icons and files
+      const files = ['▼ src', '  index.js', '  app.js', '  utils.js', '▼ components', '  Header.jsx', '  Footer.jsx'];
+      ctx.font = '10px monospace';
+      files.forEach((file, i) => {
+        ctx.fillStyle = file.startsWith('▼') ? '#ffffff' : '#cccccc';
+        ctx.fillText(file, 15, 75 + i * 18);
+      });
+
+      // Editor area
+      ctx.fillStyle = '#1e1e1e';
+      ctx.fillRect(120, 35, canvas.width - 120, canvas.height - 115);
+
+      // Tab
+      ctx.fillStyle = '#2d2d30';
+      ctx.fillRect(120, 35, 120, 35);
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '11px sans-serif';
+      ctx.fillText('app.js', 130, 57);
+
+      // Code content
+      const code = [
+        'import React from "react";',
+        '',
+        'function App() {',
+        '  const [data, setData] = useState();',
+        '',
+        '  useEffect(() => {',
+        '    fetchData();',
+        '  }, []);',
+        '',
+        '  return (',
+        '    <div className="App">',
+        '      <h1>Hello World</h1>',
+        '    </div>',
+        '  );',
+        '}'
+      ];
+
+      ctx.font = '10px monospace';
+      code.forEach((line, i) => {
+        let color = '#cccccc';
+        if (line.includes('import') || line.includes('function') || line.includes('return')) color = '#c586c0';
+        if (line.includes('React') || line.includes('useState') || line.includes('useEffect')) color = '#4ec9b0';
+        if (line.includes('"')) color = '#ce9178';
+        if (line.includes('const') || line.includes('let')) color = '#569cd6';
+
+        ctx.fillStyle = color;
+        ctx.fillText(line, 130, 85 + i * 14);
+      });
+
+      // Terminal section at bottom
+      ctx.fillStyle = '#1e1e1e';
+      ctx.fillRect(120, canvas.height - 80, canvas.width - 120, 80);
+
+      // Terminal tab
+      ctx.fillStyle = '#252526';
+      ctx.fillRect(120, canvas.height - 80, canvas.width - 120, 25);
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 10px sans-serif';
+      ctx.fillText('TERMINAL', 130, canvas.height - 65);
+
+      // Terminal content
+      ctx.fillStyle = '#cccccc';
+      ctx.font = '9px monospace';
+      ctx.fillText('$ npm run dev', 130, canvas.height - 45);
+      ctx.fillStyle = '#4ec9b0';
+      ctx.fillText('> Starting development server...', 130, canvas.height - 30);
+      ctx.fillText('> Server running on port 3000', 130, canvas.height - 15);
+
+      // Copilot panel on right (simplified)
+      ctx.fillStyle = '#252526';
+      ctx.fillRect(canvas.width - 90, 70, 90, 150);
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 9px sans-serif';
+      ctx.fillText('COPILOT', canvas.width - 85, 85);
+      ctx.font = '8px sans-serif';
+      ctx.fillStyle = '#cccccc';
+      ctx.fillText('✓ Suggestions', canvas.width - 85, 105);
+      ctx.fillText('  available', canvas.width - 85, 118);
+
+      return canvas;
+    }
+
+    function createTerminalCanvas() {
+      const canvas = document.createElement('canvas');
+      canvas.width = 512;
+      canvas.height = 384;
+      const ctx = canvas.getContext('2d');
+
+      // Terminal background - dark
+      ctx.fillStyle = '#0c0c0c';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Terminal header bar
+      ctx.fillStyle = '#1a1a1a';
+      ctx.fillRect(0, 0, canvas.width, 30);
+      ctx.fillStyle = '#33ff33';
+      ctx.font = 'bold 12px monospace';
+      ctx.fillText('bash', 10, 20);
+
+      // Terminal content
+      const terminalLines = [
+        { text: '$ python train_model.py --epochs 100', color: '#33ff33' },
+        { text: '', color: '#ffffff' },
+        { text: 'Epoch 1/100', color: '#ffffff' },
+        { text: '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100%', color: '#5555ff' },
+        { text: 'loss: 0.4521 - accuracy: 0.8234', color: '#ffff55' },
+        { text: '', color: '#ffffff' },
+        { text: 'Epoch 2/100', color: '#ffffff' },
+        { text: '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100%', color: '#5555ff' },
+        { text: 'loss: 0.3891 - accuracy: 0.8567', color: '#ffff55' },
+        { text: '', color: '#ffffff' },
+        { text: 'Epoch 3/100', color: '#ffffff' },
+        { text: '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 82%', color: '#5555ff' },
+        { text: 'loss: 0.3421 - accuracy: 0.8734', color: '#ffff55' },
+        { text: '', color: '#ffffff' },
+        { text: 'Training in progress...', color: '#55ff55' },
+        { text: 'GPU: NVIDIA RTX 3080 (98% usage)', color: '#ff55ff' },
+        { text: 'Estimated time remaining: 2h 34m', color: '#55ffff' },
+        { text: '▮', color: '#33ff33' }
+      ];
+
+      ctx.font = '11px monospace';
+      terminalLines.forEach((line, i) => {
+        ctx.fillStyle = line.color;
+        ctx.fillText(line.text, 15, 50 + i * 18);
+      });
+
+      return canvas;
+    }
+
+    function createMiniKeyboard() {
+      // Keyboard base (white/light blue)
+      const keyboardGeometry = new THREE.BoxGeometry(1.4, 0.08, 0.5);
+      const keyboardMaterial = new THREE.MeshStandardMaterial({
+        color: 0xe8f4f8,
+        roughness: 0.5
+      });
+      const keyboard = new THREE.Mesh(keyboardGeometry, keyboardMaterial);
+      keyboard.position.set(0.05, 1.33, 0.85);
+      keyboard.rotation.x = 0.08;
+      keyboard.castShadow = true;
+      workspace3dGroup.add(keyboard);
+
+      // Keys (simplified grid)
+      const keyMaterial = new THREE.MeshStandardMaterial({
+        color: 0xb8d4f1,
+        roughness: 0.6
+      });
+
+      for (let row = 0; row < 4; row++) {
+        for (let col = 0; col < 13; col++) {
+          const key = new THREE.Mesh(
+            new THREE.BoxGeometry(0.09, 0.04, 0.09),
+            keyMaterial
+          );
+          key.position.set(
+            -0.6 + col * 0.095,
+            1.38,
+            0.7 + row * 0.105
+          );
+          workspace3dGroup.add(key);
+        }
+      }
+
+      // Mouse
+      const mouseBody = new THREE.Mesh(
+        new THREE.BoxGeometry(0.2, 0.08, 0.28),
+        new THREE.MeshStandardMaterial({
+          color: 0xffffff,
+          roughness: 0.4,
+          metalness: 0.3
+        })
+      );
+      mouseBody.position.set(1.1, 1.33, 0.85);
+      mouseBody.castShadow = true;
+      workspace3dGroup.add(mouseBody);
+
+      // Mouse top (rounded)
+      const mouseTop = new THREE.Mesh(
+        new THREE.SphereGeometry(0.1, 16, 16, 0, Math.PI * 2, 0, Math.PI * 0.5),
+        new THREE.MeshStandardMaterial({
+          color: 0xe8f4f8,
+          roughness: 0.3
+        })
+      );
+      mouseTop.position.set(1.1, 1.37, 0.85);
+      mouseTop.rotation.x = Math.PI;
+      workspace3dGroup.add(mouseTop);
+
+      // Mouse scroll wheel
+      const scrollWheel = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.02, 0.02, 0.04, 8),
+        new THREE.MeshStandardMaterial({ color: 0xb8d4f1 })
+      );
+      scrollWheel.position.set(1.1, 1.39, 0.82);
+      scrollWheel.rotation.x = Math.PI / 2;
+      workspace3dGroup.add(scrollWheel);
+    }
+
+    function createCPUTower() {
+      // CPU tower body (black/dark gray case)
+      const cpuBody = new THREE.Mesh(
+        new THREE.BoxGeometry(0.5, 0.9, 0.45),
+        new THREE.MeshStandardMaterial({
+          color: 0x2a2a2a,
+          roughness: 0.4,
+          metalness: 0.6
+        })
+      );
+      cpuBody.position.set(2.0, 0.75, 0.2);
+      cpuBody.castShadow = true;
+      workspace3dGroup.add(cpuBody);
+
+      // Front panel accent (blue)
+      const frontPanel = new THREE.Mesh(
+        new THREE.BoxGeometry(0.48, 0.86, 0.02),
+        new THREE.MeshStandardMaterial({
+          color: 0x1a1a2e,
+          roughness: 0.3,
+          metalness: 0.7
+        })
+      );
+      frontPanel.position.set(2.0, 0.75, 0.44);
+      workspace3dGroup.add(frontPanel);
+
+      // Power button (glowing blue)
+      const powerButton = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.04, 0.04, 0.02, 16),
+        new THREE.MeshStandardMaterial({
+          color: 0x4a9eff,
+          emissive: 0x4a9eff,
+          emissiveIntensity: 0.8
+        })
+      );
+      powerButton.rotation.x = Math.PI / 2;
+      powerButton.position.set(2.15, 1.1, 0.45);
+      workspace3dGroup.add(powerButton);
+
+      // Power button light
+      const powerLight = new THREE.PointLight(0x4a9eff, 0.3, 1);
+      powerLight.position.set(2.15, 1.1, 0.5);
+      scene.add(powerLight);
+
+      // Ventilation slots
+      for (let i = 0; i < 5; i++) {
+        const vent = new THREE.Mesh(
+          new THREE.BoxGeometry(0.35, 0.02, 0.01),
+          new THREE.MeshStandardMaterial({ color: 0x1a1a1a })
+        );
+        vent.position.set(2.0, 0.5 + i * 0.08, 0.45);
+        workspace3dGroup.add(vent);
+      }
+
+      // Side panel accent (subtle blue glow - no flickering)
+      const sidePanel = new THREE.Mesh(
+        new THREE.BoxGeometry(0.02, 0.7, 0.35),
+        new THREE.MeshStandardMaterial({
+          color: 0x4a9eff,
+          emissive: 0x4a9eff,
+          emissiveIntensity: 0.15,
+          roughness: 0.3
+        })
+      );
+      sidePanel.position.set(2.26, 0.75, 0.2);
+      workspace3dGroup.add(sidePanel);
+
+      // Cable from CPU to monitor (simplified)
+      const cable = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.02, 0.02, 0.6, 8),
+        new THREE.MeshStandardMaterial({ color: 0x1a1a1a, roughness: 0.6 })
+      );
+      cable.position.set(1.5, 1.0, -0.1);
+      cable.rotation.z = Math.PI / 4;
+      workspace3dGroup.add(cable);
+    }
+
+    function createSideTable() {
+      // Small side table/nightstand for books and storage
+      // Table top
+      const tableTop = new THREE.Mesh(
+        new THREE.BoxGeometry(1.2, 0.12, 0.9),
+        new THREE.MeshStandardMaterial({
+          color: 0xd4a574,
+          roughness: 0.6
+        })
+      );
+      tableTop.position.set(1.5, 0.8, 2.0);
+      tableTop.castShadow = true;
+      workspace3dGroup.add(tableTop);
+
+      // Table legs
+      const legPositions = [
+        [1.0, 2.4], [2.0, 2.4], [1.0, 1.6], [2.0, 1.6]
+      ];
+      legPositions.forEach(([x, z]) => {
+        const leg = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.06, 0.06, 0.8, 16),
+          new THREE.MeshStandardMaterial({ color: 0xb89060, roughness: 0.7 })
+        );
+        leg.position.set(x, 0.4, z);
+        leg.castShadow = true;
+        workspace3dGroup.add(leg);
+      });
+
+      // Books on side table (stacked)
+      const bookColors = [
+        0x8b4513, 0x654321, 0xa0522d, 0xd2691e, 0xff8c00
+      ];
+      bookColors.forEach((color, i) => {
+        const book = new THREE.Mesh(
+          new THREE.BoxGeometry(0.35, 0.05, 0.25),
+          new THREE.MeshStandardMaterial({ color: color, roughness: 0.8 })
+        );
+        book.position.set(1.3, 0.89 + i * 0.055, 2.1);
+        book.rotation.y = Math.random() * 0.3 - 0.15;
+        workspace3dGroup.add(book);
+      });
+
+      // More books laid flat
+      const flatBookColors = [0x4a8bb7, 0x5a9bc7, 0x7eb3d9];
+      flatBookColors.forEach((color, i) => {
+        const book = new THREE.Mesh(
+          new THREE.BoxGeometry(0.28, 0.04, 0.22),
+          new THREE.MeshStandardMaterial({ color: color, roughness: 0.8 })
+        );
+        book.position.set(1.7, 0.89 + i * 0.045, 1.85);
+        book.rotation.y = 0.2;
+        workspace3dGroup.add(book);
+      });
+
+      // Small plant pot on side table
+      const pot = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.1, 0.08, 0.15, 16),
+        new THREE.MeshStandardMaterial({ color: 0xd4a574, roughness: 0.7 })
+      );
+      pot.position.set(1.8, 0.95, 2.2);
+      workspace3dGroup.add(pot);
+
+      // Small plant
+      for (let i = 0; i < 3; i++) {
+        const leaf = new THREE.Mesh(
+          new THREE.SphereGeometry(0.08, 8, 8),
+          new THREE.MeshStandardMaterial({ color: 0x4a7c4e, roughness: 0.8 })
+        );
+        leaf.position.set(
+          1.8 + Math.cos(i * 2) * 0.08,
+          1.08 + Math.random() * 0.1,
+          2.2 + Math.sin(i * 2) * 0.08
+        );
+        workspace3dGroup.add(leaf);
+      }
+
+      // Coffee mug on side table
+      const sideMug = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.09, 0.07, 0.14, 16),
+        new THREE.MeshStandardMaterial({ color: 0xff8585, roughness: 0.5 })
+      );
+      sideMug.position.set(1.2, 0.95, 1.9);
+      workspace3dGroup.add(sideMug);
+    }
+
+    function createShelves() {
+      // Left side shelves (2 tiers)
+      for (let i = 0; i < 2; i++) {
+        const shelf = new THREE.Mesh(
+          new THREE.BoxGeometry(1.2, 0.08, 0.4),
+          new THREE.MeshStandardMaterial({ color: 0xd4a574, roughness: 0.7 })
+        );
+        shelf.position.set(-2, 3 + i * 0.8, -2.4);
+        shelf.castShadow = true;
+        workspace3dGroup.add(shelf);
+
+        // Shelf support brackets
+        [-0.5, 0.5].forEach(xOffset => {
+          const bracket = new THREE.Mesh(
+            new THREE.BoxGeometry(0.06, 0.3, 0.06),
+            new THREE.MeshStandardMaterial({ color: 0xb89060 })
+          );
+          bracket.position.set(-2 + xOffset, 2.85 + i * 0.8, -2.4);
+          workspace3dGroup.add(bracket);
+        });
+
+        // Books on shelves
+        for (let j = 0; j < 3; j++) {
+          const book = new THREE.Mesh(
+            new THREE.BoxGeometry(0.15, 0.25, 0.08),
+            new THREE.MeshStandardMaterial({
+              color: [0x7eb3d9, 0x5a9bc7, 0x4a8bb7][j],
+              roughness: 0.8
+            })
+          );
+          book.position.set(-2.3 + j * 0.18, 3.16 + i * 0.8, -2.4);
+          book.rotation.y = (Math.random() - 0.5) * 0.2;
+          workspace3dGroup.add(book);
+        }
+      }
+
+      // Top shelf with decorations
+      const topShelf = new THREE.Mesh(
+        new THREE.BoxGeometry(5, 0.12, 0.5),
+        new THREE.MeshStandardMaterial({ color: 0xd4a574, roughness: 0.7 })
+      );
+      topShelf.position.set(0, 4.8, -2.75);
+      topShelf.castShadow = true;
+      workspace3dGroup.add(topShelf);
+    }
+
+    function createWallDecorations() {
+      // Window on back wall (right side)
+      const windowFrameOuter = new THREE.Mesh(
+        new THREE.BoxGeometry(1.1, 1.3, 0.12),
+        new THREE.MeshStandardMaterial({ color: 0xd4a574, roughness: 0.6 })
+      );
+      windowFrameOuter.position.set(1.5, 3.2, -2.94);
+      workspace3dGroup.add(windowFrameOuter);
+
+      // Window panes (light blue glass)
+      const windowGlass = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 1.2, 0.05),
+        new THREE.MeshStandardMaterial({
+          color: 0xb8d4f1,
+          transparent: true,
+          opacity: 0.5,
+          roughness: 0.1
+        })
+      );
+      windowGlass.position.set(1.5, 3.2, -2.88);
+      workspace3dGroup.add(windowGlass);
+
+      // Window blinds (rolled up at top)
+      const blinds = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 0.25, 0.08),
+        new THREE.MeshStandardMaterial({ color: 0xd4a574, roughness: 0.7 })
+      );
+      blinds.position.set(1.5, 3.9, -2.9);
+      workspace3dGroup.add(blinds);
+
+      // Wall signs/labels (left wall) - wooden style
+      const signLabels = ['NETWORK', 'ABOUT', 'CONTACT'];
+      signLabels.forEach((label, i) => {
+        const sign = new THREE.Mesh(
+          new THREE.BoxGeometry(0.7, 0.25, 0.06),
+          new THREE.MeshStandardMaterial({ color: 0xd4a574, roughness: 0.6 })
+        );
+        sign.position.set(-2.88, 3.6 - i * 0.45, -1);
+        workspace3dGroup.add(sign);
+      });
+
+      // Picture frames on back wall
+      // Frame 1 - left side
+      const frame1 = new THREE.Mesh(
+        new THREE.BoxGeometry(0.6, 0.7, 0.05),
+        new THREE.MeshStandardMaterial({ color: 0xd4a574, roughness: 0.5 })
+      );
+      frame1.position.set(-1.2, 3.5, -2.92);
+      workspace3dGroup.add(frame1);
+
+      const picture1 = new THREE.Mesh(
+        new THREE.BoxGeometry(0.5, 0.6, 0.02),
+        new THREE.MeshStandardMaterial({ color: 0xb8d4f1, roughness: 0.7 })
+      );
+      picture1.position.set(-1.2, 3.5, -2.89);
+      workspace3dGroup.add(picture1);
+
+      // Clock on back wall
+      const clock = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.25, 0.25, 0.08, 32),
+        new THREE.MeshStandardMaterial({ color: 0xf5e6d3, roughness: 0.5 })
+      );
+      clock.rotation.x = Math.PI / 2;
+      clock.position.set(0, 3.8, -2.9);
+      workspace3dGroup.add(clock);
+
+      // Clock face
+      const clockFace = new THREE.Mesh(
+        new THREE.CircleGeometry(0.22, 32),
+        new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.3 })
+      );
+      clockFace.position.set(0, 3.8, -2.86);
+      workspace3dGroup.add(clockFace);
+
+      // String lights on top
+      for (let i = 0; i < 10; i++) {
+        const light = new THREE.Mesh(
+          new THREE.SphereGeometry(0.08, 16, 16),
+          new THREE.MeshStandardMaterial({
+            color: [0xffd700, 0xb8d4f1, 0x7eb3d9, 0x98fb98, 0xffb6c1][i % 5],
+            emissive: [0xffd700, 0xb8d4f1, 0x7eb3d9, 0x98fb98, 0xffb6c1][i % 5],
+            emissiveIntensity: 0.4
+          })
+        );
+        light.position.set(-2.5 + i * 0.55, 4.65, -2.6);
+        workspace3dGroup.add(light);
+
+        // Add small point light for each bulb
+        const bulbLight = new THREE.PointLight(
+          [0xffd700, 0xb8d4f1, 0x7eb3d9, 0x98fb98, 0xffb6c1][i % 5],
+          0.2,
+          1
+        );
+        bulbLight.position.set(-2.5 + i * 0.55, 4.65, -2.6);
+        scene.add(bulbLight);
+      }
+
+      // String connecting the lights
+      const stringGeometry = new THREE.CylinderGeometry(0.01, 0.01, 5.5, 8);
+      const string = new THREE.Mesh(
+        stringGeometry,
+        new THREE.MeshStandardMaterial({ color: 0x808080 })
+      );
+      string.position.set(0, 4.65, -2.6);
+      string.rotation.z = Math.PI / 2;
+      workspace3dGroup.add(string);
+
+      // Wall shelf decorations
+      // Small plant on shelf
+      const shelfPlant = new THREE.Mesh(
+        new THREE.ConeGeometry(0.12, 0.25, 8),
+        new THREE.MeshStandardMaterial({ color: 0x90ee90, roughness: 0.8 })
+      );
+      shelfPlant.position.set(-1.8, 3.2, -2.35);
+      workspace3dGroup.add(shelfPlant);
+
+      // Small pot for shelf plant
+      const shelfPot = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.08, 0.06, 0.15, 16),
+        new THREE.MeshStandardMaterial({ color: 0xb8d4f1, roughness: 0.6 })
+      );
+      shelfPot.position.set(-1.8, 3.08, -2.35);
+      workspace3dGroup.add(shelfPot);
+
+      // Decorative items on top shelf
+      const decorColors = [0xb8d4f1, 0x7eb3d9, 0xffd700];
+      decorColors.forEach((color, i) => {
+        const decor = new THREE.Mesh(
+          new THREE.SphereGeometry(0.1, 16, 16),
+          new THREE.MeshStandardMaterial({ color: color, roughness: 0.4 })
+        );
+        decor.position.set(-1 + i * 0.5, 4.92, -2.5);
+        workspace3dGroup.add(decor);
+      });
+    }
+
+    function createFloorItems() {
+      // Cute character/mascot (blue cube for now - like Kirby in original)
+      const mascot = new THREE.Mesh(
+        new THREE.SphereGeometry(0.25, 32, 32),
+        new THREE.MeshStandardMaterial({
+          color: 0x7eb3d9,
+          roughness: 0.6
+        })
+      );
+      mascot.position.set(1.8, 0.7, 2);
+      mascot.castShadow = true;
+      workspace3dGroup.add(mascot);
+
+      // Eyes for mascot
+      [-0.08, 0.08].forEach(xOffset => {
+        const eye = new THREE.Mesh(
+          new THREE.SphereGeometry(0.04, 16, 16),
+          new THREE.MeshStandardMaterial({ color: 0x000000 })
+        );
+        eye.position.set(1.8 + xOffset, 0.8, 2.2);
+        workspace3dGroup.add(eye);
+      });
+
+      // Rug/mat on floor
+      const rug = new THREE.Mesh(
+        new THREE.BoxGeometry(2, 0.02, 1.5),
+        new THREE.MeshStandardMaterial({
+          color: 0xb8d4f1,
+          roughness: 0.9
+        })
+      );
+      rug.position.set(0, 0.38, 1.2);
+      workspace3dGroup.add(rug);
+
+      // Small ottoman/stool
+      const ottoman = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.3, 0.3, 0.25, 32),
+        new THREE.MeshStandardMaterial({ color: 0xd4e8f7, roughness: 0.7 })
+      );
+      ottoman.position.set(-1.5, 0.58, 1.5);
+      ottoman.castShadow = true;
+      workspace3dGroup.add(ottoman);
+    }
+
+    function createPlants() {
+      // Plants around the circular base
+      const plantPositions = [
+        [-4.2, 0, -2],
+        [4.2, 0, -2],
+        [-3.5, 0, 3.5],
+        [3.5, 0, 3.5]
+      ];
+
+      plantPositions.forEach(pos => {
+        // Pot
+        const pot = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.25, 0.2, 0.3, 16),
+          new THREE.MeshStandardMaterial({ color: 0xb8d4f1, roughness: 0.6 })
+        );
+        pot.position.set(pos[0], 0.2, pos[2]);
+        pot.castShadow = true;
+        workspace3dGroup.add(pot);
+
+        // Plant leaves (simple spheres in green)
+        for (let i = 0; i < 3; i++) {
+          const leaf = new THREE.Mesh(
+            new THREE.SphereGeometry(0.15, 16, 16),
+            new THREE.MeshStandardMaterial({ color: 0x90ee90, roughness: 0.8 })
+          );
+          leaf.position.set(
+            pos[0] + (Math.random() - 0.5) * 0.2,
+            0.4 + i * 0.15,
+            pos[2] + (Math.random() - 0.5) * 0.2
+          );
+          workspace3dGroup.add(leaf);
+        }
+      });
+
+      // Decorative stones/pebbles around base
+      for (let i = 0; i < 12; i++) {
+        const angle = (i / 12) * Math.PI * 2;
+        const radius = 5.2;
+        const stone = new THREE.Mesh(
+          new THREE.SphereGeometry(0.12, 16, 16),
+          new THREE.MeshStandardMaterial({
+            color: 0xe8f4f8,
+            roughness: 0.9
+          })
+        );
+        stone.position.set(
+          Math.cos(angle) * radius,
+          0.15,
+          Math.sin(angle) * radius
+        );
+        stone.scale.y = 0.5;
+        workspace3dGroup.add(stone);
+      }
+    }
+
+    // Keep old functions for compatibility
+    function createVSCodeCanvas() { return document.createElement('canvas'); }
+    function createLeftMonitor() {}
+    function createGitHubCanvas() { return document.createElement('canvas'); }
+    function createRightMonitor() {}
+    function createKeyboard() {}
+    function createMouse() {}
+    function createChair() {}
+    function createPerson() {}
+    function createAccessories() {}
+    function createDesk() {}
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+
+    function onWindowResize() {
+      const container = document.querySelector('.coding-illustration');
+      camera.aspect = container.clientWidth / container.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(container.clientWidth, container.clientHeight);
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init3DWorkspace);
+    } else {
+      init3DWorkspace();
+    }
+
+    /*
+    // OLD CODE - COMMENTED OUT
+    // Typewriter Effect
+
+      // Traffic lights
+      ctx.fillStyle = '#ff5f56';
+      ctx.beginPath();
+      ctx.arc(30, 30, 12, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#ffbd2e';
+      ctx.beginPath();
+      ctx.arc(65, 30, 12, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#27c93f';
+      ctx.beginPath();
+      ctx.arc(100, 30, 12, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Title
+      ctx.fillStyle = '#cccccc';
+      ctx.font = 'bold 22px -apple-system, BlinkMacSystemFont, "Segoe UI"';
+      ctx.fillText('nlp_model.py - Visual Studio Code', 900, 38);
+
+      // Activity Bar (Left side)
+      ctx.fillStyle = '#333333';
+      ctx.fillRect(0, 60, 80, 1260);
+
+      // Explorer icon (blue - active)
+      ctx.fillStyle = '#007acc';
+      ctx.fillRect(20, 90, 40, 40);
+
+      // Other icons
+      ctx.fillStyle = '#666666';
+      ctx.fillRect(20, 150, 40, 40);
+      ctx.fillRect(20, 210, 40, 40);
+      ctx.fillRect(20, 270, 40, 40);
+
+      // Sidebar - File Explorer
+      ctx.fillStyle = '#252526';
+      ctx.fillRect(80, 60, 280, 1260);
+
+      ctx.fillStyle = '#cccccc';
+      ctx.font = 'bold 18px Consolas, monospace';
+      ctx.fillText('EXPLORER', 100, 100);
+
+      // File tree
+      ctx.font = '16px Consolas, monospace';
+      ctx.fillStyle = '#8b949e';
+      ctx.fillText('▼ AI-NLP-PROJECTS', 100, 135);
+
+      ctx.fillStyle = '#8b949e';
+      ctx.fillText('  ▸ data', 110, 165);
+      ctx.fillText('  ▸ models', 110, 195);
+      ctx.fillText('  ▸ notebooks', 110, 225);
+      ctx.fillText('  ▼ src', 110, 255);
+
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText('    ▶ nlp_model.py', 120, 285);
+
+      ctx.fillStyle = '#8b949e';
+      ctx.fillText('      train.py', 120, 315);
+      ctx.fillText('      utils.py', 120, 345);
+      ctx.fillText('  .gitignore', 110, 375);
+      ctx.fillText('  requirements.txt', 110, 405);
+      ctx.fillText('  README.md', 110, 435);
+
+      // Main Editor Area
+      ctx.fillStyle = '#1e1e1e';
+      ctx.fillRect(360, 60, 1080, 880);
+
+      // Tab
+      ctx.fillStyle = '#2d2d2d';
+      ctx.fillRect(360, 60, 200, 50);
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '16px Consolas, monospace';
+      ctx.fillText('nlp_model.py', 380, 90);
+      ctx.fillStyle = '#666666';
+      ctx.fillText('×', 540, 90);
+
+      // Code content
+      ctx.font = '15px Consolas, monospace';
+      let lineY = 155;
+      const lineHeight = 22;
+
+      // Line numbers
+      ctx.fillStyle = '#858585';
+      for (let i = 1; i <= 30; i++) {
+        ctx.fillText(i.toString().padStart(2, ' '), 375, 135 + i * lineHeight);
+      }
+
+      // Code
+      ctx.fillStyle = '#c586c0';
+      ctx.fillText('import', 420, lineY);
+      ctx.fillStyle = '#9cdcfe';
+      ctx.fillText('torch', 485, lineY);
+      lineY += lineHeight;
+
+      ctx.fillStyle = '#c586c0';
+      ctx.fillText('import', 420, lineY);
+      ctx.fillStyle = '#9cdcfe';
+      ctx.fillText('transformers', 485, lineY);
+      lineY += lineHeight;
+
+      ctx.fillStyle = '#c586c0';
+      ctx.fillText('from', 420, lineY);
+      ctx.fillStyle = '#9cdcfe';
+      ctx.fillText('transformers', 475, lineY);
+      ctx.fillStyle = '#c586c0';
+      ctx.fillText('import', 605, lineY);
+      ctx.fillStyle = '#dcdcaa';
+      ctx.fillText('BertModel', 670, lineY);
+      lineY += lineHeight * 2;
+
+      ctx.fillStyle = '#c586c0';
+      ctx.fillText('class', 420, lineY);
+      ctx.fillStyle = '#4ec9b0';
+      ctx.fillText('NLPModel', 480, lineY);
+      ctx.fillStyle = '#d4d4d4';
+      ctx.fillText('(nn.Module):', 585, lineY);
+      lineY += lineHeight;
+
+      ctx.fillStyle = '#c586c0';
+      ctx.fillText('    def', 420, lineY);
+      ctx.fillStyle = '#dcdcaa';
+      ctx.fillText('__init__', 485, lineY);
+      ctx.fillStyle = '#d4d4d4';
+      ctx.fillText('(self, config):', 575, lineY);
+      lineY += lineHeight;
+
+      ctx.fillStyle = '#d4d4d4';
+      ctx.fillText('        super().__init__()', 420, lineY);
+      lineY += lineHeight;
+
+      ctx.fillStyle = '#d4d4d4';
+      ctx.fillText('        self.bert =', 420, lineY);
+      ctx.fillStyle = '#dcdcaa';
+      ctx.fillText('BertModel', 560, lineY);
+      ctx.fillStyle = '#d4d4d4';
+      ctx.fillText('.from_pretrained(', 650, lineY);
+      lineY += lineHeight;
+
+      ctx.fillStyle = '#ce9178';
+      ctx.fillText('            "bert-base-uncased"', 420, lineY);
+      lineY += lineHeight;
+
+      ctx.fillStyle = '#d4d4d4';
+      ctx.fillText('        )', 420, lineY);
+      lineY += lineHeight * 2;
+
+      ctx.fillStyle = '#c586c0';
+      ctx.fillText('    def', 420, lineY);
+      ctx.fillStyle = '#dcdcaa';
+      ctx.fillText('forward', 485, lineY);
+      ctx.fillStyle = '#d4d4d4';
+      ctx.fillText('(self, input_ids):', 560, lineY);
+      lineY += lineHeight;
+
+      ctx.fillStyle = '#d4d4d4';
+      ctx.fillText('        outputs = self.bert(input_ids)', 420, lineY);
+      lineY += lineHeight;
+
+      ctx.fillStyle = '#c586c0';
+      ctx.fillText('        return', 420, lineY);
+      ctx.fillStyle = '#d4d4d4';
+      ctx.fillText('outputs.last_hidden_state', 510, lineY);
+
+      // Copilot Panel (Right side)
+      ctx.fillStyle = '#181818';
+      ctx.fillRect(1440, 60, 480, 880);
+
+      ctx.fillStyle = '#252526';
+      ctx.fillRect(1440, 60, 480, 50);
+      ctx.fillStyle = '#cccccc';
+      ctx.font = 'bold 16px -apple-system';
+      ctx.fillText('GITHUB COPILOT', 1460, 90);
+
+      ctx.font = '14px Consolas, monospace';
+      ctx.fillStyle = '#888888';
+      ctx.fillText('Suggestions:', 1460, 140);
+
+      // Suggestion boxes
+      ctx.fillStyle = '#2d2d2d';
+      ctx.fillRect(1460, 160, 420, 100);
+      ctx.fillStyle = '#4ec9b0';
+      ctx.font = '13px Consolas, monospace';
+      ctx.fillText('+ Add attention mechanism', 1475, 190);
+      ctx.fillStyle = '#888888';
+      ctx.fillText('  for better performance', 1475, 215);
+
+      ctx.fillStyle = '#2d2d2d';
+      ctx.fillRect(1460, 280, 420, 100);
+      ctx.fillStyle = '#4ec9b0';
+      ctx.fillText('+ Implement dropout layers', 1475, 310);
+      ctx.fillStyle = '#888888';
+      ctx.fillText('  to prevent overfitting', 1475, 335);
+
+      // Terminal at bottom
+      ctx.fillStyle = '#1e1e1e';
+      ctx.fillRect(360, 940, 1560, 380);
+
+      ctx.fillStyle = '#252526';
+      ctx.fillRect(360, 940, 1560, 50);
+      ctx.fillStyle = '#cccccc';
+      ctx.font = 'bold 16px Consolas, monospace';
+      ctx.fillText('TERMINAL', 380, 970);
+      ctx.fillStyle = '#007acc';
+      ctx.fillText('+', 1880, 970);
+
+      // Terminal content
+      ctx.font = '15px Consolas, monospace';
+      ctx.fillStyle = '#22c55e';
+      ctx.fillText('kavish@macbook', 380, 1020);
+      ctx.fillStyle = '#3b82f6';
+      ctx.fillText('~/AI-NLP-Projects', 530, 1020);
+      ctx.fillStyle = '#d4d4d4';
+      ctx.fillText('$', 720, 1020);
+
+      ctx.fillText('python train.py --model bert-base --epochs 10', 380, 1055);
+
+      ctx.fillStyle = '#8b949e';
+      ctx.fillText('Epoch 1/10 - Loss: 0.4523 - Accuracy: 0.8234', 380, 1090);
+      ctx.fillText('Epoch 2/10 - Loss: 0.3891 - Accuracy: 0.8567', 380, 1115);
+      ctx.fillText('Epoch 3/10 - Loss: 0.3245 - Accuracy: 0.8789', 380, 1140);
+
+      ctx.fillStyle = '#3b82f6';
+      ctx.fillText('➜  Training in progress...', 380, 1175);
+
+      return canvas;
+    }
+
+    function createLeftMonitor() {
+      const monitorGroup = new THREE.Group();
+
+      // Monitor frame (bezel)
+      const frameGeometry = new THREE.BoxGeometry(5, 3.5, 0.15);
+      const frameMaterial = new THREE.MeshStandardMaterial({
+        color: 0x000000,
+        roughness: 0.3,
+        metalness: 0.8
+      });
+      const frame = new THREE.Mesh(frameGeometry, frameMaterial);
+      frame.castShadow = true;
+      monitorGroup.add(frame);
+
+      // Screen with VS Code interface
+      const vscodeCanvas = createVSCodeCanvas();
+      const vscodeTexture = new THREE.CanvasTexture(vscodeCanvas);
+      vscodeTexture.minFilter = THREE.LinearFilter;
+      vscodeTexture.magFilter = THREE.LinearFilter;
+
+      const screenGeometry = new THREE.BoxGeometry(4.8, 3.3, 0.05);
+      const screenMaterial = new THREE.MeshStandardMaterial({
+        map: vscodeTexture,
+        emissive: 0x1e1e1e,
+        emissiveIntensity: 0.3
+      });
+      const screen = new THREE.Mesh(screenGeometry, screenMaterial);
+      screen.position.z = 0.1;
+      monitorGroup.add(screen);
+
+      // Screen glow
+      const glowGeometry = new THREE.BoxGeometry(4.9, 3.4, 0.01);
+      const glowMaterial = new THREE.MeshBasicMaterial({
+        color: 0x007acc,
+        transparent: true,
+        opacity: 0.15
+      });
+      const glow = new THREE.Mesh(glowGeometry, glowMaterial);
+      glow.position.z = 0.15;
+      monitorGroup.add(glow);
+
+      // Monitor stand
+      const standGeometry = new THREE.CylinderGeometry(0.15, 0.15, 1.5, 16);
+      const standMaterial = new THREE.MeshStandardMaterial({
+        color: 0x2d3748,
+        metalness: 0.7,
+        roughness: 0.3
+      });
+      const stand = new THREE.Mesh(standGeometry, standMaterial);
+      stand.position.set(0, -2.5, 0);
+      monitorGroup.add(stand);
+
+      // Stand base
+      const baseGeometry = new THREE.CylinderGeometry(0.6, 0.6, 0.15, 32);
+      const base = new THREE.Mesh(baseGeometry, standMaterial);
+      base.position.set(0, -3.3, 0);
+      monitorGroup.add(base);
+
+      monitorGroup.position.set(-3.5, 4.5, -2);
+      monitorGroup.rotation.y = Math.PI * 0.05;
+      workspace3dGroup.add(monitorGroup);
+    }
+
+    function createGitHubCanvas() {
+      const canvas = document.createElement('canvas');
+      canvas.width = 1920;
+      canvas.height = 1320;
+      const ctx = canvas.getContext('2d');
+
+      // Background
+      ctx.fillStyle = '#0d1117';
+      ctx.fillRect(0, 0, 1920, 1320);
+
+      // Browser Chrome
+      ctx.fillStyle = '#161b22';
+      ctx.fillRect(0, 0, 1920, 60);
+
+      // Traffic lights
+      ctx.fillStyle = '#ff5f56';
+      ctx.beginPath();
+      ctx.arc(30, 30, 12, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#ffbd2e';
+      ctx.beginPath();
+      ctx.arc(65, 30, 12, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#27c93f';
+      ctx.beginPath();
+      ctx.arc(100, 30, 12, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Address bar
+      ctx.fillStyle = '#0d1117';
+      ctx.fillRect(700, 15, 800, 30);
+      ctx.fillStyle = '#58a6ff';
+      ctx.font = '18px Consolas, monospace';
+      ctx.fillText('github.com/thekavishshah', 720, 38);
+
+      // GitHub Header
+      ctx.fillStyle = '#010409';
+      ctx.fillRect(0, 60, 1920, 80);
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 32px -apple-system, BlinkMacSystemFont';
+      ctx.fillText('GitHub', 100, 115);
+
+      // Follow button
+      ctx.fillStyle = '#238636';
+      ctx.fillRect(1650, 85, 200, 50);
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 20px -apple-system';
+      ctx.fillText('Follow', 1720, 118);
+
+      // Profile Section
+      ctx.fillStyle = '#0d1117';
+      ctx.fillRect(0, 140, 1920, 1180);
+
+      // Profile Picture (circle)
+      ctx.fillStyle = '#30363d';
+      ctx.beginPath();
+      ctx.arc(200, 270, 90, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#58a6ff';
+      ctx.lineWidth = 4;
+      ctx.stroke();
+
+      // Initial
+      ctx.fillStyle = '#58a6ff';
+      ctx.font = 'bold 72px -apple-system';
+      ctx.fillText('K', 180, 295);
+
+      // Profile Info
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 40px -apple-system';
+      ctx.fillText('Kavish Shah', 350, 230);
+
+      ctx.fillStyle = '#8b949e';
+      ctx.font = '24px -apple-system';
+      ctx.fillText('thekavishshah', 350, 270);
+
+      ctx.fillStyle = '#c9d1d9';
+      ctx.font = '22px -apple-system';
+      ctx.fillText('🎓 CS @ Arizona State University | AI & NLP Enthusiast', 350, 315);
+
+      // Stats Bar
+      ctx.fillStyle = '#161b22';
+      ctx.fillRect(100, 400, 500, 100);
+      ctx.fillStyle = '#8b949e';
+      ctx.font = '20px -apple-system';
+      ctx.fillText('Repositories', 130, 440);
+      ctx.fillStyle = '#58a6ff';
+      ctx.font = 'bold 28px -apple-system';
+      ctx.fillText('24', 220, 480);
+
+      ctx.fillStyle = '#161b22';
+      ctx.fillRect(650, 400, 500, 100);
+      ctx.fillStyle = '#8b949e';
+      ctx.font = '20px -apple-system';
+      ctx.fillText('Followers', 730, 440);
+      ctx.fillStyle = '#58a6ff';
+      ctx.font = 'bold 28px -apple-system';
+      ctx.fillText('127', 800, 480);
+
+      ctx.fillStyle = '#161b22';
+      ctx.fillRect(1200, 400, 500, 100);
+      ctx.fillStyle = '#8b949e';
+      ctx.font = '20px -apple-system';
+      ctx.fillText('Following', 1285, 440);
+      ctx.fillStyle = '#58a6ff';
+      ctx.font = 'bold 28px -apple-system';
+      ctx.fillText('89', 1360, 480);
+
+      // Pinned Repositories Title
+      ctx.fillStyle = '#c9d1d9';
+      ctx.font = 'bold 26px -apple-system';
+      ctx.fillText('Pinned Repositories', 100, 580);
+
+      // Repo Card 1 - ClearCue
+      ctx.fillStyle = '#161b22';
+      ctx.strokeStyle = '#30363d';
+      ctx.lineWidth = 2;
+      ctx.fillRect(100, 620, 820, 200);
+      ctx.strokeRect(100, 620, 820, 200);
+
+      ctx.fillStyle = '#58a6ff';
+      ctx.font = 'bold 28px -apple-system';
+      ctx.fillText('ClearCue', 130, 670);
+
+      ctx.fillStyle = '#8b949e';
+      ctx.font = '20px -apple-system';
+      ctx.fillText('AI-powered study assistant generating flashcards from lecture notes', 130, 710);
+      ctx.fillText('using NLP and machine learning', 130, 740);
+
+      // Language indicator
+      ctx.fillStyle = '#3572A5';
+      ctx.beginPath();
+      ctx.arc(130, 790, 12, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#8b949e';
+      ctx.font = '18px -apple-system';
+      ctx.fillText('Python', 155, 798);
+
+      ctx.fillText('⭐ 18', 750, 798);
+
+      // Repo Card 2 - Portfolio
+      ctx.fillStyle = '#161b22';
+      ctx.fillRect(1000, 620, 820, 200);
+      ctx.strokeRect(1000, 620, 820, 200);
+
+      ctx.fillStyle = '#58a6ff';
+      ctx.font = 'bold 28px -apple-system';
+      ctx.fillText('portfolio-website', 1030, 670);
+
+      ctx.fillStyle = '#8b949e';
+      ctx.font = '20px -apple-system';
+      ctx.fillText('Interactive 3D portfolio showcasing projects and experience', 1030, 710);
+      ctx.fillText('Built with React, Three.js, and modern web technologies', 1030, 740);
+
+      // Language indicator
+      ctx.fillStyle = '#f1e05a';
+      ctx.beginPath();
+      ctx.arc(1030, 790, 12, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#8b949e';
+      ctx.fillText('JavaScript', 1055, 798);
+
+      ctx.fillText('⭐ 12', 1650, 798);
+
+      // Repo Card 3 - NLP Research
+      ctx.fillStyle = '#161b22';
+      ctx.fillRect(100, 870, 820, 200);
+      ctx.strokeRect(100, 870, 820, 200);
+
+      ctx.fillStyle = '#58a6ff';
+      ctx.font = 'bold 28px -apple-system';
+      ctx.fillText('nlp-sentiment-analysis', 130, 920);
+
+      ctx.fillStyle = '#8b949e';
+      ctx.font = '20px -apple-system';
+      ctx.fillText('Advanced sentiment analysis using BERT transformers', 130, 960);
+      ctx.fillText('Fine-tuned on domain-specific datasets', 130, 990);
+
+      ctx.fillStyle = '#3572A5';
+      ctx.beginPath();
+      ctx.arc(130, 1040, 12, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#8b949e';
+      ctx.fillText('Python', 155, 1048);
+
+      ctx.fillText('⭐ 24', 750, 1048);
+
+      // Repo Card 4 - AI Chatbot
+      ctx.fillStyle = '#161b22';
+      ctx.fillRect(1000, 870, 820, 200);
+      ctx.strokeRect(1000, 870, 820, 200);
+
+      ctx.fillStyle = '#58a6ff';
+      ctx.font = 'bold 28px -apple-system';
+      ctx.fillText('ai-chatbot-engine', 1030, 920);
+
+      ctx.fillStyle = '#8b949e';
+      ctx.font = '20px -apple-system';
+      ctx.fillText('Conversational AI chatbot with context awareness', 1030, 960);
+      ctx.fillText('Powered by GPT architecture and custom training', 1030, 990);
+
+      ctx.fillStyle = '#3572A5';
+      ctx.beginPath();
+      ctx.arc(1030, 1040, 12, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#8b949e';
+      ctx.fillText('Python', 1055, 1048);
+
+      ctx.fillText('⭐ 31', 1650, 1048);
+
+      // Contribution Graph
+      ctx.fillStyle = '#8b949e';
+      ctx.font = '20px -apple-system';
+      ctx.fillText('342 contributions in the last year', 100, 1150);
+
+      // Contribution squares (simplified grid)
+      const colors = ['#0e4429', '#006d32', '#26a641', '#39d353'];
+      for (let week = 0; week < 52; week++) {
+        for (let day = 0; day < 7; day++) {
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          ctx.fillStyle = color;
+          ctx.fillRect(100 + week * 14, 1180 + day * 14, 12, 12);
+        }
+      }
+
+      return canvas;
+    }
+
+    function createRightMonitor() {
+      const monitorGroup = new THREE.Group();
+
+      // Monitor frame
+      const frameGeometry = new THREE.BoxGeometry(5, 3.5, 0.15);
+      const frameMaterial = new THREE.MeshStandardMaterial({
+        color: 0x000000,
+        roughness: 0.3,
+        metalness: 0.8
+      });
+      const frame = new THREE.Mesh(frameGeometry, frameMaterial);
+      frame.castShadow = true;
+      monitorGroup.add(frame);
+
+      // Screen with GitHub profile
+      const githubCanvas = createGitHubCanvas();
+      const githubTexture = new THREE.CanvasTexture(githubCanvas);
+      githubTexture.minFilter = THREE.LinearFilter;
+      githubTexture.magFilter = THREE.LinearFilter;
+
+      const screenGeometry = new THREE.BoxGeometry(4.8, 3.3, 0.05);
+      const screenMaterial = new THREE.MeshStandardMaterial({
+        map: githubTexture,
+        emissive: 0x0d1117,
+        emissiveIntensity: 0.3
+      });
+      const screen = new THREE.Mesh(screenGeometry, screenMaterial);
+      screen.position.z = 0.1;
+      monitorGroup.add(screen);
+
+      // Screen glow
+      const glowGeometry = new THREE.BoxGeometry(4.9, 3.4, 0.01);
+      const glowMaterial = new THREE.MeshBasicMaterial({
+        color: 0x58a6ff,
+        transparent: true,
+        opacity: 0.15
+      });
+      const glow = new THREE.Mesh(glowGeometry, glowMaterial);
+      glow.position.z = 0.15;
+      monitorGroup.add(glow);
+
+      // Monitor stand
+      const standGeometry = new THREE.CylinderGeometry(0.15, 0.15, 1.5, 16);
+      const standMaterial = new THREE.MeshStandardMaterial({
+        color: 0x2d3748,
+        metalness: 0.7,
+        roughness: 0.3
+      });
+      const stand = new THREE.Mesh(standGeometry, standMaterial);
+      stand.position.set(0, -2.5, 0);
+      monitorGroup.add(stand);
+
+      // Stand base
+      const baseGeometry = new THREE.CylinderGeometry(0.6, 0.6, 0.15, 32);
+      const base = new THREE.Mesh(baseGeometry, standMaterial);
+      base.position.set(0, -3.3, 0);
+      monitorGroup.add(base);
+
+      monitorGroup.position.set(3.5, 4.5, -2);
+      monitorGroup.rotation.y = -Math.PI * 0.05;
+      workspace3dGroup.add(monitorGroup);
+    }
+
+    function createKeyboard() {
+      const keyboardGroup = new THREE.Group();
+
+      // Keyboard base
+      const baseGeometry = new THREE.BoxGeometry(4, 0.2, 1.5);
+      const baseMaterial = new THREE.MeshStandardMaterial({
+        color: 0x1f2937,
+        roughness: 0.4,
+        metalness: 0.6
+      });
+      const base = new THREE.Mesh(baseGeometry, baseMaterial);
+      base.castShadow = true;
+      keyboardGroup.add(base);
+
+      // Keys
+      const keyMaterial = new THREE.MeshStandardMaterial({
+        color: 0x4b5563,
+        roughness: 0.5
+      });
+
+      for (let row = 0; row < 4; row++) {
+        for (let col = 0; col < 12; col++) {
+          const keyGeometry = new THREE.BoxGeometry(0.25, 0.15, 0.25);
+          const key = new THREE.Mesh(keyGeometry, keyMaterial);
+          key.position.set(
+            -1.7 + col * 0.3,
+            0.18,
+            -0.4 + row * 0.3
+          );
+          key.castShadow = true;
+          keyboardGroup.add(key);
+        }
+      }
+
+      // RGB underglow
+      const glowGeometry = new THREE.BoxGeometry(4, 0.05, 1.5);
+      const glowMaterial = new THREE.MeshBasicMaterial({
+        color: 0xa78bfa,
+        transparent: true,
+        opacity: 0.8
+      });
+      const glow = new THREE.Mesh(glowGeometry, glowMaterial);
+      glow.position.y = -0.12;
+      keyboardGroup.add(glow);
+
+      keyboardGroup.position.set(0, 2.35, 1.5);
+      keyboardGroup.rotation.x = Math.PI * 0.05;
+      workspace3dGroup.add(keyboardGroup);
+    }
+
+    function createMouse() {
+      const mouseGroup = new THREE.Group();
+
+      // Mouse body
+      const bodyGeometry = new THREE.BoxGeometry(0.5, 0.3, 0.8);
+      const bodyMaterial = new THREE.MeshStandardMaterial({
+        color: 0x1f2937,
+        roughness: 0.4,
+        metalness: 0.6
+      });
+      const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+      body.castShadow = true;
+      mouseGroup.add(body);
+
+      // Mouse top
+      const topGeometry = new THREE.BoxGeometry(0.45, 0.05, 0.75);
+      const topMaterial = new THREE.MeshStandardMaterial({
+        color: 0x374151,
+        roughness: 0.3,
+        metalness: 0.7
+      });
+      const top = new THREE.Mesh(topGeometry, topMaterial);
+      top.position.y = 0.17;
+      mouseGroup.add(top);
+
+      // LED indicator
+      const ledGeometry = new THREE.SphereGeometry(0.03, 16, 16);
+      const ledMaterial = new THREE.MeshBasicMaterial({
+        color: 0x3b82f6,
+        emissive: 0x3b82f6
+      });
+      const led = new THREE.Mesh(ledGeometry, ledMaterial);
+      led.position.set(0, 0.2, -0.2);
+      mouseGroup.add(led);
+
+      mouseGroup.position.set(4.5, 2.4, 1.5);
+      workspace3dGroup.add(mouseGroup);
+    }
+
+    function createChair() {
+      const chairGroup = new THREE.Group();
+
+      // Chair back
+      const backGeometry = new THREE.BoxGeometry(1.8, 2, 0.3);
+      const backMaterial = new THREE.MeshStandardMaterial({
+        color: 0x374151,
+        roughness: 0.6
+      });
+      const back = new THREE.Mesh(backGeometry, backMaterial);
+      back.position.set(0, 2.5, 0);
+      back.castShadow = true;
+      chairGroup.add(back);
+
+      // Chair seat
+      const seatGeometry = new THREE.BoxGeometry(1.8, 0.3, 1.6);
+      const seat = new THREE.Mesh(seatGeometry, backMaterial);
+      seat.position.set(0, 1.5, 0.5);
+      seat.castShadow = true;
+      chairGroup.add(seat);
+
+      chairGroup.position.set(0, 0, 4);
+      workspace3dGroup.add(chairGroup);
+    }
+
+    function createPerson() {
+      const personGroup = new THREE.Group();
+
+      // Body (hoodie)
+      const bodyGeometry = new THREE.CylinderGeometry(0.6, 0.8, 1.5, 32);
+      const bodyMaterial = new THREE.MeshStandardMaterial({
+        color: 0x4f46e5,
+        roughness: 0.8
+      });
+      const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+      body.position.y = 2.7;
+      body.castShadow = true;
+      personGroup.add(body);
+
+      // Head
+      const headGeometry = new THREE.SphereGeometry(0.4, 32, 32);
+      const headMaterial = new THREE.MeshStandardMaterial({
+        color: 0xfbbf24,
+        roughness: 0.5
+      });
+      const head = new THREE.Mesh(headGeometry, headMaterial);
+      head.position.y = 3.8;
+      head.castShadow = true;
+      personGroup.add(head);
+
+      // Hair
+      const hairGeometry = new THREE.SphereGeometry(0.42, 32, 32, 0, Math.PI * 2, 0, Math.PI * 0.7);
+      const hairMaterial = new THREE.MeshStandardMaterial({
+        color: 0x0f172a,
+        roughness: 0.9
+      });
+      const hair = new THREE.Mesh(hairGeometry, hairMaterial);
+      hair.position.y = 3.9;
+      personGroup.add(hair);
+
+      // Left arm
+      const armGeometry = new THREE.CylinderGeometry(0.15, 0.15, 1.5, 16);
+      const leftArm = new THREE.Mesh(armGeometry, bodyMaterial);
+      leftArm.position.set(-0.65, 2.5, 0.5);
+      leftArm.rotation.x = Math.PI * 0.4;
+      leftArm.rotation.z = Math.PI * 0.2;
+      leftArm.castShadow = true;
+      personGroup.add(leftArm);
+
+      // Right arm
+      const rightArm = new THREE.Mesh(armGeometry, bodyMaterial);
+      rightArm.position.set(0.65, 2.5, 0.5);
+      rightArm.rotation.x = Math.PI * 0.4;
+      rightArm.rotation.z = -Math.PI * 0.2;
+      rightArm.castShadow = true;
+      personGroup.add(rightArm);
+
+      // Hands
+      const handGeometry = new THREE.SphereGeometry(0.12, 16, 16);
+      const handMaterial = new THREE.MeshStandardMaterial({
+        color: 0xfbbf24,
+        roughness: 0.6
+      });
+
+      const leftHand = new THREE.Mesh(handGeometry, handMaterial);
+      leftHand.position.set(-1.2, 2.2, 1.5);
+      personGroup.add(leftHand);
+
+      const rightHand = new THREE.Mesh(handGeometry, handMaterial);
+      rightHand.position.set(1.2, 2.2, 1.5);
+      personGroup.add(rightHand);
+
+      personGroup.position.set(0, 0, 3.5);
+      workspace3dGroup.add(personGroup);
+    }
+
+    function createAccessories() {
+      // Coffee cup with "AI Developer" text
+      const cupGroup = new THREE.Group();
+
+      const cupGeometry = new THREE.CylinderGeometry(0.3, 0.25, 0.6, 32);
+      const cupMaterial = new THREE.MeshStandardMaterial({
+        color: 0xD2691E,
+        roughness: 0.4,
+        metalness: 0.1
+      });
+      const cup = new THREE.Mesh(cupGeometry, cupMaterial);
+      cup.castShadow = true;
+      cupGroup.add(cup);
+
+      // Coffee liquid
+      const liquidGeometry = new THREE.CylinderGeometry(0.28, 0.24, 0.4, 32);
+      const liquidMaterial = new THREE.MeshStandardMaterial({
+        color: 0x3e2723,
+        roughness: 0.2
+      });
+      const liquid = new THREE.Mesh(liquidGeometry, liquidMaterial);
+      liquid.position.y = 0.15;
+      cupGroup.add(liquid);
+
+      cupGroup.position.set(6, 2.6, -1);
+      workspace3dGroup.add(cupGroup);
+
+      // Mini plant (succulent)
+      const plantGroup = new THREE.Group();
+
+      const potGeometry = new THREE.CylinderGeometry(0.3, 0.25, 0.5, 16);
+      const potMaterial = new THREE.MeshStandardMaterial({
+        color: 0x7C2D12,
+        roughness: 0.7
+      });
+      const pot = new THREE.Mesh(potGeometry, potMaterial);
+      pot.castShadow = true;
+      plantGroup.add(pot);
+
+      // Plant leaves (succulent style)
+      for (let i = 0; i < 8; i++) {
+        const leafGeometry = new THREE.SphereGeometry(0.2, 16, 16);
+        const leafMaterial = new THREE.MeshStandardMaterial({
+          color: 0x10B981,
+          roughness: 0.8
+        });
+        const leaf = new THREE.Mesh(leafGeometry, leafMaterial);
+        const angle = (i / 8) * Math.PI * 2;
+        leaf.position.set(
+          Math.cos(angle) * 0.25,
+          0.5,
+          Math.sin(angle) * 0.25
+        );
+        plantGroup.add(leaf);
+      }
+
+      plantGroup.position.set(-6.5, 2.5, -1.5);
+      workspace3dGroup.add(plantGroup);
+
+      // AI/ML Book Stack with titles
+      const books = [
+        { color: 0x2563EB, title: 'Deep Learning' },
+        { color: 0xDC2626, title: 'NLP with Transformers' },
+        { color: 0x059669, title: 'Python for AI' }
+      ];
+
+      books.forEach((book, i) => {
+        const bookGeometry = new THREE.BoxGeometry(1.2, 0.18, 0.8);
+        const bookMaterial = new THREE.MeshStandardMaterial({
+          color: book.color,
+          roughness: 0.6,
+          metalness: 0.1
+        });
+        const bookMesh = new THREE.Mesh(bookGeometry, bookMaterial);
+        bookMesh.position.set(6.5, 2.4 + i * 0.19, 1.2);
+        bookMesh.rotation.y = (Math.random() - 0.5) * 0.15;
+        bookMesh.castShadow = true;
+        workspace3dGroup.add(bookMesh);
+      });
+
+      // Notebook/Journal (opened)
+      const notebookBase = new THREE.BoxGeometry(0.8, 0.05, 0.6);
+      const notebookMat = new THREE.MeshStandardMaterial({
+        color: 0x2d2d2d,
+        roughness: 0.8
+      });
+      const notebook = new THREE.Mesh(notebookBase, notebookMat);
+      notebook.position.set(-5, 2.35, 2);
+      notebook.rotation.y = -0.4;
+      notebook.castShadow = true;
+      workspace3dGroup.add(notebook);
+
+      // Pen on notebook
+      const penGeometry = new THREE.CylinderGeometry(0.03, 0.03, 0.6, 16);
+      const penMaterial = new THREE.MeshStandardMaterial({
+        color: 0x1a1a1a,
+        roughness: 0.3,
+        metalness: 0.7
+      });
+      const pen = new THREE.Mesh(penGeometry, penMaterial);
+      pen.position.set(-4.8, 2.4, 2.1);
+      pen.rotation.z = Math.PI / 2;
+      pen.rotation.y = -0.4;
+      workspace3dGroup.add(pen);
+
+      // Headphone stand with headphones
+      const standPoleGeometry = new THREE.CylinderGeometry(0.05, 0.08, 1.2, 16);
+      const standMaterial = new THREE.MeshStandardMaterial({
+        color: 0x1a1a1a,
+        roughness: 0.3,
+        metalness: 0.8
+      });
+      const standPole = new THREE.Mesh(standPoleGeometry, standMaterial);
+      standPole.position.set(-7, 2.85, 2);
+      workspace3dGroup.add(standPole);
+
+      // Headphone arch
+      const headphoneArc = new THREE.TorusGeometry(0.35, 0.05, 16, 32, Math.PI);
+      const headphoneMat = new THREE.MeshStandardMaterial({
+        color: 0x2d2d2d,
+        roughness: 0.4,
+        metalness: 0.6
+      });
+      const headphone = new THREE.Mesh(headphoneArc, headphoneMat);
+      headphone.position.set(-7, 3.4, 2);
+      headphone.rotation.x = Math.PI / 2;
+      workspace3dGroup.add(headphone);
+
+      // Laptop (closed) on side
+      const laptopBase = new THREE.BoxGeometry(1.2, 0.08, 0.9);
+      const laptopMat = new THREE.MeshStandardMaterial({
+        color: 0x2d3748,
+        roughness: 0.3,
+        metalness: 0.7
+      });
+      const laptop = new THREE.Mesh(laptopBase, laptopMat);
+      laptop.position.set(7, 2.35, 2.5);
+      laptop.rotation.y = 0.3;
+      laptop.castShadow = true;
+      workspace3dGroup.add(laptop);
+
+      // Sticky notes
+      const stickyColors = [0xffeb3b, 0xff9800, 0xff5722];
+      stickyColors.forEach((color, i) => {
+        const stickyGeometry = new THREE.BoxGeometry(0.4, 0.02, 0.4);
+        const stickyMaterial = new THREE.MeshStandardMaterial({
+          color: color,
+          roughness: 0.9
+        });
+        const sticky = new THREE.Mesh(stickyGeometry, stickyMaterial);
+        sticky.position.set(-4.5 + i * 0.45, 2.36, -2.5);
+        sticky.rotation.y = (Math.random() - 0.5) * 0.3;
+        workspace3dGroup.add(sticky);
+      });
+    }
+
+    function createFloor() {
+      const floorGeometry = new THREE.PlaneGeometry(40, 40);
+      const floorMaterial = new THREE.MeshStandardMaterial({
+        color: 0x0f0f23,
+        roughness: 0.85,
+        metalness: 0.15,
+        transparent: true,
+        opacity: 0.9
+      });
+      const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+      floor.rotation.x = -Math.PI / 2;
+      floor.position.y = -1;
+      floor.receiveShadow = true;
+      scene.add(floor);
+
+      // Add subtle grid lines for depth
+      const gridHelper = new THREE.GridHelper(40, 40, 0x6366f1, 0x1a1a35);
+      gridHelper.material.opacity = 0.1;
+      gridHelper.material.transparent = true;
+      gridHelper.position.y = -0.99;
+      scene.add(gridHelper);
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+
+    function onWindowResize() {
+      const container = document.querySelector('.coding-illustration');
+      camera.aspect = container.clientWidth / container.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(container.clientWidth, container.clientHeight);
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init3DWorkspace);
+    } else {
+      init3DWorkspace();
+    }
+    */
 
     // Typewriter Effect
     const typedTextSpan = document.querySelector('.typed-text');
