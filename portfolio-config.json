@@ -161,8 +161,12 @@
   "social": {
     "linkedin": "https://www.linkedin.com/in/shah-kavish/",
     "github": "https://github.com/thekavishshah",
+    "leetcode": "https://leetcode.com/u/thekavishshah",
     "email": "mailto:kshah77@asu.edu",
-    "portfolio": "https://thekavishshah.github.io/"
+    "portfolio": "https://thekavishshah.github.io/",
+    "twitter": "",
+    "kaggle": "",
+    "fiverr": ""
   },
   "internship": {
     "seeking": true,
