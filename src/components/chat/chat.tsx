@@ -47,7 +47,7 @@ const Avatar = dynamic<AvatarProps>(
       // Conditional rendering based on detection
       return (
         <div
-          className={`flex items-center justify-center rounded-full transition-all duration-300 ${hasActiveTool ? 'h-20 w-20' : 'h-28 w-28'}`}
+          className={`flex items-center justify-center rounded-full transition-all duration-300 ${hasActiveTool ? 'h-24 w-24' : 'h-36 w-36'}`}
         >
           <div
             className="relative cursor-pointer"
@@ -271,58 +271,42 @@ const Chat = () => {
     !currentAIMessage && !latestUserMessage && !loadingSubmit && !presetReply && !errorMessage;
 
   // Calculate header height based on hasActiveTool
-  const headerHeight = hasActiveTool ? 100 : 180;
+  const headerHeight = hasActiveTool ? 120 : 210;
 
   return (
     <div className="relative h-screen overflow-hidden">
-      {/* Fixed Avatar Header with Gradient */}
-      <div
-        className="fixed top-0 right-0 left-0 z-50"
-        style={{
-          background:
-            'linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.95) 30%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%)',
-        }}
-      >
-        <div
-          className={`transition-all duration-300 ease-in-out ${hasActiveTool ? 'pt-6 pb-0' : 'py-6'}`}
-        >
-          <div className="flex justify-center">
-            <ClientOnly>
-              <Avatar
-                hasActiveTool={hasActiveTool}
-              />
-            </ClientOnly>
-          </div>
-
-          <AnimatePresence>
-            {latestUserMessage && !currentAIMessage && (
-              <motion.div
-                {...MOTION_CONFIG}
-                className="mx-auto flex max-w-3xl px-4"
-              >
-                <ChatBubble variant="sent">
-                  <ChatBubbleMessage>
-                    <ChatMessageContent
-                      message={latestUserMessage}
-                      isLast={true}
-                      isLoading={false}
-                      reload={() => Promise.resolve(null)}
-                    />
-                  </ChatBubbleMessage>
-                </ChatBubble>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </div>
-
       {/* Main Content Area */}
       <div className="container mx-auto flex h-full max-w-3xl flex-col">
         {/* Scrollable Chat Content */}
-        <div
-          className="flex-1 overflow-y-auto px-2 pb-4"
-          style={{ paddingTop: `${headerHeight}px` }}
-        >
+        <div className="flex-1 overflow-y-auto px-2 pb-4">
+          {/* Avatar Header */}
+          <div className={`transition-all duration-300 ease-in-out ${hasActiveTool ? 'pt-6 pb-0' : 'py-6'}`}>
+            <div className="flex justify-center">
+              <ClientOnly>
+                <Avatar hasActiveTool={hasActiveTool} />
+              </ClientOnly>
+            </div>
+
+            <AnimatePresence>
+              {latestUserMessage && !currentAIMessage && (
+                <motion.div
+                  {...MOTION_CONFIG}
+                  className="mx-auto flex max-w-3xl px-4"
+                >
+                  <ChatBubble variant="sent">
+                    <ChatBubbleMessage>
+                      <ChatMessageContent
+                        message={latestUserMessage}
+                        isLast={true}
+                        isLoading={false}
+                        reload={() => Promise.resolve(null)}
+                      />
+                    </ChatBubbleMessage>
+                  </ChatBubble>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
           <AnimatePresence mode="wait">
             {isEmptyState ? (
               <motion.div

@@ -75,7 +75,7 @@ const ChatLanding: React.FC<ChatLandingProps> = ({ submitQuery, handlePresetRepl
 
   return (
     <motion.div
-      className="flex w-full flex-col items-center px-4 py-6"
+      className="flex w-full flex-col items-center px-4 pb-6"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
