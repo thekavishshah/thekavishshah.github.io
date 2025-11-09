@@ -1,0 +1,264 @@
+{
+  "personal": {
+    "name": "Kavish Shah",
+    "age": 21,
+    "location": "Tempe, Arizona, United States",
+    "title": "Computer Science Student & Software Engineer",
+    "email": "kshah77@asu.edu",
+    "phone": "+1 408-609-7196",
+    "handle": "@thekavishshah",
+    "bio": "Hey 👋\nI'm Kavish, a Computer Science Honors student at Arizona State University's Barrett Honors College with a 3.84 GPA. I specialize in building scalable full-stack applications and AI/ML systems. I've worked at FarmX Inc. developing AI-powered soil moisture prediction models with 96% accuracy, and at Dark Alpha Capital creating RAG chatbots that improved accuracy by 40%. I'm passionate about leveraging AI, machine learning, and full-stack development to solve real-world problems.",
+    "avatar": "/profile.jpg",
+    "fallbackAvatar": "https://images.unsplash.com/photo-1610216705422-caa3fcb6d158?q=80&w=3560&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
+  "education": {
+    "current": {
+      "degree": "Bachelor of Science Honors in Computer Science",
+      "institution": "Arizona State University - Barrett, The Honors College",
+      "duration": "2022-2026",
+      "cgpa": "3.84/4.00",
+      "graduationDate": "May 2026"
+    },
+    "previous": {
+      "degree": "High School Diploma",
+      "institution": "High School",
+      "duration": "2018-2022",
+      "percentage": "",
+      "completionDate": "2022"
+    },
+    "achievements": [
+      "Barrett Honors College Scholar with 3.84 GPA",
+      "Fulton Ambassador representing engineering school",
+      "Treasurer at SoDA (The Software Developer Association)",
+      "Barrett Residential Peer Mentor mentoring 50+ students",
+      "Member of Data Science Club, Code Devils, and Pickleball Club"
+    ]
+  },
+  "experience": [
+    {
+      "company": "FarmX Inc.",
+      "position": "Software Engineer Intern",
+      "type": "Internship",
+      "duration": "May 2025 – August 2025",
+      "description": "Achieved 96% predictive accuracy in soil moisture estimation through developing an AI-powered pipeline leveraging Random Forest and Gradient Boosting, improving irrigation efficiency across diverse soil types. Reduced irrigation error variance by 40% by implementing soil-texture-specific calibration models. Accomplished competitive accuracy within 5% of ensemble models by implementing Linear Regression, reducing training complexity and computation time by 60%.",
+      "technologies": ["Python", "Machine Learning", "Random Forest", "Gradient Boosting", "Linear Regression", "AI Pipeline Development", "Data Science"]
+    },
+    {
+      "company": "Dark Alpha Capital LLC",
+      "position": "Software Engineer Intern",
+      "type": "Internship",
+      "duration": "January 2025 – May 2025",
+      "description": "Developed and deployed scalable full-stack web applications using Next.js, Prisma, and PostgreSQL, reducing manual deal tracking efforts by 25%. Deployed a RAG chatbot implementing persistent long-term memory, reducing internal deal tracking time by 30% and improving multi-turn accuracy by 40%. Resolved critical memory persistence issues in multi-session AI workflows, increasing chatbot context retention by 80% and reducing duplicate query errors by over 50%.",
+      "technologies": ["Next.js", "Prisma", "PostgreSQL", "RAG", "OpenAI API", "Vector Databases", "TypeScript", "Full-Stack Development"]
+    },
+    {
+      "company": "Ira A. Fulton Schools of Engineering",
+      "position": "Residential Peer Mentor",
+      "type": "Part-time",
+      "duration": "August 2024 – Present",
+      "description": "Directed a team of peers to develop an interactive workshop series for new engineering students, enhancing engagement by over 40 participants per event. Collaborated with a team of 17 students to organize workshops for over 2000 first-year students. Mentored 50+ first-year engineering students through weekly check-ins, resulting in a 30% increase in student engagement and retention.",
+      "technologies": ["Leadership", "Mentorship", "Workshop Development", "Team Collaboration", "Student Engagement"]
+    }
+  ],
+  "skills": {
+    "programming": ["JavaScript", "TypeScript", "Python", "Java", "JavaFX", "C", "C++", "R", "HTML", "CSS", "MATLAB"],
+    "ml_ai": ["Machine Learning", "Random Forest", "Gradient Boosting", "Linear Regression", "OpenAI API", "Anthropic Claude API", "RAG Systems", "Vector Databases", "AI Pipeline Development"],
+    "web_development": ["React.js", "Next.js", "Node.js", "Express", "Flask", "Django Rest Framework", "FastAPI", "Prisma", "RESTful APIs"],
+    "databases": ["PostgreSQL", "MySQL", "MongoDB", "Upstash Redis", "Firebase"],
+    "devops_cloud": ["Docker", "Git", "GitHub Actions", "CI/CD Pipeline", "Agile/Scrum", "JIRA", "Salesforce"],
+    "iot_hardware": [],
+    "soft_skills": ["Problem Solving", "Team Leadership", "Project Management", "Communication", "Mentorship", "Research", "Technical Writing"]
+  },
+  "certifications": [
+    {
+      "name": "Software Engineering Certificate",
+      "issuer": "Arizona State University",
+      "year": "2024"
+    }
+  ],
+  "projects": [
+    {
+      "title": "GreenStream AI",
+      "category": "AI/Full-Stack Web Application",
+      "description": "Developed an AI-powered chatbot using FastAPI and Anthropic Claude models to deliver industry-specific analyses and citations from public data, reducing user research time by 50%. Implemented real-time query handling and dynamic data visualization in React/Next.js, improving response latency by 35% and enhancing user engagement by 30%.",
+      "techStack": ["React", "Next.js", "FastAPI", "Python", "Anthropic Claude API", "TypeScript"],
+      "date": "September 2025 – Present",
+      "status": "In Progress",
+      "featured": true,
+      "links": [
+        {
+          "name": "GitHub",
+          "url": "https://github.com/thekavishshah"
+        }
+      ],
+      "images": []
+    },
+    {
+      "title": "Code Sentinel Bot",
+      "category": "DevOps/Automation",
+      "description": "Reduced pull request review time by 30% and boosted developer productivity by 25% by creating an automated code review bot with GitHub Actions and OpenAI GPT models using GitHub API. Increased adoption across projects by 40% by designing modular, configurable rule sets for easy integration.",
+      "techStack": ["TypeScript", "GitHub Actions", "OpenAI API", "Node.js", "GitHub API"],
+      "date": "June 2025",
+      "status": "Completed",
+      "featured": true,
+      "links": [
+        {
+          "name": "GitHub",
+          "url": "https://github.com/thekavishshah"
+        }
+      ],
+      "images": []
+    },
+    {
+      "title": "RAG Chatbot with Persistent Memory",
+      "category": "AI/Machine Learning",
+      "description": "Deployed a production RAG chatbot implementing persistent long-term memory for Dark Alpha Capital. Resolved critical memory persistence issues in multi-session AI workflows, increasing chatbot context retention by 80% and reducing duplicate query errors by over 50%. Improved multi-turn conversation accuracy by 40% and reduced internal deal tracking time by 30%.",
+      "techStack": ["Next.js", "OpenAI API", "Vector Databases", "RAG", "TypeScript", "Prisma", "PostgreSQL"],
+      "date": "January 2025 – May 2025",
+      "status": "Completed",
+      "featured": true,
+      "links": [
+        {
+          "name": "GitHub",
+          "url": "https://github.com/thekavishshah"
+        }
+      ],
+      "images": []
+    },
+    {
+      "title": "AI-Powered Soil Moisture Prediction",
+      "category": "Machine Learning/Agriculture Tech",
+      "description": "Achieved 96% predictive accuracy in soil moisture estimation at FarmX Inc. through developing an AI-powered pipeline leveraging Random Forest and Gradient Boosting algorithms. Reduced irrigation error variance by 40% through soil-texture-specific calibration models. Implemented Linear Regression achieving competitive accuracy within 5% of ensemble models while reducing training complexity and computation time by 60%.",
+      "techStack": ["Python", "Random Forest", "Gradient Boosting", "Linear Regression", "Machine Learning", "Data Science"],
+      "date": "May 2025 – August 2025",
+      "status": "Completed",
+      "featured": true,
+      "links": [
+        {
+          "name": "GitHub",
+          "url": "https://github.com/thekavishshah"
+        }
+      ],
+      "images": []
+    },
+    {
+      "title": "Deal-Sourcing Platform",
+      "category": "Full-Stack Web Application",
+      "description": "Built scalable full-stack web application using Next.js, Prisma, and PostgreSQL for Dark Alpha Capital. Reduced manual deal tracking efforts by 25% through automated workflows and integrations. Developed comprehensive data management system with real-time updates and analytics.",
+      "techStack": ["Next.js", "Prisma", "PostgreSQL", "TypeScript", "API Development"],
+      "date": "January 2025 – May 2025",
+      "status": "Completed",
+      "featured": true,
+      "links": [
+        {
+          "name": "GitHub",
+          "url": "https://github.com/thekavishshah"
+        }
+      ],
+      "images": []
+    }
+  ],
+  "social": {
+    "linkedin": "https://www.linkedin.com/in/shah-kavish/",
+    "github": "https://github.com/thekavishshah",
+    "email": "mailto:kshah77@asu.edu",
+    "portfolio": "https://thekavishshah.github.io/"
+  },
+  "internship": {
+    "seeking": true,
+    "duration": "Summer 2026 / Full-time after graduation",
+    "startDate": "May 2026",
+    "preferredLocation": "Remote or On-site",
+    "focusAreas": ["Full-Stack Development", "AI/ML Engineering", "Software Engineering", "Backend Development", "Data Science"],
+    "availability": "Available for summer 2026 internships and full-time opportunities after May 2026",
+    "workStyle": "Fast learner, collaborative team player, and problem solver with proven experience in production systems at FarmX Inc. and Dark Alpha Capital. Strong background in AI/ML, full-stack development, and delivering measurable results.",
+    "goals": "Join an innovative team working on cutting-edge technology in AI/ML or full-stack development. I want to contribute to meaningful projects while growing my skills in scalable software architecture, machine learning systems, and impactful product development."
+  },
+  "personality": {
+    "traits": ["passionate", "curious", "collaborative", "driven", "detail-oriented", "results-focused"],
+    "interests": ["AI/ML", "Full-Stack Development", "Machine Learning", "Web Development", "Automation", "Data Science"],
+    "funFacts": [
+      "Achieved 96% accuracy in AI-powered soil moisture prediction at FarmX Inc.",
+      "Built production RAG chatbot with 80% improvement in context retention",
+      "Reduced code review time by 30% with automated GitHub bot",
+      "Mentored 50+ first-year engineering students as Barrett Peer Mentor",
+      "Treasurer of SoDA (Software Developer Association) at ASU",
+      "Barrett Honors College Scholar with 3.84 GPA"
+    ],
+    "workingStyle": "I'm passionate about learning new technologies and tackling challenging problems with scalable, efficient solutions. I thrive in collaborative environments and love building systems that deliver measurable impact.",
+    "motivation": "Building innovative technology that solves real-world problems through AI/ML, full-stack development, and data-driven solutions"
+  },
+  "resume": {
+    "title": "Kavish Shah - Resume",
+    "description": "Computer Science Honors Student | Software Engineer | AI/ML Developer | Arizona State University",
+    "fileType": "PDF",
+    "lastUpdated": "January 2025",
+    "fileSize": "104 KB",
+    "downloadUrl": "/resume.pdf"
+  },
+  "chatbot": {
+    "name": "Kavish",
+    "personality": "friendly, enthusiastic, tech-savvy",
+    "tone": "casual and conversational",
+    "language": "english",
+    "responseStyle": "concise and engaging",
+    "useEmojis": true,
+    "topics": ["projects", "skills", "experience", "internship", "contact", "education", "achievements", "machine learning"]
+  },
+  "presetQuestions": {
+    "me": [
+      "Who are you?",
+      "Tell me about yourself",
+      "What's your background?",
+      "What are your passions?",
+      "How did you get started in tech?",
+      "What are you currently working on?"
+    ],
+    "professional": [
+      "What are your skills?",
+      "Can I see your resume?",
+      "What's your experience?",
+      "Are you looking for internships?",
+      "Tell me about your work at FarmX Inc.",
+      "Tell me about your work at Dark Alpha Capital",
+      "What makes you a valuable team member?",
+      "What's your educational background?",
+      "Why should I hire you?"
+    ],
+    "projects": [
+      "What projects are you most proud of?",
+      "Tell me about your AI projects",
+      "Tell me about your RAG chatbot",
+      "Tell me about GreenStream AI",
+      "What are your recent projects?",
+      "What are you working on?",
+      "Show me your machine learning projects"
+    ],
+    "achievements": [
+      "What are your major achievements?",
+      "What's your biggest accomplishment?",
+      "Tell me about your leadership roles",
+      "What impact have you made?"
+    ],
+    "contact": [
+      "How can I reach you?",
+      "How can I contact you?",
+      "What's your email?",
+      "Where can I find you online?",
+      "What kind of opportunities interest you?",
+      "Where are you located?"
+    ],
+    "fun": [
+      "What are your hobbies?",
+      "Tell me something interesting about you",
+      "What motivates you?",
+      "What's a fun fact about you?"
+    ]
+  },
+  "meta": {
+    "configVersion": "2.0",
+    "lastUpdated": "2025-11-08",
+    "generatedBy": "Kavish Shah",
+    "description": "Portfolio configuration for Kavish Shah - Computer Science Honors Student at Arizona State University, Software Engineer with experience at FarmX Inc. and Dark Alpha Capital"
+  }
+}
