@@ -2,7 +2,7 @@
 
 Welcome to my personal portfolio! 🎯 This website showcases my journey as a Software Engineer, Peer Mentor, and student at Arizona State University. It highlights my experiences, projects, leadership roles, and technical skills.
 
-🔗 **Live Site**: [thekavishshah.github.io](https://thekavishshah.github.io)
+🔗 **Live Site**: [thekavishshah.vercel.app](https://thekavishshah.vercel.app)
 
 ---
 
